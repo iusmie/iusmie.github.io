@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F7F6F3;
+    color: #37352F;
+  }
+
+  code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  }
+
+  /* Notion 风格的滚动条 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(55, 53, 47, 0.16);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(55, 53, 47, 0.24);
+  }
+}
+
+@layer components {
+  /* Notion 风格的按钮 */
+  .notion-button {
+    @apply px-3 py-1.5 rounded-[3px] text-sm font-medium transition-all duration-150;
+    @apply bg-notion-bg hover:bg-notion-hover active:bg-notion-selected;
+    @apply text-notion-text border border-notion-border hover:border-notion-border-hover;
+    @apply shadow-notion-sm;
+  }
+
+  .notion-button-primary {
+    @apply bg-notion-accent-blue text-white border-transparent hover:bg-blue-600;
+  }
+
+  /* Notion 风格的输入框 */
+  .notion-input {
+    @apply px-3 py-2 rounded-[3px] text-sm;
+    @apply bg-white border border-notion-border focus:border-notion-accent-blue;
+    @apply text-notion-text placeholder-notion-text-tertiary;
+    @apply focus:outline-none focus:ring-1 focus:ring-notion-accent-blue;
+    @apply transition-all duration-150;
+  }
+
+  /* Notion 风格的卡片 */
+  .notion-card {
+    @apply bg-white rounded-[3px] border border-notion-border;
+    @apply shadow-notion-sm;
+  }
+
+  /* Notion 风格的文本 */
+  .notion-text {
+    @apply text-notion-text;
+  }
+
+  .notion-text-secondary {
+    @apply text-notion-text-secondary;
+  }
+
+  .notion-text-tertiary {
+    @apply text-notion-text-tertiary;
+  }
+}
