@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hazel</title>
+    <link rel="stylesheet" href="./assets/css/common.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 语言切换 -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+
+      <!-- 个人信息栏 -->
+      <aside class="sidebar">
+        <h1 class="name">Lijuan Cao</h1>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <a href="mailto:juan.li.cao@gmail.com">juan.li.cao@gmail.com</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <!-- Experience -->
+        <section class="section">
+          <h2 class="section-title" data-i18n="experiences">Experiences</h2>
+          <div class="experience-item">
+            <div class="experience-description" data-i18n="exp_desc">
+              Project description and main features. This is an XXX project that implements XXX functionality.
+              <ul>
+                <li>Developed using XXX tech stack</li>
+                <li>Implemented XXX feature, improving efficiency by XX%</li>
+                <li>Project link: <a href="#" target="_blank">GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title" data-i18n="tools">Tools</h2>
+          <div class="tools-list">
+            <div class="tool-category">
+              <span class="tool-category-name" data-i18n="study_tools">🌍 Life Tools</span>
+              <span class="tool-links">
+                <a href="./study-abroad/world-clock/" data-i18n="world_clock">World Clock</a>
+                <!-- <a href="./study-abroad/exchange-rate/" data-i18n="exchange_rate">Exchange Rate</a> -->
+                <!-- <a href="./study-abroad/visa/" data-i18n="visa">Visa Guide</a> -->
+              </span>
+            </div>
+            <div class="tool-category">
+              <span class="tool-category-name" data-i18n="dev_tools">🛠️ Dev Tools</span>
+              <span class="tool-links">
+                <a href="./mdcompare-app.html" data-i18n="markdown_tool">Markdown Tools</a>
+                <a href="./tools/timestamp/" data-i18n="timestamp">Timestamp</a>
+              </span>
+            </div>  
+        
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title" data-i18n="remarks">Remarks</h2>
+            <div class="tool-category">
+              <span class="tool-links">
+                <a href="#" class="ideas-trigger tool-category-name" data-i18n="ideas">💡 Ideas</a>
+                <div class="ideas-stats-bar" id="ideasStatsBar"></div>
+              </span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Ideas 弹层 -->
+    <div id="ideasModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 data-i18n="ideas">💡 Ideas</h2>
+          <div class="modal-actions">
+            <button class="btn-close" id="closeModalBtn">×</button>
+          </div>
+        </div>
+        <div class="modal-tabs">
+          <div class="modal-tabs-left">
+            <button class="tab-btn active" data-tab="thinking" data-i18n="thinking">Thinking</button>
+            <button class="tab-btn" data-tab="completed" data-i18n="completed">Completed</button>
+            <button class="tab-btn" data-tab="abandoned" data-i18n="abandoned">Abandoned</button>
+          </div>
+          <div class="modal-tabs-right">
+            <button class="btn-add" id="addIdeaBtn" data-i18n="add">+ 新增</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="tab-content active" id="thinkingTab">
+            <div class="ideas-list" id="thinkingList"></div>
+          </div>
+          <div class="tab-content" id="completedTab">
+            <div class="ideas-list" id="completedList"></div>
+          </div>
+          <div class="tab-content" id="abandonedTab">
+            <div class="ideas-list" id="abandonedList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新增/编辑想法表单 -->
+    <div id="ideaFormModal" class="modal">
+      <div class="modal-content modal-form">
+        <div class="modal-header">
+          <h2 id="formTitle" data-i18n="add_idea">新增想法</h2>
+          <button class="btn-close" id="closeFormBtn">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="ideaForm">
+            <div class="form-group">
+              <label data-i18n="idea_name">想法名称</label>
+              <input type="text" id="ideaName" required />
+            </div>
+            <div class="form-group">
+              <label data-i18n="idea_date">时间</label>
+              <input type="date" id="ideaDate" required />
+            </div>
+            <div class="form-group">
+              <label data-i18n="idea_status">状态</label>
+              <select id="ideaStatus" required>
+                <option value="thinking" data-i18n="thinking">Thinking</option>
+                <option value="completed" data-i18n="completed">Completed</option>
+                <option value="abandoned" data-i18n="abandoned">Abandoned</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="idea_description">想法说明</label>
+              <textarea id="ideaDescription" rows="4" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancelFormBtn" data-i18n="cancel">取消</button>
+              <button type="submit" class="btn-submit" data-i18n="save">保存</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/i18n.js"></script>
+    <script src="./assets/js/ideas.js"></script>
+  </body>
+</html>
