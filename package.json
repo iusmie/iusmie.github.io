@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Markdown文本对比工具",
   "scripts": {
-    "dev": "vite",
-    "dev:app": "./dev-app.sh",
-    "start": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "cd apps/markdown-tools && vite",
+    "dev:app": "cd apps/markdown-tools && vite",
+    "start": "cd apps/markdown-tools && vite",
+    "build": "cd apps/markdown-tools && tsc && vite build",
+    "preview": "cd apps/markdown-tools && vite preview"
   },
   "dependencies": {
     "diff-match-patch": "^1.0.5",
