@@ -182,7 +182,9 @@ Web UI 显示结果
        ↓
 Gateway（统一入口）✅
   ↓
-Gateway 路由消息
+Gateway 路由消息: 解析消息信息（channel、accountId、peer）
+  ↓
+匹配 Bindings（peer > guild > team > account > channel > default）
   ↓
 Agent 处理消息 ✅
   ├── 调用 Browser Control（如果需要）
