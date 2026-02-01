@@ -142,6 +142,13 @@
   color: #666666;
 }
 
+.contact-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+  display: inline-block;
+}
+
 .contact-label {
   font-size: 16px;
   width: 20px;
@@ -149,18 +156,18 @@
 }
 
 .contact-item a {
-  color: #666666;
-  text-decoration: none;
+  color: #0066CC;
+  text-decoration: underline;
   transition: color 0.2s ease;
 }
 
 .contact-item a:hover {
-  color: #0066CC;
+  color: #0052A3;
   text-decoration: underline;
 }
 
 .contact-item a:visited {
-  color: #666666;
+  color: #0066CC;
 }
 
 /* 右侧主内容区 */
@@ -179,6 +186,19 @@
 .academic-bio strong {
   font-weight: 600;
   color: #333333;
+}
+
+.academic-bio a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.academic-bio a:hover {
+  color: #0052A3;
+}
+
+.academic-bio a:visited {
+  color: #0066CC;
 }
 
 /* 区块标题 */
@@ -205,6 +225,16 @@
   font-size: 20px;
 }
 
+/* News 图标为红色五角星 */
+#news .section-icon {
+  color: #E53935;
+}
+
+/* Publications 图标为蓝色书籍 */
+#publications .section-icon {
+  color: #0066CC;
+}
+
 /* News 列表 */
 .news-list {
   list-style: none;
@@ -222,15 +252,32 @@
 .news-date {
   font-size: 14px;
   color: #333333;
-  font-weight: 600;
-  min-width: 60px;
+  font-weight: 400;
+  min-width: 100px;
   flex-shrink: 0;
+}
+
+.news-date strong {
+  font-weight: 600;
 }
 
 .news-content {
   font-size: 14px;
   color: #333333;
   line-height: 1.6;
+}
+
+.news-content a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.news-content a:hover {
+  color: #0052A3;
+}
+
+.news-content strong {
+  font-weight: 600;
 }
 
 /* Publications 列表 */
@@ -310,19 +357,27 @@
   line-height: 1.5;
 }
 
+.publication-venue strong {
+  font-weight: 600;
+  color: #333333;
+}
+
 .publication-badge {
   display: inline-block;
   padding: 4px 12px;
   font-size: 12px;
   font-weight: 600;
-  color: #FFFFFF;
-  background: #E53935;
+  color: #E53935;
+  background: #FFFFFF;
+  border: 1px solid #E53935;
   border-radius: 3px;
   text-transform: uppercase;
 }
 
 .badge-poster {
-  background: #FF6F00;
+  color: #E53935;
+  background: #FFFFFF;
+  border: 1px solid #E53935;
 }
 
 /* Honors and Awards 列表 */
@@ -339,13 +394,6 @@
   align-items: flex-start;
 }
 
-.award-date {
-  font-size: 14px;
-  color: #333333;
-  font-weight: 600;
-  min-width: 60px;
-  flex-shrink: 0;
-}
 
 .award-content {
   font-size: 14px;
@@ -354,6 +402,18 @@
 }
 
 .award-content strong {
+  font-weight: 600;
+}
+
+.award-date {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 400;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.award-date strong {
   font-weight: 600;
 }
 
@@ -398,11 +458,29 @@
   line-height: 1.5;
 }
 
+.education-institution a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.education-institution a:hover {
+  color: #0052A3;
+}
+
 .education-advisor {
   font-size: 14px;
   color: #666666;
   margin: 0;
   line-height: 1.5;
+}
+
+.education-advisor a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.education-advisor a:hover {
+  color: #0052A3;
 }
 
 /* Work Experiences 列表 */
@@ -446,11 +524,34 @@
   line-height: 1.5;
 }
 
+.experience-company a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.experience-company a:hover {
+  color: #0052A3;
+}
+
 .experience-description {
   font-size: 14px;
   color: #666666;
   margin: 0;
   line-height: 1.6;
+}
+
+.experience-description strong {
+  font-weight: 600;
+  color: #333333;
+}
+
+.experience-description a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.experience-description a:hover {
+  color: #0052A3;
 }
 
 /* Services 列表 */
@@ -473,6 +574,15 @@
   color: #333333;
   line-height: 1.7;
   margin: 0;
+}
+
+.beyond-content a {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.beyond-content a:hover {
+  color: #0052A3;
 }
 
 /* Visitor Map */
@@ -527,6 +637,7 @@
 .footer-icons span {
   font-size: 16px;
   color: #999999;
+  display: inline-block;
 }
 
 .footer-copyright {
