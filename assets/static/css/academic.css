@@ -1,0 +1,613 @@
+/* 学术主页样式 - 参考学术主页设计 */
+
+/* 基础样式重置 */
+.academic-page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  background: #FFFFFF;
+  color: #333333;
+  line-height: 1.6;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* 顶部导航栏 */
+.academic-nav {
+  position: sticky;
+  top: 0;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E0E0E0;
+  z-index: 100;
+  padding: 12px 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: #666666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin-right: 24px;
+  transition: color 0.2s ease;
+  text-transform: lowercase;
+}
+
+.nav-link:hover {
+  color: #333333;
+}
+
+.nav-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666666;
+}
+
+/* 主容器 - 左右两栏布局 */
+.academic-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* 左侧栏 */
+.academic-sidebar {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+  padding-right: 20px;
+}
+
+/* 个人头像 */
+.academic-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #E0E0E0;
+}
+
+.academic-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  font-size: 64px;
+  font-weight: 600;
+  color: #999999;
+}
+
+/* 姓名 */
+.academic-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* 所属机构 */
+.academic-affiliation {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+/* 个人格言 */
+.academic-quote {
+  font-size: 14px;
+  color: #666666;
+  font-style: italic;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+/* 联系方式 */
+.academic-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.contact-label {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.contact-item a {
+  color: #666666;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-item a:hover {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+.contact-item a:visited {
+  color: #666666;
+}
+
+/* 右侧主内容区 */
+.academic-main {
+  min-width: 0;
+}
+
+/* 个人简介 */
+.academic-bio {
+  font-size: 15px;
+  color: #333333;
+  line-height: 1.7;
+  margin: 0 0 40px 0;
+}
+
+.academic-bio strong {
+  font-weight: 600;
+  color: #333333;
+}
+
+/* 区块标题 */
+.academic-section {
+  margin-bottom: 48px;
+}
+
+.academic-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.3;
+}
+
+.section-icon {
+  font-size: 20px;
+}
+
+/* News 列表 */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.news-date {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.news-content {
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.6;
+}
+
+/* Publications 列表 */
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.publication-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.publication-thumbnail {
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.thumbnail-placeholder {
+  font-size: 32px;
+  color: #999999;
+}
+
+.publication-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.publication-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.publication-title a {
+  color: #0066CC;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.publication-title a:hover {
+  color: #0052A3;
+  text-decoration: underline;
+}
+
+.publication-title a:visited {
+  color: #0066CC;
+}
+
+.publication-authors {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
+
+.publication-authors strong {
+  font-weight: 600;
+  color: #333333;
+}
+
+.publication-venue {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.publication-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #E53935;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.badge-poster {
+  background: #FF6F00;
+}
+
+/* Honors and Awards 列表 */
+.awards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.award-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.award-date {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.award-content {
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.award-content strong {
+  font-weight: 600;
+}
+
+/* Educations 列表 */
+.education-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.education-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.education-date {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.education-content {
+  flex: 1;
+}
+
+.education-degree {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
+
+.education-institution {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
+
+.education-advisor {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Work Experiences 列表 */
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experience-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.experience-date {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
+
+.experience-company {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 6px 0;
+  line-height: 1.5;
+}
+
+.experience-description {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Services 列表 */
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-item {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Beyond Academics */
+.beyond-content {
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Visitor Map */
+.visitor-stats {
+  margin-top: 12px;
+}
+
+.visitor-count {
+  font-size: 14px;
+  color: #333333;
+  margin: 0 0 16px 0;
+}
+
+.visitor-count strong {
+  font-weight: 600;
+}
+
+.visitor-map-placeholder {
+  width: 100%;
+  height: 300px;
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+  font-size: 14px;
+}
+
+/* 页脚 */
+.academic-footer {
+  margin-top: 80px;
+  padding: 40px 24px;
+  border-top: 1px solid #E0E0E0;
+  background: #FAFAFA;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-icons span {
+  font-size: 16px;
+  color: #999999;
+}
+
+.footer-copyright {
+  font-size: 13px;
+  color: #666666;
+  margin: 0 0 8px 0;
+}
+
+.footer-template {
+  font-size: 12px;
+  color: #999999;
+  margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 968px) {
+  .academic-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .academic-sidebar {
+    position: static;
+    text-align: center;
+  }
+
+  .academic-avatar {
+    margin: 0 auto 20px;
+  }
+
+  .academic-contact {
+    align-items: center;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .academic-container {
+    padding: 24px 16px;
+  }
+
+  .nav-link {
+    display: none;
+  }
+
+  .nav-menu-toggle {
+    display: block;
+  }
+
+  .academic-name {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .publication-item {
+    flex-direction: column;
+  }
+
+  .publication-thumbnail {
+    width: 100%;
+    height: 200px;
+  }
+
+  .news-item,
+  .award-item,
+  .education-item,
+  .experience-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .news-date,
+  .award-date,
+  .education-date,
+  .experience-date {
+    min-width: auto;
+  }
+}
