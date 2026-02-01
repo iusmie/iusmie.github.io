@@ -11,16 +11,27 @@
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* 优化焦点状态 */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #0066CC;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* 顶部导航栏 */
 .academic-nav {
   position: sticky;
   top: 0;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #E0E0E0;
   z-index: 100;
-  padding: 12px 0;
+  padding: 10px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .nav-container {
@@ -38,12 +49,29 @@
   font-size: 14px;
   font-weight: 400;
   margin-right: 24px;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   text-transform: lowercase;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .nav-link:hover {
   color: #333333;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-menu-toggle {
@@ -59,33 +87,52 @@
 .academic-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: 32px 24px;
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 80px;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
   align-items: start;
 }
 
 /* 左侧栏 */
 .academic-sidebar {
   position: sticky;
-  top: 80px;
+  top: 70px;
   align-self: start;
-  padding-right: 20px;
+  padding-right: 16px;
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* 个人头像 */
 .academic-avatar {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 24px;
-  background: #F5F5F5;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #E0E0E0;
+  border: 3px solid #E0E0E0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.academic-avatar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .academic-avatar img {
@@ -102,44 +149,51 @@
 
 /* 姓名 */
 .academic-name {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-  color: #333333;
-  margin: 0 0 12px 0;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* 所属机构 */
 .academic-affiliation {
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
-  margin: 0 0 16px 0;
+  margin: 0 0 14px 0;
   line-height: 1.5;
 }
 
 /* 个人格言 */
 .academic-quote {
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
   font-style: italic;
-  margin: 0 0 24px 0;
+  margin: 0 0 20px 0;
   line-height: 1.6;
+  padding-left: 8px;
+  border-left: 2px solid #E0E0E0;
 }
 
 /* 联系方式 */
 .academic-contact {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
+  transition: transform 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(2px);
 }
 
 .contact-icon {
@@ -158,12 +212,27 @@
 .contact-item a {
   color: #0066CC;
   text-decoration: underline;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.contact-item a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .contact-item a:hover {
   color: #0052A3;
-  text-decoration: underline;
+}
+
+.contact-item a:hover::after {
+  width: 100%;
 }
 
 .contact-item a:visited {
@@ -177,10 +246,11 @@
 
 /* 个人简介 */
 .academic-bio {
-  font-size: 15px;
+  font-size: 14px;
   color: #333333;
   line-height: 1.7;
-  margin: 0 0 40px 0;
+  margin: 0 0 32px 0;
+  text-align: justify;
 }
 
 .academic-bio strong {
@@ -191,10 +261,27 @@
 .academic-bio a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.academic-bio a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .academic-bio a:hover {
   color: #0052A3;
+}
+
+.academic-bio a:hover::after {
+  width: 100%;
 }
 
 .academic-bio a:visited {
@@ -203,22 +290,63 @@
 
 /* 区块标题 */
 .academic-section {
-  margin-bottom: 48px;
+  margin-bottom: 36px;
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: both;
 }
+
+.academic-section:nth-child(1) { animation-delay: 0.1s; }
+.academic-section:nth-child(2) { animation-delay: 0.2s; }
+.academic-section:nth-child(3) { animation-delay: 0.3s; }
+.academic-section:nth-child(4) { animation-delay: 0.4s; }
+.academic-section:nth-child(5) { animation-delay: 0.5s; }
+.academic-section:nth-child(6) { animation-delay: 0.6s; }
+.academic-section:nth-child(7) { animation-delay: 0.7s; }
+.academic-section:nth-child(8) { animation-delay: 0.8s; }
+.academic-section:nth-child(9) { animation-delay: 0.9s; }
 
 .academic-section:last-child {
   margin-bottom: 0;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .section-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  color: #333333;
-  margin: 0 0 20px 0;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
   display: flex;
   align-items: center;
   gap: 8px;
   line-height: 1.3;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #F0F0F0;
+  position: relative;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0066CC;
+  transition: width 0.3s ease;
+}
+
+.section-title:hover::before {
+  width: 60px;
 }
 
 .section-icon {
@@ -228,11 +356,22 @@
 /* News 图标为红色五角星 */
 #news .section-icon {
   color: #E53935;
+  filter: drop-shadow(0 1px 2px rgba(229, 57, 53, 0.3));
 }
 
 /* Publications 图标为蓝色书籍 */
 #publications .section-icon {
   color: #0066CC;
+  filter: drop-shadow(0 1px 2px rgba(0, 102, 204, 0.3));
+}
+
+/* 其他图标样式 */
+.section-icon {
+  transition: transform 0.2s ease;
+}
+
+.section-title:hover .section-icon {
+  transform: scale(1.1);
 }
 
 /* News 列表 */
@@ -245,8 +384,17 @@
 .news-item {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   align-items: flex-start;
+  padding: 8px 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.news-item:hover {
+  background-color: #FAFAFA;
 }
 
 .news-date {
@@ -270,10 +418,27 @@
 .news-content a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.news-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .news-content a:hover {
   color: #0052A3;
+}
+
+.news-content a:hover::after {
+  width: 100%;
 }
 
 .news-content strong {
@@ -284,26 +449,41 @@
 .publications-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .publication-item {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   align-items: flex-start;
+  padding: 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.publication-item:hover {
+  background-color: #FAFAFA;
+  transform: translateX(4px);
 }
 
 .publication-thumbnail {
-  width: 120px;
-  height: 80px;
+  width: 110px;
+  height: 75px;
   flex-shrink: 0;
-  background: #F5F5F5;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   border: 1px solid #E0E0E0;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publication-item:hover .publication-thumbnail {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .thumbnail-placeholder {
@@ -317,21 +497,36 @@
 }
 
 .publication-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   line-height: 1.4;
 }
 
 .publication-title a {
   color: #0066CC;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.publication-title a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .publication-title a:hover {
   color: #0052A3;
-  text-decoration: underline;
+}
+
+.publication-title a:hover::after {
+  width: 100%;
 }
 
 .publication-title a:visited {
@@ -339,7 +534,7 @@
 }
 
 .publication-authors {
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
   margin: 0 0 4px 0;
   line-height: 1.5;
@@ -351,9 +546,9 @@
 }
 
 .publication-venue {
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   line-height: 1.5;
 }
 
@@ -364,20 +559,29 @@
 
 .publication-badge {
   display: inline-block;
-  padding: 4px 12px;
-  font-size: 12px;
+  padding: 3px 10px;
+  font-size: 11px;
   font-weight: 600;
   color: #E53935;
   background: #FFFFFF;
-  border: 1px solid #E53935;
-  border-radius: 3px;
+  border: 1.5px solid #E53935;
+  border-radius: 4px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.publication-badge:hover {
+  background: #E53935;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
 }
 
 .badge-poster {
   color: #E53935;
   background: #FFFFFF;
-  border: 1px solid #E53935;
+  border: 1.5px solid #E53935;
 }
 
 /* Honors and Awards 列表 */
@@ -390,8 +594,17 @@
 .award-item {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   align-items: flex-start;
+  padding: 8px 0;
+  padding-left: 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.award-item:hover {
+  background-color: #FAFAFA;
 }
 
 
@@ -427,8 +640,17 @@
 .education-item {
   display: flex;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   align-items: flex-start;
+  padding: 10px 0;
+  padding-left: 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.education-item:hover {
+  background-color: #FAFAFA;
 }
 
 .education-date {
@@ -444,7 +666,7 @@
 }
 
 .education-degree {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #333333;
   margin: 0 0 4px 0;
@@ -461,10 +683,27 @@
 .education-institution a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.education-institution a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .education-institution a:hover {
   color: #0052A3;
+}
+
+.education-institution a:hover::after {
+  width: 100%;
 }
 
 .education-advisor {
@@ -477,10 +716,27 @@
 .education-advisor a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.education-advisor a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .education-advisor a:hover {
   color: #0052A3;
+}
+
+.education-advisor a:hover::after {
+  width: 100%;
 }
 
 /* Work Experiences 列表 */
@@ -493,8 +749,17 @@
 .experience-item {
   display: flex;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   align-items: flex-start;
+  padding: 10px 0;
+  padding-left: 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.experience-item:hover {
+  background-color: #FAFAFA;
 }
 
 .experience-date {
@@ -510,7 +775,7 @@
 }
 
 .experience-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #333333;
   margin: 0 0 4px 0;
@@ -527,10 +792,27 @@
 .experience-company a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.experience-company a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .experience-company a:hover {
   color: #0052A3;
+}
+
+.experience-company a:hover::after {
+  width: 100%;
 }
 
 .experience-description {
@@ -548,10 +830,27 @@
 .experience-description a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.experience-description a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .experience-description a:hover {
   color: #0052A3;
+}
+
+.experience-description a:hover::after {
+  width: 100%;
 }
 
 /* Services 列表 */
@@ -564,8 +863,17 @@
 .service-item {
   font-size: 14px;
   color: #333333;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.6;
+  padding: 6px 0;
+  padding-left: 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.service-item:hover {
+  background-color: #FAFAFA;
 }
 
 /* Beyond Academics */
@@ -579,10 +887,27 @@
 .beyond-content a {
   color: #0066CC;
   text-decoration: underline;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.beyond-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0066CC;
+  transition: width 0.3s ease;
 }
 
 .beyond-content a:hover {
   color: #0052A3;
+}
+
+.beyond-content a:hover::after {
+  width: 100%;
 }
 
 /* Visitor Map */
@@ -593,7 +918,7 @@
 .visitor-count {
   font-size: 14px;
   color: #333333;
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
 }
 
 .visitor-count strong {
@@ -602,21 +927,22 @@
 
 .visitor-map-placeholder {
   width: 100%;
-  height: 300px;
-  background: #F5F5F5;
+  height: 280px;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   border: 1px solid #E0E0E0;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #999999;
   font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* 页脚 */
 .academic-footer {
-  margin-top: 80px;
-  padding: 40px 24px;
+  margin-top: 60px;
+  padding: 32px 24px;
   border-top: 1px solid #E0E0E0;
   background: #FAFAFA;
 }
@@ -631,13 +957,20 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .footer-icons span {
-  font-size: 16px;
+  font-size: 18px;
   color: #999999;
   display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+
+.footer-icons span:hover {
+  transform: translateY(-2px);
+  color: #666666;
 }
 
 .footer-copyright {
@@ -656,7 +989,8 @@
 @media (max-width: 968px) {
   .academic-container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+    padding: 24px 20px;
   }
 
   .academic-sidebar {
@@ -665,7 +999,7 @@
   }
 
   .academic-avatar {
-    margin: 0 auto 20px;
+    margin: 0 auto 18px;
   }
 
   .academic-contact {
@@ -675,11 +1009,15 @@
   .contact-item {
     justify-content: center;
   }
+
+  .academic-section {
+    margin-bottom: 28px;
+  }
 }
 
 @media (max-width: 768px) {
   .academic-container {
-    padding: 24px 16px;
+    padding: 20px 16px;
   }
 
   .nav-link {
@@ -691,11 +1029,20 @@
   }
 
   .academic-name {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .academic-section {
+    margin-bottom: 24px;
+  }
+
+  .academic-bio {
+    margin-bottom: 24px;
   }
 
   .publication-item {
