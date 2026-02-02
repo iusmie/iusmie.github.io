@@ -1313,12 +1313,12 @@ body {
 /* 游戏关卡地图海报 - 16:9 横版 */
 .game-map-poster {
   position: relative;
-  width: 100%;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
-  margin: var(--spacing-xl) auto;
+  width: 75%; /* 调整为原来的3/4 */
+  max-width: 675px; /* 900px × 0.75 = 675px */
+  aspect-ratio: 16 / 9; /* 保持16:9比例 */
+  margin: var(--spacing-md) auto; /* 从 xl 改为 md，减少上下间距 */
   border-radius: var(--radius-lg);
-  overflow: visible;
+  overflow: visible; /* 允许元素稍微超出以完整显示 */
   background: linear-gradient(90deg, 
     #0a1929 0%,      /* 深海蓝 */
     #1a2f4a 20%,
@@ -1331,6 +1331,12 @@ body {
     0 20px 60px rgba(0, 0, 0, 0.6),
     inset 0 0 400px rgba(107, 141, 184, 0.2);
   border: none;
+  /* 性能优化 */
+  transform: translateZ(0);
+  will-change: contents;
+  contain: layout style paint;
+  /* 确保子元素在容器内 */
+  isolation: isolate;
 }
 
 /* 星空和水面效果 */
@@ -1359,6 +1365,9 @@ body {
     50% 100%;
   pointer-events: none;
   z-index: 1;
+  /* 性能优化 */
+  will-change: opacity;
+  transform: translateZ(0);
   animation: starTwinkle 10s ease-in-out infinite;
 }
 
@@ -1375,17 +1384,20 @@ body {
     radial-gradient(circle at 70% 80%, rgba(45, 74, 107, 0.12) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
+  /* 性能优化 */
+  will-change: transform, opacity;
+  transform: translateZ(0);
   animation: cosmicShift 20s ease-in-out infinite;
 }
 
 @keyframes cosmicShift {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateZ(0) scale(1);
   }
   50% {
     opacity: 0.85;
-    transform: scale(1.03);
+    transform: translateZ(0) scale(1.03);
   }
 }
 
@@ -1396,14 +1408,18 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 1; /* 降低层级，避免遮挡重要元素 */
   pointer-events: none;
+  overflow: hidden; /* 防止溢出 */
 }
 
 .star {
   position: absolute;
-  font-size: 20px;
-  opacity: 0.7;
+  font-size: 16px; /* 减小尺寸，避免遮挡 */
+  opacity: 0.5; /* 降低不透明度 */
+  /* 性能优化 */
+  will-change: transform, opacity;
+  transform: translateZ(0);
   animation: starTwinkle 3s ease-in-out infinite;
 }
 
@@ -1415,8 +1431,11 @@ body {
 
 .cloud {
   position: absolute;
-  font-size: 30px;
-  opacity: 0.3;
+  font-size: 24px; /* 减小尺寸，避免遮挡 */
+  opacity: 0.25; /* 降低不透明度 */
+  /* 性能优化 */
+  will-change: transform;
+  transform: translateZ(0);
   animation: cloudFloat 15s ease-in-out infinite;
 }
 
@@ -1426,20 +1445,20 @@ body {
 @keyframes starTwinkle {
   0%, 100% {
     opacity: 0.5;
-    transform: scale(1);
+    transform: translateZ(0) scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: translateZ(0) scale(1.2);
   }
 }
 
 @keyframes cloudFloat {
   0%, 100% {
-    transform: translateX(0);
+    transform: translateZ(0) translateX(0);
   }
   50% {
-    transform: translateX(20px);
+    transform: translateZ(0) translateX(20px);
   }
 }
 
@@ -1448,48 +1467,53 @@ body {
 /* 像素艺术风格图标 */
 .pixel-icon {
   position: absolute;
-  font-size: 32px;
-  opacity: 0.5;
+  font-size: 24px; /* 减小尺寸，避免遮挡 */
+  opacity: 0.4; /* 降低不透明度 */
   filter: 
     drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))
     contrast(1.1)
     saturate(1.2);
+  /* 性能优化 */
+  will-change: transform, opacity;
+  transform: translateZ(0);
   animation: iconFloat 4s ease-in-out infinite;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  z-index: 2;
+  z-index: 1; /* 降低层级，避免遮挡卡片和标识牌 */
   pointer-events: none;
 }
 
 .pixel-icon:hover {
   opacity: 0.8;
-  transform: scale(1.15);
+  transform: translateZ(0) scale(1.15);
   filter: 
     drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))
     contrast(1.2)
     saturate(1.3);
+  /* 暂停基础动画，避免冲突 */
+  animation-play-state: paused;
 }
 
 .icon-whale {
   animation-delay: 0s;
-  font-size: 40px;
+  font-size: 32px; /* 减小尺寸 */
 }
 
 .icon-jellyfish {
   animation-delay: 0.5s;
-  font-size: 28px;
+  font-size: 22px; /* 减小尺寸 */
 }
 
 .icon-star-small {
   animation-delay: 1s;
-  font-size: 20px;
+  font-size: 16px; /* 减小尺寸 */
 }
 
 .icon-star-yellow {
   animation-delay: 1.5s;
-  font-size: 24px;
+  font-size: 20px; /* 减小尺寸 */
 }
 
 .icon-airplane {
@@ -1514,10 +1538,10 @@ body {
 
 @keyframes iconFloat {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateZ(0) translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateZ(0) translateY(-8px);
   }
 }
 
@@ -1542,6 +1566,8 @@ body {
   stroke: #FFFFFF;
   stroke-width: 3;
   stroke-dasharray: 15, 8;
+  /* 性能优化 */
+  will-change: stroke-dashoffset;
   animation: roadLineMove 3s linear infinite;
   opacity: 0.9;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
@@ -1559,29 +1585,34 @@ body {
 /* 关卡阶段标识牌 - 任天堂风格 */
 .stage-sign {
   position: absolute;
-  z-index: 10;
+  z-index: 5; /* 提高层级，确保在装饰元素之上 */
   pointer-events: none;
   transform: translate(-50%, 0);
   /* 底部对齐到道路中心 */
   bottom: 50%;
+  /* 确保不被遮挡 */
+  isolation: isolate;
 }
 
 .stage-novice {
-  left: 3%;
-  bottom: 2%;
+  left: 20%; /* 右移10%，从10%改为20% */
+  bottom: 8%; /* 稍微上移，为卡片留出空间 */
   transform: translate(-50%, 0);
+  z-index: 7; /* 确保在卡片之上 */
 }
 
 .stage-trial {
   left: 50%;
-  bottom: 50%;
+  bottom: 40%; /* 上移，为下方卡片留出足够空间 */
+  z-index: 7; /* 提高层级，确保在技能卡片之上 */
 }
 
 .stage-temple {
-  left: 97%;
-  top: 2%;
+  left: 80%; /* 左移10%，从90%改为80% */
+  top: 8%; /* 稍微下移，为下方卡片留出空间 */
   bottom: auto;
   transform: translate(-50%, 0);
+  z-index: 7; /* 确保在卡片之上 */
 }
 
 .sign-board {
@@ -1618,6 +1649,13 @@ body {
     0% 75%, 2% 65%, 0% 55%, 1% 45%,
     0% 35%, 2% 25%, 0% 15%, 1% 8%, 0% 3%
   );
+}
+
+/* 右上木板（神之殿）特殊样式 - 确保文字一行显示 */
+.stage-temple .sign-board {
+  min-width: 140px; /* 增加宽度，确保"Temple of Gods"一行显示 */
+  padding: 6px 18px; /* 增加左右内边距 */
+  white-space: nowrap; /* 强制不换行 */
 }
 
 /* 斜角框架效果 - 浅棕色边框 */
@@ -1712,19 +1750,12 @@ body {
   /* 3D文字效果 */
   text-stroke: 1px #5D4037;
   -webkit-text-stroke: 1px #5D4037;
+  white-space: nowrap; /* 确保文字不换行 */
+  display: inline-block; /* 确保nowrap生效 */
 }
 
 .sign-text-en {
-  font-size: 7px;
-  color: #FFF8DC;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  letter-spacing: 0.3px;
-  opacity: 0.95;
-  font-weight: 600;
-  position: relative;
-  z-index: 1;
-  line-height: 1.1;
-  margin-top: 0;
+  display: none; /* 隐藏英文小字 */
 }
 
 .sign-post {
@@ -1774,17 +1805,26 @@ body {
 /* 技能卡片 */
 .skill-card {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 80px; /* 稍微增大，确保文字有足够空间 */
+  height: 80px; /* 稍微增大，确保文字有足够空间 */
   text-decoration: none;
   cursor: pointer;
-  z-index: 4;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 6; /* 提高层级，确保在标识牌和装饰元素之上 */
+  /* 性能优化 */
+  will-change: transform;
+  transform: translateZ(0);
   transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* 确保不被遮挡 */
+  isolation: isolate;
+  /* 确保内容不溢出 */
+  overflow: visible;
+  padding: 2px;
+  box-sizing: border-box;
 }
 
 /* 技能卡片光晕效果 - 矩形框 */
@@ -1815,16 +1855,19 @@ body {
 /* 图标容器 - 圆形发光图标 */
 .skill-icon {
   position: relative;
-  width: 34px;
-  height: 34px;
-  margin: 0 auto 4px;
+  width: 32px; /* 稍微减小尺寸，使布局更紧凑 */
+  height: 32px; /* 稍微减小尺寸，使布局更紧凑 */
+  margin: 0 auto 3px; /* 减小间距 */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px; /* 稍微减小字体 */
   z-index: 2;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* 性能优化 */
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
   flex-shrink: 0;
 }
@@ -1844,32 +1887,42 @@ body {
 
 /* 图标文字 */
 .skill-name {
-  font-size: 9px;
+  font-size: 9px; /* 稍微增大字体，确保清晰可读 */
   font-weight: 700;
   color: #FFF8DC;
   text-shadow: 
     1px 1px 2px rgba(0, 0, 0, 0.8),
     0 0 6px rgba(255, 255, 255, 0.5);
-  margin-bottom: 1px;
-  line-height: 1.1;
+  margin-bottom: 1px; /* 增加间距 */
+  line-height: 1.2; /* 增加行高，确保文字清晰 */
   z-index: 2;
   position: relative;
   text-align: center;
   width: 100%;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 0 2px;
+  box-sizing: border-box;
 }
 
 .skill-name-en {
-  font-size: 7px;
+  font-size: 7px; /* 稍微增大字体 */
   color: #E0E0E0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   opacity: 0.9;
-  line-height: 1.1;
+  line-height: 1.2; /* 增加行高 */
   z-index: 2;
   position: relative;
   text-align: center;
   width: 100%;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 0 2px;
+  box-sizing: border-box;
 }
 
 /* 研发工具箱 - 蓝紫色渐变漩涡/程式码符号，蓝色光芒 */
@@ -2022,63 +2075,71 @@ body {
 }
 
 .skill-card:hover {
-  transform: translateY(-2px) scale(1.02);
-  z-index: 15;
+  transform: translateZ(0) translateY(-2px) scale(1.05); /* 稍微增大悬停缩放 */
+  z-index: 20; /* 悬停时进一步提高层级 */
 }
 
 .skill-card:hover .skill-icon {
-  transform: scale(1.04) rotateZ(2deg);
+  /* 暂停 iconGlow 动画，避免冲突 */
+  animation-play-state: paused;
+  transform: translateZ(0) scale(1.04) rotateZ(2deg);
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
 .skill-card:hover .skill-icon::before {
-  transform: scale(1.08);
+  transform: translateZ(0) scale(1.08);
   opacity: 0.5;
 }
 
 @keyframes iconGlow {
   0%, 100% {
     opacity: 0.4;
-    transform: scale(1);
+    transform: translateZ(0) scale(1);
   }
   50% {
     opacity: 0.7;
-    transform: scale(1.1);
+    transform: translateZ(0) scale(1.1);
   }
 }
 
 
-/* 新手村卡片位置 - 在木牌上方 */
+/* 新手村卡片位置 - 在木牌上方，确保不重叠 */
 .card-novice-1 {
-  left: 2%;
-  top: 65%;
+  left: 5%; /* 调整位置，确保有足够间距 */
+  top: 50%; /* 向上移动5%，从55%改为50% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
 .card-novice-2 {
-  left: 10%;
-  top: 65%;
+  left: 15%; /* 增加间距，从14%改为15%，确保不重叠（卡片宽度约80px，间距至少10%） */
+  top: 50%; /* 向上移动5%，从55%改为50% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
-/* 试炼场卡片位置 - 在木牌右下方，和木柱平行 */
+/* 试炼场卡片位置 - 在木牌下方，确保不重叠 */
 .card-trial-1 {
-  left: 50%;
-  top: 42%;
+  left: 48%; /* 稍微左移，确保有足够间距 */
+  top: 47%; /* 向上移动8%，从55%改为47% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
 .card-trial-2 {
-  left: 57%;
-  top: 42%;
+  left: 60%; /* 增加间距，从58%改为60%，确保不重叠 */
+  top: 47%; /* 向上移动8%，从55%改为47% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
-/* 神之殿卡片位置 - 在木牌左下 */
+/* 神之殿卡片位置 - 在木牌下方，确保不重叠 */
 .card-temple-1 {
-  left: 81%;
-  top: 11%;
+  left: 60%; /* 稍微左移，确保有足够间距 */
+  top: 15%; /* 向上移动5%，从20%改为15% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
 .card-temple-2 {
-  left: 88%;
-  top: 11%;
+  left: 70%; /* 增加间距，从68%改为70%，确保不重叠 */
+  top: 15%; /* 向上移动5%，从20%改为15% */
+  z-index: 4; /* 降低层级，确保在木板之下 */
 }
 
 /* 保留旧的3D容器样式用于兼容 */
@@ -3114,27 +3175,40 @@ body {
   .game-map-poster {
     max-width: 100%;
     margin: 24px auto;
+    overflow: hidden; /* 确保移动端不溢出 */
   }
 
   .skill-card {
-    width: 80px;
-    height: 80px;
+    width: 70px; /* 移动端稍微减小 */
+    height: 70px; /* 移动端稍微减小 */
   }
 
   .skill-icon {
-    font-size: 28px;
+    width: 28px; /* 移动端稍微减小 */
+    height: 28px; /* 移动端稍微减小 */
+    font-size: 16px; /* 移动端稍微减小 */
   }
 
   .skill-name {
-    font-size: 10px;
+    font-size: 7px; /* 移动端稍微减小 */
   }
 
   .skill-name-en {
-    font-size: 8px;
+    font-size: 5px; /* 移动端稍微减小 */
   }
 
   .sign-text {
-    font-size: 14px;
+    font-size: 12px; /* 移动端稍微减小 */
+  }
+
+  .sign-board {
+    min-width: 90px; /* 移动端稍微减小 */
+    padding: 5px 12px; /* 移动端稍微减小 */
+  }
+
+  .pixel-icon {
+    font-size: 18px; /* 移动端减小装饰图标 */
+    opacity: 0.3; /* 移动端进一步降低不透明度 */
   }
 
   .sign-text-en {
