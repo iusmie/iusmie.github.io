@@ -1,186 +1,284 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rowan Cao</title>
-    <link rel="stylesheet" href="./assets/static/css/common.css" />
-  </head>
-  <body>
-    <div class="container hub-container">
-
-      <!-- 个人信息栏 -->
-      <header class="hub-header">
-        <h1 class="name">Rowan Cao</h1>
-        <div class="contact-info">
-          <div class="contact-info-item">
-            <a href="mailto:iusmile@hotmail.com">iusmile@hotmail.com</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rowan Cao - Academic Homepage" />
+  <title>Rowan Cao - Academic Homepage</title>
+  <link rel="stylesheet" href="./assets/static/css/common.css" />
+  <link rel="stylesheet" href="./assets/static/css/academic.css" />
+</head>
+<body class="academic-page">
+<!-- 第一行：顶部导航栏 -->
+<nav class="academic-nav">
+  <div class="nav-container">
+    <div class="nav-links">
+      <a href="./index.html" class="nav-link active" data-i18n="nav_homepage">Homepage</a>
+    </div>
+    <div class="nav-right-buttons">
+      <!-- 世界时钟 -->
+      <div class="nav-world-clock">
+        <div class="clock-item clock-item-cn">
+          <div class="clock-header">
+            <span class="clock-label">🇨🇳</span>
+            <span class="clock-time" id="clock-cn">--:--:--</span>
           </div>
+          <span class="clock-date" id="date-cn">--/--/--</span>
         </div>
-      </header>
-
-      <!-- 主内容区 -->
-      <main class="hub-main">
-        <!-- Professional Journey -->
-        <section class="hub-section">
-          <h2 class="hub-section-title" data-i18n="professional_journey">Professional Journey</h2>
-          <a href="./pages/professional.html" class="hub-card journey-card">
-            <div class="hub-card-icon">💼</div>
-            <div class="hub-card-content">
-              <h3 class="hub-card-title">
-                <span class="hub-card-title-en" data-i18n="journey_title_en">Work & Academic Timeline</span>
-                <span class="hub-card-title-zh" data-i18n="journey_title_zh">工作与学术时间线</span>
-              </h3>
-              <p class="hub-card-description">
-                <span class="hub-card-desc-en" data-i18n="journey_desc_en">Explore my professional experiences, academic pursuits, and future research directions</span>
-              </p>
-              <!-- 时间线缩略图 -->
-              <div class="timeline-preview">
-                <div class="timeline-preview-item">
-                  <div class="timeline-preview-date" data-i18n="timeline_date_2026">2026</div>
-                  <div class="timeline-preview-dot"></div>
-                  <div class="timeline-preview-line"></div>
-                </div>
-                <div class="timeline-preview-item">
-                  <div class="timeline-preview-date" data-i18n="timeline_date_2024">2024</div>
-                  <div class="timeline-preview-dot"></div>
-                  <div class="timeline-preview-line"></div>
-                </div>
-                <div class="timeline-preview-item">
-                  <div class="timeline-preview-date" data-i18n="timeline_date_2022">2022</div>
-                  <div class="timeline-preview-dot"></div>
-                </div>
-              </div>
-            </div>
-            <div class="hub-card-arrow" data-i18n="arrow">→</div>
-          </a>
-        </section>
-
-        <!-- Personal Islands - 游戏关卡地图 -->
-        <section class="hub-section">
-          <h2 class="hub-section-title" data-i18n="personal_islands">Personal Islands</h2>
-          <div class="game-map-poster">
-            <!-- 宇宙海洋背景 -->
-            <div class="cosmic-background"></div>
-            
-            <!-- 装饰元素：星星、云朵 -->
-            <div class="game-decorations">
-              <div class="star star-1">✨</div>
-              <div class="star star-2">⭐</div>
-              <div class="star star-3">✨</div>
-              <div class="star star-4">⭐</div>
-              <div class="star star-5">✨</div>
-              <div class="cloud cloud-1">☁️</div>
-              <div class="cloud cloud-2">☁️</div>
-            </div>
-            
-            <!-- 装饰图标 - 均匀分布在空白区域 -->
-            <div class="pixel-icon icon-whale" style="top: 10%; left: 4%;">🐋</div>
-            <div class="pixel-icon icon-jellyfish" style="top: 30%; left: 2%;">🪼</div>
-            <div class="pixel-icon icon-star-small" style="top: 15%; left: 12%;">⭐</div>
-            <div class="pixel-icon icon-star-yellow" style="top: 45%; left: 6%;">☁️</div>
-            
-            <div class="pixel-icon icon-airplane" style="top: 20%; right: 4%;">✈️</div>
-            <div class="pixel-icon icon-camera" style="bottom: 12%; right: 6%;">📷</div>
-            <div class="pixel-icon icon-location" style="bottom: 30%; right: 3%;">📍</div>
-            <div class="pixel-icon icon-globe" style="bottom: 8%; right: 10%;">🌍</div>
-            
-            <!-- 蜿蜒的道路 - 从左下到右上 -->
-            <svg class="game-road" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <linearGradient id="roadGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" style="stop-color:#8B4513;stop-opacity:0.9" />
-                  <stop offset="50%" style="stop-color:#A0522D;stop-opacity:0.85" />
-                  <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.9" />
-                </linearGradient>
-                <filter id="roadShadow">
-                  <feDropShadow dx="2" dy="-2" stdDeviation="3" flood-opacity="0.3"/>
-                </filter>
-              </defs>
-              <!-- 蜿蜒道路路径 - S形弯曲，从左下角到右上角 -->
-              <path class="road-path" d="M 0 500 Q 150 450 300 400 Q 450 350 500 300 Q 520 280 510 260 Q 500 240 480 220 Q 460 200 450 180 Q 440 160 460 140 Q 480 120 520 100 Q 560 80 620 60 Q 680 40 750 25 Q 820 10 870 5 Q 890 2 900 0" 
-                    stroke="url(#roadGradient)" stroke-width="65" fill="none" filter="url(#roadShadow)"/>
-              <!-- 道路中心线 - 白色虚线 -->
-              <path class="road-line" d="M 0 500 Q 150 450 300 400 Q 450 350 500 300 Q 520 280 510 260 Q 500 240 480 220 Q 460 200 450 180 Q 440 160 460 140 Q 480 120 520 100 Q 560 80 620 60 Q 680 40 750 25 Q 820 10 870 5 Q 890 2 900 0" 
-                    stroke="#FFFFFF" stroke-width="3" fill="none" stroke-dasharray="15,8" opacity="0.9"/>
-            </svg>
-            
-            <!-- 关卡阶段标识牌 -->
-            <div class="stage-sign stage-novice" data-stage="novice">
-              <div class="sign-board">
-                <div class="sign-nail sign-nail-left"></div>
-                <div class="sign-nail sign-nail-right"></div>
-                <div class="sign-text" data-i18n="stage_novice">新手村</div>
-                <div class="sign-text-en">Novice Village</div>
-              </div>
-              <div class="sign-post"></div>
-            </div>
-            
-            <div class="stage-sign stage-trial" data-stage="trial">
-              <div class="sign-board">
-                <div class="sign-nail sign-nail-left"></div>
-                <div class="sign-nail sign-nail-right"></div>
-                <div class="sign-text" data-i18n="stage_trial">试炼场</div>
-                <div class="sign-text-en">Trial Ground</div>
-              </div>
-              <div class="sign-post"></div>
-            </div>
-            
-            <div class="stage-sign stage-temple" data-stage="temple">
-              <div class="sign-board">
-                <div class="sign-nail sign-nail-left"></div>
-                <div class="sign-nail sign-nail-right"></div>
-                <div class="sign-text" data-i18n="stage_temple">神之殿</div>
-                <div class="sign-text-en">Temple of Gods</div>
-              </div>
-              <div class="sign-post"></div>
-            </div>
-            
-            <!-- 技能卡片 -->
-            <!-- 新手村 -->
-            <a href="./pages/islands/dev-tools.html" class="skill-card card-novice-1" data-skill="dev-tools">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="dev_tools_island">研发工具箱</div>
-              <div class="skill-name-en" data-i18n="dev_tools_desc">Dev Tools</div>
-            </a>
-            
-            <a href="./pages/islands/travel.html" class="skill-card card-novice-2" data-skill="travel">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="travel_island">旅行</div>
-              <div class="skill-name-en" data-i18n="travel_desc">Travel</div>
-            </a>
-            
-            <!-- 试炼场 -->
-            <a href="./pages/islands/health.html" class="skill-card card-trial-1" data-skill="health">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="health_island">健康</div>
-              <div class="skill-name-en" data-i18n="health_desc">Health</div>
-            </a>
-            
-            <a href="./pages/islands/pets.html" class="skill-card card-trial-2" data-skill="pets">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="pets_island">养宠</div>
-              <div class="skill-name-en" data-i18n="pets_desc">Pets</div>
-            </a>
-            
-            <!-- 神之殿 -->
-            <a href="./pages/islands/study-abroad.html" class="skill-card card-temple-1" data-skill="study-abroad">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="study_abroad_island">留学工具箱</div>
-              <div class="skill-name-en" data-i18n="study_abroad_desc">Study Abroad</div>
-            </a>
-            
-            <a href="./pages/islands/ideas.html" class="skill-card card-temple-2" data-skill="ideas">
-              <div class="skill-icon"></div>
-              <div class="skill-name" data-i18n="ideas_island">创意想法</div>
-              <div class="skill-name-en" data-i18n="ideas_desc">Creative Ideas</div>
-            </a>
+        <div class="clock-item clock-item-uk">
+          <div class="clock-header">
+            <span class="clock-label">🇬🇧</span>
+            <span class="clock-time" id="clock-uk">--:--:--</span>
           </div>
-        </section>
-      </main>
+          <span class="clock-date" id="date-uk">--/--/--</span>
+        </div>
+        <div class="clock-item clock-item-us">
+          <div class="clock-header">
+            <span class="clock-label">🇺🇸</span>
+            <span class="clock-time" id="clock-us">--:--:--</span>
+          </div>
+          <span class="clock-date" id="date-us">--/--/--</span>
+        </div>
+      </div>
+      <!-- 语言切换 -->
+      <div class="nav-lang-switcher">
+        <button class="nav-lang-btn" data-lang="en">EN</button>
+        <button class="nav-lang-btn" data-lang="zh">中文</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- 第二行：主内容区（左右两列） -->
+<div class="academic-container">
+  <!-- 左侧栏：个人信息 -->
+  <aside class="academic-sidebar">
+    <!-- 个人头像 -->
+    <div class="academic-avatar">
+      <img src="./assets/images/avatar.jpg" alt="Rowan Cao" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="avatar-placeholder" style="display: none;">RC</div>
     </div>
 
-    <script src="./assets/static/js/i18n.js"></script>
-    <script src="./assets/static/js/islands-animation.js"></script>
-  </body>
+    <!-- 姓名 -->
+    <h1 class="academic-name">Rowan Cao</h1>
+
+    <!-- 所属机构 -->
+    <p class="academic-affiliation">Your Institution / University</p>
+
+    <!-- 联系方式/社交链接 -->
+    <div class="academic-contact">
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span>Hangzhou, China</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📧</span>
+        <a href="mailto:iusmile@hotmail.com">Email</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🔗</span>
+        <a href="https://github.com" target="_blank">Github</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 右侧主内容区 -->
+  <main class="academic-main">
+    <!-- 个人简介 -->
+    <section id="about" class="academic-section">
+      <p class="academic-bio">
+        I am <strong>Rowan Cao</strong>, currently pursuing my academic journey. My research interests span across
+        machine learning, artificial intelligence, and their applications. I am passionate about exploring innovative
+        solutions to complex problems and contributing to the advancement of knowledge in my field.
+      </p>
+    </section>
+
+    <!-- Educations 板块 -->
+    <section class="academic-section">
+      <h2 class="section-title">
+        <span class="section-icon">🎓</span>
+        Educations
+      </h2>
+      <ul class="education-list">
+        <li class="education-item">
+          <span class="education-date"><strong>2022 - Present</strong></span>
+          <div class="education-content">
+            <p class="education-degree">Bachelor's / Master's / Ph.D. in [Field]</p>
+            <p class="education-institution">Your University / Institution</p>
+            <p class="education-advisor">Advisor: Prof. [Name]</p>
+          </div>
+        </li>
+        <li class="education-item">
+          <span class="education-date"><strong>2023</strong></span>
+          <div class="education-content">
+            <p class="education-degree">Exchange Program</p>
+            <p class="education-institution">Partner University</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Work Experiences 板块 -->
+    <section class="academic-section">
+      <h2 class="section-title">
+        <span class="section-icon">💼</span>
+        Work Experiences
+      </h2>
+      <ul class="experience-list">
+        <li class="experience-item">
+          <span class="experience-date"><strong>2024</strong></span>
+          <div class="experience-content">
+            <p class="experience-title">Research Intern</p>
+            <p class="experience-company">Company / Lab Name</p>
+            <p class="experience-description">Worked on [project description]. Collaborated with [names].</p>
+          </div>
+        </li>
+        <li class="experience-item">
+          <span class="experience-date"><strong>2023</strong></span>
+          <div class="experience-content">
+            <p class="experience-title">Research Assistant</p>
+            <p class="experience-company">University / Lab Name</p>
+            <p class="experience-description">Assisted in [research area]. Contributed to [achievements].</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Beyond Academics 板块 -->
+    <section class="academic-section">
+      <h2 class="section-title">
+        <span class="section-icon">❤️</span>
+        Beyond Academics
+      </h2>
+      <p class="beyond-content">
+        Outside of academia, I enjoy music, travel, and sports.
+      </p>
+      <!-- Personal Islands - 游戏关卡地图 -->
+      <div class="game-map-poster">
+          <!-- 宇宙海洋背景 -->
+          <div class="cosmic-background"></div>
+
+          <!-- 装饰元素：星星、云朵 -->
+          <div class="game-decorations">
+            <div class="star star-1">✨</div>
+            <div class="star star-2">⭐</div>
+            <div class="star star-3">✨</div>
+            <div class="star star-4">⭐</div>
+            <div class="star star-5">✨</div>
+            <div class="cloud cloud-1">☁️</div>
+            <div class="cloud cloud-2">☁️</div>
+          </div>
+
+          <!-- 装饰图标 - 均匀分布在空白区域，避免遮挡重要内容 -->
+          <div class="pixel-icon icon-whale" style="top: 8%; left: 1%;">🐋</div>
+          <div class="pixel-icon icon-jellyfish" style="top: 25%; left: 0.5%;">🪼</div>
+          <div class="pixel-icon icon-star-small" style="top: 12%; left: 8%;">⭐</div>
+          <div class="pixel-icon icon-star-yellow" style="top: 40%; left: 3%;">☁️</div>
+
+          <div class="pixel-icon icon-airplane" style="top: 18%; right: 1%;">✈️</div>
+          <div class="pixel-icon icon-camera" style="bottom: 15%; right: 3%;">📷</div>
+          <div class="pixel-icon icon-location" style="bottom: 35%; right: 1%;">📍</div>
+          <div class="pixel-icon icon-globe" style="bottom: 10%; right: 7%;">🌍</div>
+
+          <!-- 蜿蜒的道路 - 从左下到右上 -->
+          <svg class="game-road" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="roadGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8B4513;stop-opacity:0.9" />
+                <stop offset="50%" style="stop-color:#A0522D;stop-opacity:0.85" />
+                <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.9" />
+              </linearGradient>
+              <filter id="roadShadow">
+                <feDropShadow dx="2" dy="-2" stdDeviation="3" flood-opacity="0.3"/>
+              </filter>
+            </defs>
+            <!-- 蜿蜒道路路径 - S形弯曲，从左下角到右上角 -->
+            <path class="road-path" d="M 0 500 Q 150 450 300 400 Q 450 350 500 300 Q 520 280 510 260 Q 500 240 480 220 Q 460 200 450 180 Q 440 160 460 140 Q 480 120 520 100 Q 560 80 620 60 Q 680 40 750 25 Q 820 10 870 5 Q 890 2 900 0"
+                  stroke="url(#roadGradient)" stroke-width="65" fill="none" filter="url(#roadShadow)"/>
+            <!-- 道路中心线 - 白色虚线 -->
+            <path class="road-line" d="M 0 500 Q 150 450 300 400 Q 450 350 500 300 Q 520 280 510 260 Q 500 240 480 220 Q 460 200 450 180 Q 440 160 460 140 Q 480 120 520 100 Q 560 80 620 60 Q 680 40 750 25 Q 820 10 870 5 Q 890 2 900 0"
+                  stroke="#FFFFFF" stroke-width="3" fill="none" stroke-dasharray="15,8" opacity="0.9"/>
+          </svg>
+
+          <!-- 关卡阶段标识牌 -->
+          <div class="stage-sign stage-novice" data-stage="novice">
+            <div class="sign-board">
+              <div class="sign-nail sign-nail-left"></div>
+              <div class="sign-nail sign-nail-right"></div>
+              <div class="sign-text" data-i18n="stage_novice">新手村</div>
+              <div class="sign-text-en">Novice Village</div>
+            </div>
+            <div class="sign-post"></div>
+          </div>
+
+          <div class="stage-sign stage-trial" data-stage="trial">
+            <div class="sign-board">
+              <div class="sign-nail sign-nail-left"></div>
+              <div class="sign-nail sign-nail-right"></div>
+              <div class="sign-text" data-i18n="stage_trial">试炼场</div>
+              <div class="sign-text-en">Trial Ground</div>
+            </div>
+            <div class="sign-post"></div>
+          </div>
+
+          <div class="stage-sign stage-temple" data-stage="temple">
+            <div class="sign-board">
+              <div class="sign-nail sign-nail-left"></div>
+              <div class="sign-nail sign-nail-right"></div>
+              <div class="sign-text" data-i18n="stage_temple">神之殿</div>
+              <div class="sign-text-en">Temple of Gods</div>
+            </div>
+            <div class="sign-post"></div>
+          </div>
+
+          <!-- 技能卡片 -->
+          <!-- 新手村 -->
+          <a href="./pages/islands/dev-tools.html" class="skill-card card-novice-1" data-skill="dev-tools">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="dev_tools_island">研发工具箱</div>
+            <div class="skill-name-en" data-i18n="dev_tools_desc">Dev Tools</div>
+          </a>
+
+          <a href="./pages/islands/travel.html" class="skill-card card-novice-2" data-skill="travel">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="travel_island">旅行</div>
+            <div class="skill-name-en" data-i18n="travel_desc">Travel</div>
+          </a>
+
+          <!-- 试炼场 -->
+          <a href="./pages/islands/health.html" class="skill-card card-trial-1" data-skill="health">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="health_island">健康</div>
+            <div class="skill-name-en" data-i18n="health_desc">Health</div>
+          </a>
+
+          <a href="./pages/islands/pets.html" class="skill-card card-trial-2" data-skill="pets">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="pets_island">养宠</div>
+            <div class="skill-name-en" data-i18n="pets_desc">Pets</div>
+          </a>
+
+          <!-- 神之殿 -->
+          <a href="./pages/islands/study-abroad.html" class="skill-card card-temple-1" data-skill="study-abroad">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="study_abroad_island">留学工具箱</div>
+            <div class="skill-name-en" data-i18n="study_abroad_desc">Study Abroad</div>
+          </a>
+
+          <a href="./pages/islands/ideas.html" class="skill-card card-temple-2" data-skill="ideas">
+            <div class="skill-icon"></div>
+            <div class="skill-name" data-i18n="ideas_island">创意想法</div>
+            <div class="skill-name-en" data-i18n="ideas_desc">Creative Ideas</div>
+          </a>
+        </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="./assets/static/js/i18n.js"></script>
+<script src="./assets/static/js/islands-animation.js"></script>
+<script src="./assets/static/js/world-clock.js"></script>
+</body>
 </html>
