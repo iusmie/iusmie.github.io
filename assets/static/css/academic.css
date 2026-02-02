@@ -7,8 +7,10 @@
   color: #333333;
   line-height: 1.6;
   font-size: 14px;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
@@ -22,7 +24,7 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* 顶部导航栏 */
+/* 顶部导航栏 - 第一行，横跨整个页面 */
 .academic-nav {
   position: sticky;
   top: 0;
@@ -30,7 +32,8 @@ button:focus-visible {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #E0E0E0;
   z-index: 100;
-  padding: 10px 0;
+  padding: 12px 0;
+  margin-bottom: 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -39,39 +42,47 @@ button:focus-visible {
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  flex: 1;
 }
 
 .nav-link {
-  color: #666666;
+  color: #333333;
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
-  margin-right: 24px;
   transition: all 0.2s ease;
-  text-transform: lowercase;
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  padding: 6px 12px;
+  background: transparent;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .nav-link:hover {
   color: #333333;
+  background: #F5F5F5;
 }
 
-.nav-link:hover::after {
-  width: 100%;
+.nav-link.active {
+  background: #E8E8E8;
+  color: #333333;
+}
+
+.nav-link.active:hover {
+  background: #E0E0E0;
 }
 
 .nav-menu-toggle {
@@ -83,24 +94,255 @@ button:focus-visible {
   color: #666666;
 }
 
-/* 主容器 - 左右两栏布局 */
+/* 导航栏右侧按钮组 */
+.nav-right-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* 世界时钟 */
+.nav-world-clock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.clock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
+  border: 1px solid #E8E8E8;
+  border-radius: 6px;
+  min-width: 85px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.clock-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.clock-item:hover::before {
+  opacity: 1;
+}
+
+.clock-item-cn {
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+.clock-item-cn:hover {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FFEBEB 100%);
+  border-color: rgba(220, 38, 38, 0.4);
+  border-left-color: rgba(220, 38, 38, 0.5);
+}
+
+.clock-item-uk {
+  border-left: 2px solid rgba(37, 99, 235, 0.3);
+}
+
+.clock-item-uk:hover {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-color: rgba(37, 99, 235, 0.4);
+  border-left-color: rgba(37, 99, 235, 0.5);
+}
+
+.clock-item-us {
+  border-left: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.clock-item-us:hover {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-color: rgba(59, 130, 246, 0.4);
+  border-left-color: rgba(59, 130, 246, 0.5);
+}
+
+.clock-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.clock-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+}
+
+.clock-label {
+  font-size: 16px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+.clock-time {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.05);
+  line-height: 1.2;
+}
+
+.clock-date {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #666666;
+  letter-spacing: 0.4px;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+/* 语言切换按钮组 */
+.nav-lang-switcher {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.nav-lang-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #333333;
+  background: transparent;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.4;
+  min-width: 44px;
+  text-align: center;
+}
+
+.nav-lang-btn:hover {
+  color: #333333;
+  border-color: #CCCCCC;
+  background: #F5F5F5;
+}
+
+.nav-lang-btn.active {
+  color: #FFFFFF;
+  background: #333333;
+  border-color: #333333;
+}
+
+.nav-lang-btn.active:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+/* 个人岛图标按钮 */
+.nav-island-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #333333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-island-btn:hover {
+  background: #1a1a1a;
+  transform: scale(1.05);
+}
+
+.nav-island-btn:active {
+  transform: scale(0.95);
+}
+
+/* 汉堡菜单图标 - 三条横线 */
+.hamburger-icon {
+  position: relative;
+  width: 18px;
+  height: 14px;
+  display: block;
+}
+
+/* 上横线 */
+.hamburger-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+}
+
+/* 下横线 */
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+}
+
+/* 中间横线 - 使用按钮的伪元素 */
+.nav-island-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+  z-index: 1;
+}
+
+/* 主容器 - 第二行，左右两栏布局 */
 .academic-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 24px;
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 60px;
+  gap: 50px;
   align-items: start;
 }
 
-/* 左侧栏 */
+/* 左侧栏 - 个人信息部分 */
 .academic-sidebar {
   position: sticky;
-  top: 70px;
+  top: 80px;
   align-self: start;
-  padding-right: 16px;
-  animation: fadeInLeft 0.6s ease-out;
+  padding-right: 20px;
+  width: 220px;
+  overflow: visible;
 }
 
 @keyframes fadeInLeft {
@@ -125,14 +367,8 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #E0E0E0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.academic-avatar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border: none;
+  box-shadow: none;
 }
 
 .academic-avatar img {
@@ -149,8 +385,8 @@ button:focus-visible {
 
 /* 姓名 */
 .academic-name {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
   color: #1a1a1a;
   margin: 0 0 10px 0;
   line-height: 1.3;
@@ -163,6 +399,7 @@ button:focus-visible {
   color: #666666;
   margin: 0 0 14px 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 /* 个人格言 */
@@ -172,15 +409,16 @@ button:focus-visible {
   font-style: italic;
   margin: 0 0 20px 0;
   line-height: 1.6;
-  padding-left: 8px;
-  border-left: 2px solid #E0E0E0;
+  padding-left: 0;
+  border-left: none;
+  font-weight: 400;
 }
 
 /* 联系方式 */
 .academic-contact {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .contact-item {
@@ -189,7 +427,9 @@ button:focus-visible {
   gap: 8px;
   font-size: 13px;
   color: #666666;
+  margin-bottom: 0;
   transition: transform 0.2s ease;
+  font-weight: 400;
 }
 
 .contact-item:hover {
@@ -197,10 +437,12 @@ button:focus-visible {
 }
 
 .contact-icon {
-  font-size: 16px;
-  width: 20px;
+  font-size: 14px;
+  width: 18px;
   text-align: center;
   display: inline-block;
+  flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .contact-label {
@@ -212,27 +454,13 @@ button:focus-visible {
 .contact-item a {
   color: #0066CC;
   text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.contact-item a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  transition: color 0.2s ease;
+  font-weight: 400;
 }
 
 .contact-item a:hover {
   color: #0052A3;
-}
-
-.contact-item a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .contact-item a:visited {
@@ -250,7 +478,13 @@ button:focus-visible {
   color: #333333;
   line-height: 1.7;
   margin: 0 0 32px 0;
-  text-align: justify;
+  text-align: left;
+  font-weight: 400;
+}
+
+.academic-bio strong {
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .academic-bio strong {
@@ -261,27 +495,13 @@ button:focus-visible {
 .academic-bio a {
   color: #0066CC;
   text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.academic-bio a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  transition: color 0.2s ease;
+  font-weight: 400;
 }
 
 .academic-bio a:hover {
   color: #0052A3;
-}
-
-.academic-bio a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .academic-bio a:visited {
@@ -291,22 +511,16 @@ button:focus-visible {
 /* 区块标题 */
 .academic-section {
   margin-bottom: 36px;
-  animation: fadeInUp 0.5s ease-out;
-  animation-fill-mode: both;
 }
-
-.academic-section:nth-child(1) { animation-delay: 0.1s; }
-.academic-section:nth-child(2) { animation-delay: 0.2s; }
-.academic-section:nth-child(3) { animation-delay: 0.3s; }
-.academic-section:nth-child(4) { animation-delay: 0.4s; }
-.academic-section:nth-child(5) { animation-delay: 0.5s; }
-.academic-section:nth-child(6) { animation-delay: 0.6s; }
-.academic-section:nth-child(7) { animation-delay: 0.7s; }
-.academic-section:nth-child(8) { animation-delay: 0.8s; }
-.academic-section:nth-child(9) { animation-delay: 0.9s; }
 
 .academic-section:last-child {
   margin-bottom: 0;
+}
+
+/* Beyond Academics 板块 - 减少包含游戏地图的section间距 */
+.academic-section .game-map-poster {
+  margin-top: var(--spacing-sm); /* 减少顶部间距 */
+  margin-bottom: var(--spacing-sm); /* 减少底部间距 */
 }
 
 @keyframes fadeInUp {
@@ -321,57 +535,23 @@ button:focus-visible {
 }
 
 .section-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: #1a1a1a;
   margin: 0 0 16px 0;
   display: flex;
   align-items: center;
   gap: 8px;
   line-height: 1.3;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #F0F0F0;
-  position: relative;
-}
-
-.section-title::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #0066CC;
-  transition: width 0.3s ease;
-}
-
-.section-title:hover::before {
-  width: 60px;
+  padding-bottom: 0;
+  border-bottom: none;
+  letter-spacing: -0.01em;
 }
 
 .section-icon {
-  font-size: 20px;
-}
-
-/* News 图标为红色五角星 */
-#news .section-icon {
-  color: #E53935;
-  filter: drop-shadow(0 1px 2px rgba(229, 57, 53, 0.3));
-}
-
-/* Publications 图标为蓝色书籍 */
-#publications .section-icon {
-  color: #0066CC;
-  filter: drop-shadow(0 1px 2px rgba(0, 102, 204, 0.3));
-}
-
-/* 其他图标样式 */
-.section-icon {
-  transition: transform 0.2s ease;
-}
-
-.section-title:hover .section-icon {
-  transform: scale(1.1);
+  font-size: 18px;
+  display: inline-block;
+  line-height: 1;
 }
 
 /* News 列表 */
@@ -386,7 +566,7 @@ button:focus-visible {
   gap: 16px;
   margin-bottom: 12px;
   align-items: flex-start;
-  padding: 8px 0;
+  padding: 6px 0;
   transition: background-color 0.2s ease;
   border-radius: 4px;
   padding-left: 8px;
@@ -401,44 +581,38 @@ button:focus-visible {
   font-size: 14px;
   color: #333333;
   font-weight: 400;
-  min-width: 100px;
+  min-width: 90px;
   flex-shrink: 0;
 }
 
 .news-date strong {
   font-weight: 600;
+  color: #1a1a1a;
 }
 
 .news-content {
   font-size: 14px;
   color: #333333;
   line-height: 1.6;
+  flex: 1;
+  font-weight: 400;
+}
+
+.news-content strong {
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .news-content a {
   color: #0066CC;
   text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.news-content a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  transition: color 0.2s ease;
+  font-weight: 400;
 }
 
 .news-content a:hover {
   color: #0052A3;
-}
-
-.news-content a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .news-content strong {
@@ -457,8 +631,9 @@ button:focus-visible {
   gap: 16px;
   align-items: flex-start;
   padding: 12px;
+  margin-bottom: 24px;
   border-radius: 6px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .publication-item:hover {
@@ -467,8 +642,8 @@ button:focus-visible {
 }
 
 .publication-thumbnail {
-  width: 110px;
-  height: 75px;
+  width: 120px;
+  height: 80px;
   flex-shrink: 0;
   background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   border: 1px solid #E0E0E0;
@@ -477,13 +652,12 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .publication-item:hover .publication-thumbnail {
   transform: scale(1.02);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .thumbnail-placeholder {
@@ -500,33 +674,20 @@ button:focus-visible {
   font-size: 15px;
   font-weight: 600;
   margin: 0 0 6px 0;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #1a1a1a;
 }
 
 .publication-title a {
   color: #0066CC;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.publication-title a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  font-weight: 600;
 }
 
 .publication-title a:hover {
   color: #0052A3;
-}
-
-.publication-title a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .publication-title a:visited {
@@ -538,11 +699,12 @@ button:focus-visible {
   color: #666666;
   margin: 0 0 4px 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .publication-authors strong {
   font-weight: 600;
-  color: #333333;
+  color: #1a1a1a;
 }
 
 .publication-venue {
@@ -550,38 +712,32 @@ button:focus-visible {
   color: #666666;
   margin: 0 0 6px 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .publication-venue strong {
   font-weight: 600;
-  color: #333333;
+  color: #1a1a1a;
 }
 
 .publication-badge {
   display: inline-block;
-  padding: 3px 10px;
+  padding: 2px 8px;
   font-size: 11px;
   font-weight: 600;
   color: #E53935;
   background: #FFFFFF;
-  border: 1.5px solid #E53935;
-  border-radius: 4px;
+  border: 1px solid #E53935;
+  border-radius: 3px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease;
-}
-
-.publication-badge:hover {
-  background: #E53935;
-  color: #FFFFFF;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+  letter-spacing: 0.3px;
+  margin-top: 4px;
 }
 
 .badge-poster {
   color: #E53935;
   background: #FFFFFF;
-  border: 1.5px solid #E53935;
+  border: 1px solid #E53935;
 }
 
 /* Honors and Awards 列表 */
@@ -596,11 +752,11 @@ button:focus-visible {
   gap: 16px;
   margin-bottom: 12px;
   align-items: flex-start;
-  padding: 8px 0;
+  padding: 6px 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
   padding-left: 8px;
   margin-left: -8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
 }
 
 .award-item:hover {
@@ -612,10 +768,12 @@ button:focus-visible {
   font-size: 14px;
   color: #333333;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 .award-content strong {
   font-weight: 600;
+  color: #1a1a1a;
 }
 
 .award-date {
@@ -642,11 +800,11 @@ button:focus-visible {
   gap: 16px;
   margin-bottom: 18px;
   align-items: flex-start;
-  padding: 10px 0;
+  padding: 8px 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
   padding-left: 8px;
   margin-left: -8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
 }
 
 .education-item:hover {
@@ -668,7 +826,7 @@ button:focus-visible {
 .education-degree {
   font-size: 14px;
   font-weight: 600;
-  color: #333333;
+  color: #1a1a1a;
   margin: 0 0 4px 0;
   line-height: 1.5;
 }
@@ -678,32 +836,18 @@ button:focus-visible {
   color: #666666;
   margin: 0 0 4px 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .education-institution a {
   color: #0066CC;
-  text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.education-institution a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .education-institution a:hover {
   color: #0052A3;
-}
-
-.education-institution a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .education-advisor {
@@ -711,32 +855,18 @@ button:focus-visible {
   color: #666666;
   margin: 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .education-advisor a {
   color: #0066CC;
-  text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.education-advisor a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .education-advisor a:hover {
   color: #0052A3;
-}
-
-.education-advisor a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 /* Work Experiences 列表 */
@@ -751,11 +881,11 @@ button:focus-visible {
   gap: 16px;
   margin-bottom: 18px;
   align-items: flex-start;
-  padding: 10px 0;
+  padding: 8px 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
   padding-left: 8px;
   margin-left: -8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
 }
 
 .experience-item:hover {
@@ -777,7 +907,7 @@ button:focus-visible {
 .experience-title {
   font-size: 14px;
   font-weight: 600;
-  color: #333333;
+  color: #1a1a1a;
   margin: 0 0 4px 0;
   line-height: 1.5;
 }
@@ -787,32 +917,18 @@ button:focus-visible {
   color: #666666;
   margin: 0 0 6px 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .experience-company a {
   color: #0066CC;
-  text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.experience-company a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .experience-company a:hover {
   color: #0052A3;
-}
-
-.experience-company a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 .experience-description {
@@ -820,37 +936,23 @@ button:focus-visible {
   color: #666666;
   margin: 0;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 .experience-description strong {
   font-weight: 600;
-  color: #333333;
+  color: #1a1a1a;
 }
 
 .experience-description a {
   color: #0066CC;
-  text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.experience-description a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .experience-description a:hover {
   color: #0052A3;
-}
-
-.experience-description a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 /* Services 列表 */
@@ -866,10 +968,11 @@ button:focus-visible {
   margin-bottom: 10px;
   line-height: 1.6;
   padding: 6px 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
   padding-left: 8px;
   margin-left: -8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+  font-weight: 400;
 }
 
 .service-item:hover {
@@ -881,33 +984,24 @@ button:focus-visible {
   font-size: 14px;
   color: #333333;
   line-height: 1.7;
-  margin: 0;
+  margin: 0 0 var(--spacing-md) 0; /* 只保留底部间距，使布局更紧凑 */
+  font-weight: 400;
+}
+
+.beyond-content strong {
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .beyond-content a {
   color: #0066CC;
-  text-decoration: underline;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.beyond-content a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #0066CC;
-  transition: width 0.3s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .beyond-content a:hover {
   color: #0052A3;
-}
-
-.beyond-content a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 /* Visitor Map */
@@ -918,7 +1012,7 @@ button:focus-visible {
 .visitor-count {
   font-size: 14px;
   color: #333333;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
 }
 
 .visitor-count strong {
@@ -927,7 +1021,7 @@ button:focus-visible {
 
 .visitor-map-placeholder {
   width: 100%;
-  height: 280px;
+  height: 300px;
   background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   border: 1px solid #E0E0E0;
   border-radius: 6px;
@@ -937,14 +1031,19 @@ button:focus-visible {
   color: #999999;
   font-size: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.visitor-map-placeholder:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* 页脚 */
 .academic-footer {
   margin-top: 60px;
-  padding: 32px 24px;
+  padding: 32px 0;
   border-top: 1px solid #E0E0E0;
-  background: #FAFAFA;
+  background: transparent;
 }
 
 .footer-content {
@@ -956,8 +1055,8 @@ button:focus-visible {
 .footer-icons {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .footer-icons span {
@@ -965,7 +1064,6 @@ button:focus-visible {
   color: #999999;
   display: inline-block;
   transition: transform 0.2s ease, color 0.2s ease;
-  cursor: default;
 }
 
 .footer-icons span:hover {
@@ -987,6 +1085,15 @@ button:focus-visible {
 
 /* 响应式设计 */
 @media (max-width: 968px) {
+  .academic-nav {
+    position: relative;
+    padding: 12px 0;
+  }
+
+  .nav-container {
+    padding: 0 20px;
+  }
+
   .academic-container {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -995,19 +1102,25 @@ button:focus-visible {
 
   .academic-sidebar {
     position: static;
-    text-align: center;
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0;
+    top: auto;
   }
 
   .academic-avatar {
-    margin: 0 auto 18px;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
   }
 
   .academic-contact {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .contact-item {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .academic-section {
@@ -1015,17 +1128,119 @@ button:focus-visible {
   }
 }
 
+/* 中等屏幕优化 */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav-world-clock {
+    gap: 8px;
+  }
+
+  .clock-item {
+    padding: 4px 8px;
+    min-width: 75px;
+    gap: 2px;
+  }
+
+  .clock-label {
+    font-size: 15px;
+  }
+
+  .clock-time {
+    font-size: 12px;
+  }
+
+  .clock-date {
+    font-size: 9px;
+  }
+}
+
 @media (max-width: 768px) {
+  .academic-nav {
+    padding: 10px 0;
+  }
+
+  .nav-container {
+    padding: 0 16px;
+    flex-wrap: wrap;
+  }
+
   .academic-container {
     padding: 20px 16px;
   }
 
+  .academic-sidebar {
+    top: auto;
+  }
+
   .nav-link {
-    display: none;
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .nav-right-buttons {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-world-clock {
+    gap: 6px;
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    padding: 2px 0;
+    flex-wrap: wrap;
+  }
+
+  .clock-item {
+    padding: 3px 8px;
+    min-width: 70px;
+    gap: 2px;
+    border-radius: 5px;
+  }
+
+  .clock-header {
+    gap: 5px;
+  }
+
+  .clock-label {
+    font-size: 14px;
+  }
+
+  .clock-time {
+    font-size: 11px;
+    letter-spacing: 0.4px;
+  }
+
+  .clock-date {
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-lang-switcher {
+    order: 2;
+  }
+
+  .nav-lang-btn {
+    padding: 5px 10px;
+    font-size: 13px;
+    min-width: 40px;
+  }
+
+  .nav-island-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hamburger-icon {
+    width: 16px;
+    height: 12px;
+  }
+
+  .nav-island-btn::before {
+    width: 16px;
   }
 
   .nav-menu-toggle {
-    display: block;
+    display: none;
   }
 
   .academic-name {
