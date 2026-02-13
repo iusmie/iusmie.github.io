@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="效率小工具 - Markdown工具、汇率工具等" />
+    <title>效率小工具 | Efficiency Tools</title>
+    <link rel="stylesheet" href="../../assets/static/css/home.css" />
+    <style>
+      /* 导航栏 */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 4rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #1a1a1a;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+      }
+
+      .back-link:hover {
+        color: #1a1a1a;
+      }
+
+      .tools-page {
+        min-height: 100vh;
+        background-color: #ffffff;
+        padding: 2rem 0;
+      }
+      
+      .tools-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 4rem;
+      }
+      
+      .tools-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #1a1a1a;
+        margin-bottom: 2rem;
+      }
+      
+      .tools-logo-icon {
+        width: 28px;
+        height: 28px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        flex-shrink: 0;
+      }
+      
+      .tools-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .tools-header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+      }
+      
+      .tools-header .subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 1rem;
+        font-weight: 400;
+      }
+      
+      .tools-header .description {
+        font-size: 0.95rem;
+        color: #999;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      
+      .tools-section-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      
+      .tools-categories-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+      
+      .tools-category {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .tools-category-header {
+        margin-bottom: 1.5rem;
+      }
+      
+      .tools-category-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 0.25rem;
+        letter-spacing: -0.01em;
+      }
+      
+      .tools-category-subtitle {
+        font-size: 0.9rem;
+        color: #999;
+        margin: 0;
+        font-weight: 400;
+      }
+      
+      .tools-cards-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .tools-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #f0f0f0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        text-decoration: none;
+        color: inherit;
+        padding: 1rem 1.25rem;
+        gap: 1rem;
+      }
+      
+      .tools-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: #e0e0e0;
+      }
+      
+      .tools-card-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+      
+      .tools-card:hover .tools-card-icon {
+        transform: scale(1.05);
+      }
+      
+      .tools-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        min-width: 0;
+      }
+      
+      .tools-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      
+      .tools-card-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+      
+      .tools-card-badge {
+        display: inline-block;
+        padding: 0.125rem 0.5rem;
+        background: #f5f5f5;
+        color: #666;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+      
+      .tools-card-description {
+        font-size: 0.85rem;
+        color: #666;
+        line-height: 1.5;
+        margin: 0;
+      }
+      
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+
+        .tools-container {
+          padding: 0 1.5rem;
+        }
+        
+        .tools-header h1 {
+          font-size: 2rem;
+        }
+        
+        .tools-categories-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .tools-category-title {
+          font-size: 1.3rem;
+        }
+        
+        .tools-cards-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .tools-card {
+          padding: 0.875rem 1rem;
+        }
+        
+        .tools-card-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 导航 -->
+    <nav>
+        <a href="../../index.html" class="logo">
+            <img class="logo-icon" src="../../assets/images/BVme2Rxom8sQayOOVDbdWY.webp" alt="Bits of Life" decoding="sync" />
+            <span>Bits of Life</span>
+        </a>
+        <a href="../../index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            返回首页
+        </a>
+    </nav>
+
+    <div class="tools-page">
+      <div class="tools-container">
+        <div id="toolsContainer">
+          <div class="tools-categories-container" id="toolsCategories">
+            <div style="text-align: center; padding: 4rem; color: #999;">加载中...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 工具应用脚本 -->
+    <script src="../apps/tools/ToolsApp.js"></script>
+  </body>
+</html>
