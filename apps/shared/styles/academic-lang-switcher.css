@@ -1,0 +1,44 @@
+/* CV页面侧边栏中的语言切换器样式 */
+.academic-lang-switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.academic-lang-switcher .nav-lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.academic-lang-switcher .nav-lang-btn {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  color: #666;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.academic-lang-switcher .nav-lang-btn:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.academic-lang-switcher .nav-lang-btn.active {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .academic-lang-switcher {
+    grid-column: 1 / -1;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+}
