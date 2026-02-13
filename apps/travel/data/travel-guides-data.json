@@ -1,0 +1,546 @@
+{
+  "guides": [
+    {
+      "id": "japan-7days",
+      "country": "日本",
+      "countryCode": "JP",
+      "title": "日本关西7日游",
+      "duration": "7天6夜",
+      "route": [
+        {
+          "day": 1,
+          "date": "2024-03-15",
+          "city": "大阪",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "关西国际机场",
+              "name": "抵达大阪",
+              "description": "从机场乘坐南海电铁或JR前往市区",
+              "coordinates": [34.4273, 135.2441]
+            },
+            {
+              "time": "14:00",
+              "location": "大阪城公园",
+              "name": "参观大阪城",
+              "description": "日本三大名城之一，了解战国历史",
+              "coordinates": [34.6873, 135.5260]
+            },
+            {
+              "time": "18:00",
+              "location": "道顿堀",
+              "name": "晚餐+购物",
+              "description": "品尝章鱼烧、大阪烧等特色美食",
+              "coordinates": [34.6698, 135.5019]
+            }
+          ],
+          "accommodation": {
+            "name": "大阪心斋桥酒店",
+            "coordinates": [34.6742, 135.5016]
+          }
+        },
+        {
+          "day": 2,
+          "date": "2024-03-16",
+          "city": "大阪",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "环球影城",
+              "name": "USJ游玩",
+              "description": "体验哈利波特、小黄人等主题园区",
+              "coordinates": [34.6654, 135.4323]
+            },
+            {
+              "time": "19:00",
+              "location": "新世界",
+              "name": "晚餐",
+              "description": "品尝串炸和当地特色料理",
+              "coordinates": [34.6525, 135.5063]
+            }
+          ],
+          "accommodation": {
+            "name": "大阪心斋桥酒店",
+            "coordinates": [34.6742, 135.5016]
+          }
+        },
+        {
+          "day": 3,
+          "date": "2024-03-17",
+          "city": "京都",
+          "activities": [
+            {
+              "time": "08:00",
+              "location": "大阪站",
+              "name": "前往京都",
+              "description": "乘坐JR京都线，约30分钟",
+              "coordinates": [34.7025, 135.4959]
+            },
+            {
+              "time": "10:00",
+              "location": "伏见稻荷大社",
+              "name": "参观千本鸟居",
+              "description": "日本最著名的神社之一，千本鸟居非常壮观",
+              "coordinates": [34.9671, 135.7727]
+            },
+            {
+              "time": "14:00",
+              "location": "清水寺",
+              "name": "参观清水寺",
+              "description": "世界文化遗产，欣赏京都全景",
+              "coordinates": [34.9949, 135.7850]
+            },
+            {
+              "time": "16:00",
+              "location": "二年坂三年坂",
+              "name": "传统街道漫步",
+              "description": "购买传统工艺品和纪念品",
+              "coordinates": [34.9967, 135.7800]
+            }
+          ],
+          "accommodation": {
+            "name": "京都站前酒店",
+            "coordinates": [34.9858, 135.7580]
+          }
+        },
+        {
+          "day": 4,
+          "date": "2024-03-18",
+          "city": "京都",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "金阁寺",
+              "name": "参观金阁寺",
+              "description": "世界文化遗产，金碧辉煌的寺庙",
+              "coordinates": [35.0394, 135.7299]
+            },
+            {
+              "time": "11:00",
+              "location": "岚山",
+              "name": "岚山竹林",
+              "description": "漫步竹林小径，体验自然之美",
+              "coordinates": [35.0094, 135.6770]
+            },
+            {
+              "time": "14:00",
+              "location": "天龙寺",
+              "name": "参观天龙寺",
+              "description": "欣赏日式庭园和建筑",
+              "coordinates": [35.0158, 135.6734]
+            },
+            {
+              "time": "17:00",
+              "location": "锦市场",
+              "name": "购物+晚餐",
+              "description": "京都的厨房，购买当地特产",
+              "coordinates": [35.0047, 135.7647]
+            }
+          ],
+          "accommodation": {
+            "name": "京都站前酒店",
+            "coordinates": [34.9858, 135.7580]
+          }
+        },
+        {
+          "day": 5,
+          "date": "2024-03-19",
+          "city": "奈良",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "京都站",
+              "name": "前往奈良",
+              "description": "乘坐JR奈良线，约45分钟",
+              "coordinates": [34.9858, 135.7580]
+            },
+            {
+              "time": "10:30",
+              "location": "奈良公园",
+              "name": "喂鹿",
+              "description": "与可爱的奈良鹿亲密接触",
+              "coordinates": [34.6851, 135.8327]
+            },
+            {
+              "time": "12:00",
+              "location": "东大寺",
+              "name": "参观东大寺",
+              "description": "世界最大的木造建筑",
+              "coordinates": [34.6889, 135.8397]
+            },
+            {
+              "time": "14:00",
+              "location": "春日大社",
+              "name": "参观春日大社",
+              "description": "奈良最著名的神社",
+              "coordinates": [34.6814, 135.8483]
+            },
+            {
+              "time": "16:00",
+              "location": "奈良站",
+              "name": "返回大阪",
+              "description": "乘坐近铁奈良线返回大阪",
+              "coordinates": [34.6836, 135.7900]
+            }
+          ],
+          "accommodation": {
+            "name": "大阪心斋桥酒店",
+            "coordinates": [34.6742, 135.5016]
+          }
+        },
+        {
+          "day": 6,
+          "date": "2024-03-20",
+          "city": "大阪",
+          "activities": [
+            {
+              "time": "10:00",
+              "location": "黑门市场",
+              "name": "早餐+购物",
+              "description": "大阪的厨房，品尝新鲜海鲜",
+              "coordinates": [34.6650, 135.5069]
+            },
+            {
+              "time": "13:00",
+              "location": "梅田",
+              "name": "购物",
+              "description": "阪急、大丸等大型商场",
+              "coordinates": [34.7025, 135.4959]
+            },
+            {
+              "time": "18:00",
+              "location": "通天阁",
+              "name": "登高望远",
+              "description": "欣赏大阪夜景",
+              "coordinates": [34.6525, 135.5063]
+            }
+          ],
+          "accommodation": {
+            "name": "大阪心斋桥酒店",
+            "coordinates": [34.6742, 135.5016]
+          }
+        },
+        {
+          "day": 7,
+          "date": "2024-03-21",
+          "city": "大阪",
+          "activities": [
+            {
+              "time": "10:00",
+              "location": "临空城奥特莱斯",
+              "name": "最后购物",
+              "description": "前往机场前的最后购物机会",
+              "coordinates": [34.4106, 135.2936]
+            },
+            {
+              "time": "15:00",
+              "location": "关西国际机场",
+              "name": "返程",
+              "description": "办理登机手续，结束愉快的旅程",
+              "coordinates": [34.4273, 135.2441]
+            }
+          ]
+        }
+      ],
+      "transportation": "JR Pass关西地区周游券",
+      "budget": "人均约8000-12000元",
+      "tips": [
+        "建议购买JR Pass或IC卡方便出行",
+        "提前预订热门景点门票",
+        "注意日本交通礼仪，保持安静",
+        "准备现金，部分小店不支持刷卡"
+      ]
+    },
+    {
+      "id": "thailand-10days",
+      "country": "泰国",
+      "countryCode": "TH",
+      "title": "泰国曼谷+清迈+普吉10日游",
+      "duration": "10天9夜",
+      "route": [
+        {
+          "day": 1,
+          "date": "2024-04-01",
+          "city": "曼谷",
+          "activities": [
+            {
+              "time": "12:00",
+              "location": "素万那普机场",
+              "name": "抵达曼谷",
+              "description": "办理落地签或使用提前办理的签证",
+              "coordinates": [13.6900, 100.7501]
+            },
+            {
+              "time": "15:00",
+              "location": "大皇宫",
+              "name": "参观大皇宫",
+              "description": "泰国最著名的地标建筑",
+              "coordinates": [13.7500, 100.4925]
+            },
+            {
+              "time": "18:00",
+              "location": "考山路",
+              "name": "晚餐+夜市",
+              "description": "体验曼谷夜生活",
+              "coordinates": [13.7589, 100.4974]
+            }
+          ],
+          "accommodation": {
+            "name": "曼谷市中心酒店",
+            "coordinates": [13.7563, 100.5018]
+          }
+        },
+        {
+          "day": 2,
+          "date": "2024-04-02",
+          "city": "曼谷",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "水上市场",
+              "name": "丹嫩沙多水上市场",
+              "description": "体验传统水上市场文化",
+              "coordinates": [13.5194, 100.0069]
+            },
+            {
+              "time": "14:00",
+              "location": "暹罗广场",
+              "name": "购物",
+              "description": "曼谷最繁华的商业区",
+              "coordinates": [13.7462, 100.5347]
+            },
+            {
+              "time": "19:00",
+              "location": "Asiatique河滨夜市",
+              "name": "晚餐+购物",
+              "description": "湄南河畔的夜市",
+              "coordinates": [13.7100, 100.5100]
+            }
+          ],
+          "accommodation": {
+            "name": "曼谷市中心酒店",
+            "coordinates": [13.7563, 100.5018]
+          }
+        },
+        {
+          "day": 3,
+          "date": "2024-04-03",
+          "city": "清迈",
+          "activities": [
+            {
+              "time": "08:00",
+              "location": "廊曼机场",
+              "name": "飞往清迈",
+              "description": "国内航班，约1.5小时",
+              "coordinates": [13.9126, 100.6068]
+            },
+            {
+              "time": "12:00",
+              "location": "清迈古城",
+              "name": "古城漫步",
+              "description": "参观古城墙和寺庙",
+              "coordinates": [18.7883, 98.9853]
+            },
+            {
+              "time": "16:00",
+              "location": "素贴山",
+              "name": "双龙寺",
+              "description": "俯瞰清迈全景",
+              "coordinates": [18.8056, 98.9206]
+            }
+          ],
+          "accommodation": {
+            "name": "清迈古城酒店",
+            "coordinates": [18.7883, 98.9853]
+          }
+        },
+        {
+          "day": 4,
+          "date": "2024-04-04",
+          "city": "清迈",
+          "activities": [
+            {
+              "time": "08:00",
+              "location": "大象保护营",
+              "name": "大象互动",
+              "description": "与大象亲密接触，体验喂食和洗澡",
+              "coordinates": [18.8500, 98.9500]
+            },
+            {
+              "time": "14:00",
+              "location": "宁曼路",
+              "name": "咖啡+购物",
+              "description": "清迈最文艺的街道",
+              "coordinates": [18.8014, 98.9658]
+            },
+            {
+              "time": "18:00",
+              "location": "周日夜市",
+              "name": "夜市",
+              "description": "清迈最大的夜市（如遇周日）",
+              "coordinates": [18.7883, 98.9853]
+            }
+          ],
+          "accommodation": {
+            "name": "清迈古城酒店",
+            "coordinates": [18.7883, 98.9853]
+          }
+        },
+        {
+          "day": 5,
+          "date": "2024-04-05",
+          "city": "普吉",
+          "activities": [
+            {
+              "time": "10:00",
+              "location": "清迈机场",
+              "name": "飞往普吉",
+              "description": "国内航班，约2小时",
+              "coordinates": [18.7677, 98.9644]
+            },
+            {
+              "time": "14:00",
+              "location": "卡塔海滩",
+              "name": "海滩放松",
+              "description": "享受阳光沙滩",
+              "coordinates": [7.8170, 98.2983]
+            },
+            {
+              "time": "18:00",
+              "location": "芭东海滩",
+              "name": "晚餐+夜生活",
+              "description": "普吉最热闹的海滩",
+              "coordinates": [7.8804, 98.2963]
+            }
+          ],
+          "accommodation": {
+            "name": "普吉海滩度假村",
+            "coordinates": [7.8804, 98.2963]
+          }
+        },
+        {
+          "day": 6,
+          "date": "2024-04-06",
+          "city": "普吉",
+          "activities": [
+            {
+              "time": "08:00",
+              "location": "码头",
+              "name": "出海一日游",
+              "description": "前往皮皮岛或皇帝岛",
+              "coordinates": [7.8804, 98.2963]
+            },
+            {
+              "time": "17:00",
+              "location": "普吉镇",
+              "name": "老镇漫步",
+              "description": "欣赏中葡建筑风格",
+              "coordinates": [7.8804, 98.3923]
+            }
+          ],
+          "accommodation": {
+            "name": "普吉海滩度假村",
+            "coordinates": [7.8804, 98.2963]
+          }
+        },
+        {
+          "day": 7,
+          "date": "2024-04-07",
+          "city": "普吉",
+          "activities": [
+            {
+              "time": "09:00",
+              "location": "查龙寺",
+              "name": "参观寺庙",
+              "description": "普吉最著名的寺庙",
+              "coordinates": [7.8442, 98.3364]
+            },
+            {
+              "time": "13:00",
+              "location": "拉威海滩",
+              "name": "海鲜市场",
+              "description": "品尝新鲜海鲜",
+              "coordinates": [7.7719, 98.3106]
+            },
+            {
+              "time": "16:00",
+              "location": "卡伦观景台",
+              "name": "观景",
+              "description": "欣赏普吉全景",
+              "coordinates": [7.8333, 98.3000]
+            }
+          ],
+          "accommodation": {
+            "name": "普吉海滩度假村",
+            "coordinates": [7.8804, 98.2963]
+          }
+        },
+        {
+          "day": 8,
+          "date": "2024-04-08",
+          "city": "普吉",
+          "activities": [
+            {
+              "time": "全天",
+              "location": "各海滩",
+              "name": "自由活动",
+              "description": "SPA、水上运动或继续海滩放松",
+              "coordinates": [7.8804, 98.2963]
+            }
+          ],
+          "accommodation": {
+            "name": "普吉海滩度假村",
+            "coordinates": [7.8804, 98.2963]
+          }
+        },
+        {
+          "day": 9,
+          "date": "2024-04-09",
+          "city": "曼谷",
+          "activities": [
+            {
+              "time": "12:00",
+              "location": "普吉机场",
+              "name": "返回曼谷",
+              "description": "国内航班",
+              "coordinates": [8.1132, 98.3169]
+            },
+            {
+              "time": "16:00",
+              "location": "Terminal 21",
+              "name": "最后购物",
+              "description": "主题购物中心",
+              "coordinates": [13.7388, 100.5591]
+            }
+          ],
+          "accommodation": {
+            "name": "曼谷机场附近酒店",
+            "coordinates": [13.6900, 100.7501]
+          }
+        },
+        {
+          "day": 10,
+          "date": "2024-04-10",
+          "city": "曼谷",
+          "activities": [
+            {
+              "time": "10:00",
+              "location": "素万那普机场",
+              "name": "返程",
+              "description": "办理登机手续，结束旅程",
+              "coordinates": [13.6900, 100.7501]
+            }
+          ]
+        }
+      ],
+      "transportation": "国内航班+当地交通",
+      "budget": "人均约6000-9000元",
+      "tips": [
+        "泰国可以落地签，但建议提前办理",
+        "注意防晒和防蚊",
+        "尊重当地文化和宗教",
+        "准备泰铢现金，部分地方不支持刷卡"
+      ]
+    }
+  ]
+}
