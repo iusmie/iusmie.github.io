@@ -1,0 +1,202 @@
+{
+  "visas": [
+    {
+      "id": "us-tourist",
+      "country": "美国",
+      "countryCode": "US",
+      "type": "旅游签证",
+      "typeCode": "B-2",
+      "description": "美国旅游签证，适用于观光、探亲、医疗等目的",
+      "processingTime": "7-14个工作日",
+      "validity": "10年（多次入境）",
+      "fee": "160美元",
+      "materials": [
+        {
+          "category": "必需材料",
+          "items": [
+            "有效护照（有效期至少6个月）",
+            "DS-160表格确认页",
+            "签证申请费收据",
+            "近期2寸白底彩色照片（51mm x 51mm）",
+            "身份证正反面复印件"
+          ]
+        },
+        {
+          "category": "支持材料",
+          "items": [
+            "在职证明（中英文）",
+            "银行流水（近6个月）",
+            "资产证明（房产证、车辆登记证等）",
+            "行程安排",
+            "酒店预订确认单",
+            "往返机票预订"
+          ]
+        }
+      ],
+      "notes": [
+        "需要面签，建议提前2-3个月申请",
+        "面签时需携带所有原件材料",
+        "签证官可能会询问旅行目的、行程安排等问题"
+      ],
+      "officialWebsite": "https://www.ustraveldocs.com/cn_zh/"
+    },
+    {
+      "id": "uk-tourist",
+      "country": "英国",
+      "countryCode": "GB",
+      "type": "旅游签证",
+      "typeCode": "Standard Visitor Visa",
+      "description": "英国标准访客签证，适用于旅游、探亲、商务访问",
+      "processingTime": "15个工作日",
+      "validity": "2年、5年或10年（多次入境）",
+      "fee": "100英镑（6个月）",
+      "materials": [
+        {
+          "category": "必需材料",
+          "items": [
+            "有效护照（至少有一页空白页）",
+            "在线申请表打印件",
+            "签证申请费收据",
+            "近期护照照片",
+            "身份证复印件"
+          ]
+        },
+        {
+          "category": "支持材料",
+          "items": [
+            "在职证明及收入证明",
+            "银行对账单（近6个月，余额建议5万以上）",
+            "行程计划",
+            "住宿证明",
+            "往返机票预订"
+          ]
+        }
+      ],
+      "notes": [
+        "需要在线申请并预约生物信息采集",
+        "可能需要提供指纹和照片",
+        "建议提前1-2个月申请"
+      ],
+      "officialWebsite": "https://www.gov.uk/standard-visitor-visa"
+    },
+    {
+      "id": "japan-tourist",
+      "country": "日本",
+      "countryCode": "JP",
+      "type": "旅游签证",
+      "typeCode": "短期滞在",
+      "description": "日本短期旅游签证，单次或多次入境",
+      "processingTime": "5-7个工作日",
+      "validity": "单次：3个月有效，停留15天；多次：3年或5年有效",
+      "fee": "单次：200元，多次：400元",
+      "materials": [
+        {
+          "category": "必需材料",
+          "items": [
+            "护照原件（有效期6个月以上）",
+            "签证申请表（需手写）",
+            "2寸白底彩色照片（4.5cm x 4.5cm）",
+            "身份证复印件",
+            "户口本整本复印件"
+          ]
+        },
+        {
+          "category": "支持材料",
+          "items": [
+            "在职证明（年收入10万以上可申请多次）",
+            "银行流水（近6个月）",
+            "资产证明",
+            "行程安排表",
+            "酒店预订确认单"
+          ]
+        }
+      ],
+      "notes": [
+        "需要通过指定旅行社代办，不接受个人申请",
+        "多次签证需要年收入20万以上",
+        "部分城市可简化材料"
+      ],
+      "officialWebsite": "https://www.cn.emb-japan.go.jp/consular/visa_shikaku.htm"
+    },
+    {
+      "id": "schengen-tourist",
+      "country": "申根区",
+      "countryCode": "EU",
+      "type": "旅游签证",
+      "typeCode": "Schengen Visa",
+      "description": "申根旅游签证，可在26个申根国家自由通行",
+      "processingTime": "10-15个工作日",
+      "validity": "根据行程安排，通常1-3个月",
+      "fee": "80欧元",
+      "materials": [
+        {
+          "category": "必需材料",
+          "items": [
+            "护照原件（有效期3个月以上，至少2页空白）",
+            "申根签证申请表",
+            "2张近期白底彩色照片（35mm x 45mm）",
+            "身份证复印件",
+            "户口本整本复印件",
+            "医疗保险（保额至少3万欧元）"
+          ]
+        },
+        {
+          "category": "支持材料",
+          "items": [
+            "在职证明（中英文）",
+            "银行对账单（近3个月）",
+            "行程单（详细日期和地点）",
+            "酒店预订确认单",
+            "往返机票预订",
+            "资产证明"
+          ]
+        }
+      ],
+      "notes": [
+        "需向主要目的地国家或首入国家申请",
+        "建议提前1-2个月申请",
+        "需要提供详细的行程安排"
+      ],
+      "officialWebsite": "https://www.schengenvisainfo.com/"
+    },
+    {
+      "id": "australia-tourist",
+      "country": "澳大利亚",
+      "countryCode": "AU",
+      "type": "旅游签证",
+      "typeCode": "Visitor Visa (600)",
+      "description": "澳大利亚访客签证，适用于旅游、探亲",
+      "processingTime": "15-20个工作日",
+      "validity": "1年、3年或10年（多次入境）",
+      "fee": "145澳元",
+      "materials": [
+        {
+          "category": "必需材料",
+          "items": [
+            "护照彩色扫描件",
+            "身份证彩色扫描件",
+            "户口本彩色扫描件",
+            "2寸白底彩色照片",
+            "签证申请表（1419表格）"
+          ]
+        },
+        {
+          "category": "支持材料",
+          "items": [
+            "在职证明",
+            "银行对账单（近6个月）",
+            "资产证明",
+            "行程安排",
+            "酒店和机票预订"
+          ]
+        }
+      ],
+      "notes": [
+        "可在线申请，无需面签",
+        "建议提前1-2个月申请",
+        "需要提供详细的旅行计划"
+      ],
+      "officialWebsite": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600"
+    }
+  ]
+}
