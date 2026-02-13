@@ -1,0 +1,792 @@
+/**
+ * Ideas 页面样式 - 与整体网站风格保持一致
+ */
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body { 
+  font-family: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif, 'PingFang SC', 'Microsoft YaHei';
+  background-color: white;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hero */
+.ideas-hero {
+  padding: 2.5rem 2rem 1.5rem;
+  text-align: center;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ideas-hero-icon { 
+  font-size: 2.5rem; 
+  margin-bottom: 0.5rem;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.ideas-hero-title { 
+  font-size: clamp(2rem, 4vw, 3rem); 
+  font-weight: 700; 
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+}
+
+/* 控制面板 */
+.ideas-control-panel {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0;
+}
+
+/* 统计信息 */
+.ideas-stats {
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.ideas-stat-item { 
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  line-height: 1.2;
+}
+
+.ideas-stat-number { 
+  font-size: 1.25rem; 
+  font-weight: 700; 
+  display: inline;
+  font-family: 'JetBrains Mono', monospace;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.ideas-stat-label { 
+  font-size: 0.85rem; 
+  color: #666;
+  line-height: 1.2;
+}
+
+.ideas-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ideas-filter-select {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.ideas-filter-select:hover, 
+.ideas-filter-select:focus {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.ideas-view-toggle {
+  display: flex;
+  gap: 0.5rem;
+  background: #fafafa;
+  padding: 0.3rem;
+  border-radius: 100px;
+}
+
+.ideas-view-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  color: #666;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.ideas-view-btn:hover {
+  color: #1a1a1a;
+}
+
+.ideas-view-btn.active {
+  background: #1a1a1a;
+  color: white;
+}
+
+/* 主内容区 */
+.ideas-main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  background: white;
+}
+
+/* 网格视图 */
+.ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.idea-card {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.idea-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--status-color, #666);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.idea-card:hover {
+  border-color: #1a1a1a;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.idea-card:hover::before {
+  opacity: 1;
+}
+
+.idea-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.idea-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.idea-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-seed { background: #fef3c7; color: #92400e; }
+.status-sprout { background: #dbeafe; color: #1e40af; }
+.status-growing { background: #d1fae5; color: #065f46; }
+.status-fruit { background: #c7d2fe; color: #3730a3; }
+.status-withered { background: #e5e7eb; color: #374151; }
+
+.idea-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.idea-desc {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.idea-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.idea-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.idea-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.idea-tag {
+  padding: 0.25rem 0.75rem;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.idea-tag:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.idea-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: auto;
+  border-top: 1px solid #f0f0f0;
+}
+
+.idea-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.idea-progress-fill {
+  height: 100%;
+  background: var(--status-color, #666);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.idea-progress-text {
+  font-size: 0.8rem;
+  color: #999;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.idea-compare-checkbox {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.idea-compare-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* 列表视图 */
+.ideas-list {
+  display: none;
+  padding: 2rem;
+}
+
+.ideas-list.active {
+  display: block;
+}
+
+.ideas-list-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 100px;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px 8px 0 0;
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  border: 1px solid #f0f0f0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.ideas-list-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 100px;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  background: white;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.ideas-list-row:hover {
+  background: #fafafa;
+  transform: translateX(4px);
+}
+
+.ideas-list-title {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.ideas-list-desc {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* 对比模式 */
+.ideas-compare-mode {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.ideas-compare-mode.active {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ideas-compare-count {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.ideas-compare-btn {
+  padding: 0.5rem 1.5rem;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.ideas-compare-btn:hover {
+  background: #333;
+}
+
+/* 对比面板 */
+.ideas-compare-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.ideas-compare-panel.active {
+  display: block;
+}
+
+.ideas-compare-content {
+  max-width: 1200px;
+  margin: 1rem auto;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.ideas-compare-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ideas-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.ideas-compare-card {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.ideas-compare-card:hover {
+  border-color: #1a1a1a;
+}
+
+.ideas-compare-card.winner {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+/* 详情模态框 */
+.ideas-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 150;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.ideas-modal.active {
+  display: block;
+}
+
+.ideas-modal-content {
+  max-width: 800px;
+  margin: 1rem auto;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ideas-modal-header {
+  padding: 1.5rem;
+  background: white;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ideas-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  border: none;
+}
+
+.ideas-modal-close:hover {
+  background: #e0e0e0;
+  transform: rotate(90deg);
+}
+
+.ideas-modal-body {
+  padding: 1.5rem;
+  background: white;
+}
+
+/* 时间线 */
+.ideas-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.ideas-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e0e0e0;
+}
+
+.ideas-timeline-item {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.ideas-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.ideas-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.25rem;
+  width: 10px;
+  height: 10px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  margin-left: -4px;
+}
+
+.ideas-timeline-date {
+  font-size: 0.75rem;
+  color: #666;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.25rem;
+}
+
+.ideas-timeline-content {
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* 添加按钮 */
+.ideas-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(26, 26, 26, 0.3);
+  transition: all 0.3s;
+  border: none;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.ideas-fab:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: #333;
+  box-shadow: 0 6px 24px rgba(26, 26, 26, 0.4);
+}
+
+/* 数据维护区 */
+.ideas-data-section {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid #f0f0f0;
+}
+
+.ideas-data-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.ideas-data-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.ideas-data-btn {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  color: #666;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.ideas-data-btn:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.ideas-data-btn.primary {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: white;
+}
+
+.ideas-data-btn.primary:hover {
+  background: #333;
+}
+
+.ideas-json-preview {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #666;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .ideas-hero { 
+    padding: 2rem 1rem 1.5rem; 
+  }
+  
+  .ideas-hero-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ideas-hero-title {
+    margin-bottom: 0.5rem;
+  }
+  
+  .ideas-stats {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .ideas-control-panel { 
+    padding: 1.25rem 1rem; 
+    margin-bottom: 0;
+  }
+  
+  .ideas-main-content {
+    padding: 0;
+  }
+  
+  .ideas-grid { 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .ideas-list {
+    padding: 1.5rem 1rem;
+  }
+  
+  .ideas-list-header, 
+  .ideas-list-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .ideas-list-header { 
+    display: none; 
+  }
+  
+  .ideas-fab {
+    width: 56px;
+    height: 56px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .ideas-modal {
+    padding: 0.5rem;
+  }
+  
+  .ideas-modal-content {
+    margin: 0.5rem auto;
+    border-radius: 12px;
+  }
+  
+  .ideas-modal-header {
+    padding: 1.25rem;
+  }
+  
+  .ideas-modal-body {
+    padding: 1.25rem;
+  }
+  
+  .ideas-compare-panel {
+    padding: 0.5rem;
+  }
+  
+  .ideas-compare-content {
+    margin: 0.5rem auto;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .ideas-compare-header {
+    margin-bottom: 1rem;
+  }
+  
+  .ideas-compare-grid {
+    gap: 0.75rem;
+  }
+  
+  .ideas-compare-card {
+    padding: 1rem;
+  }
+}
