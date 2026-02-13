@@ -1,0 +1,154 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "number": "001",
+      "title": "如何与不确定性共处？",
+      "status": "published",
+      "type": "video",
+      "tags": ["斯多葛学派", "焦虑"],
+      "date": "2026.02.10",
+      "media": {
+        "type": "video",
+        "duration": "12:34",
+        "title": "Stoicism and Uncertainty"
+      },
+      "answers": [
+        {
+          "type": "video",
+          "label": "视频回答",
+          "content": "<div style=\"background: #1a1a1a; aspect-ratio: 16/9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white;\"><div style=\"text-align: center;\"><div style=\"width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;\">▶</div><div>Stoicism and Uncertainty</div><div style=\"opacity: 0.6; font-size: 0.9rem; margin-top: 0.5rem;\">12:34</div></div></div>"
+        },
+        {
+          "type": "text",
+          "label": "文字思考",
+          "content": "<p style=\"line-height: 1.8; color: #333;\">斯多葛学派的核心教导之一是\"控制二分法\"：区分什么是我们能控制的，什么是我们不能控制的。不确定性属于后者，但我们可以控制自己对它的反应...</p>"
+        },
+        {
+          "type": "link",
+          "label": "相关资源",
+          "content": "<a href=\"#\" style=\"display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #f5f5f5; border-radius: 8px; text-decoration: none; color: inherit;\"><div style=\"width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center;\">📄</div><div><div style=\"font-size: 0.8rem; color: #999;\">dailystoic.com</div><div style=\"font-weight: 500;\">The Stoic's Guide to Uncertainty</div></div></a>"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": "002",
+      "title": "数字极简是否可能？",
+      "status": "exploring",
+      "type": "doc",
+      "tags": ["极简主义", "数字游民"],
+      "date": "2026.01.20",
+      "media": {
+        "type": "doc",
+        "preview": "实验记录 #001\n-----------\n日期: 2026-01-15\n设备: iPhone 14 Pro\n\n行动: 将主屏幕应用从 47 个减少到 12 个\n\n第一周感受:\n- 肌肉记忆让我无数次滑到空白页\n- 寻找常用应用的时间增加了 3 秒\n- 但无意识打开社交媒体的次数减少了 60%\n\n第二周:\n- 开始适应新的肌肉记忆\n- 发现很多\"常用\"应用其实一周才用一次..."
+      },
+      "answers": [
+        {
+          "type": "doc",
+          "label": "实验记录",
+          "content": "<div style=\"background: #f8f8f8; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; line-height: 1.8; color: #555;\">实验记录 #001 - 第三周<br><br>惊喜发现：<br>- 手机使用时间从日均 4.5h 降至 2h<br>- 阅读时间反而增加了<br>- 睡眠质量提升（可能心理作用？）<br><br>困难：<br>- 工作需要的一些应用确实不便<br>- 地图应用需要时找不到很焦虑</div>"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "number": "003",
+      "title": "记忆可以被编辑吗？",
+      "status": "draft",
+      "type": "image",
+      "tags": ["神经科学", "哲学"],
+      "date": "2026.02.05",
+      "media": {
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=600&h=800&fit=crop",
+        "alt": "Memory"
+      },
+      "answers": []
+    },
+    {
+      "id": 4,
+      "number": "004",
+      "title": "什么是\"红队思维\"？",
+      "status": "published",
+      "type": "link",
+      "tags": ["决策", "认知偏差"],
+      "date": "2026.02.08",
+      "media": {
+        "type": "link",
+        "url": "https://fs.blog",
+        "title": "Red Teaming: How to Challenge Your Own Beliefs",
+        "icon": "📄"
+      },
+      "answers": []
+    },
+    {
+      "id": 5,
+      "number": "005",
+      "title": "深夜焦虑时该听什么？",
+      "status": "exploring",
+      "type": "audio",
+      "tags": ["治愈时刻", "深夜"],
+      "date": "2026.02.12",
+      "media": {
+        "type": "audio",
+        "title": "雨声 + 白噪音",
+        "duration": "24:00"
+      },
+      "answers": []
+    },
+    {
+      "id": 6,
+      "number": "006",
+      "title": "什么是\"当下的力量\"？",
+      "status": "published",
+      "type": "quote",
+      "tags": ["正念", "灵性"],
+      "date": "2026.01.28",
+      "media": {
+        "type": "quote",
+        "text": "时间一点儿也不珍贵，因为它仅仅是一种幻象。你认为珍贵的东西不是时间，而是不在时间内的那一点，即当下。",
+        "author": "— 埃克哈特·托利《当下的力量》"
+      },
+      "answers": []
+    },
+    {
+      "id": 7,
+      "number": "007",
+      "title": "如果记忆可以可视化...",
+      "status": "draft",
+      "type": "image",
+      "tags": ["AI艺术", "想象"],
+      "date": "2026.02.14",
+      "media": {
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=500&fit=crop",
+        "alt": "Abstract"
+      },
+      "answers": []
+    },
+    {
+      "id": 8,
+      "number": "008",
+      "title": "关于\"心流\"的最佳资源",
+      "status": "exploring",
+      "type": "link",
+      "tags": ["生产力", "心理学"],
+      "date": "2026.02.01",
+      "media": {
+        "type": "link",
+        "links": [
+          {
+            "icon": "📺",
+            "title": "Mihaly Csikszentmihalyi TED Talk"
+          },
+          {
+            "icon": "📄",
+            "title": "Flow: The Psychology of Optimal Experience"
+          }
+        ]
+      },
+      "answers": []
+    }
+  ]
+}
