@@ -1,0 +1,110 @@
+/* 主页导航样式 - 与 home.css 保持一致 */
+/* 注意：如果页面引用了 home.css，这里的样式会被覆盖 */
+/* 此文件主要用于不引用 home.css 的页面 */
+.home-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* CV页面导航阴影 */
+body.academic-page .home-nav {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.home-logo-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  visibility: visible;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.home-nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.home-nav-link {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+  font-weight: 400;
+}
+
+.home-nav-link:hover {
+  color: #1a1a1a;
+}
+
+.home-nav-link.active {
+  background: #1a1a1a;
+  color: #e8e8e8;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.home-nav-link.active:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* 语言切换器 */
+.home-nav-links .nav-lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 2rem;
+}
+
+.nav-lang-btn {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  color: #666;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-lang-btn:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.nav-lang-btn.active {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .home-nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  .home-nav-links {
+    gap: 1.5rem;
+  }
+  
+  .nav-lang-switcher {
+    margin-left: 1rem;
+  }
+}
