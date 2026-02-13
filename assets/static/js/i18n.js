@@ -118,6 +118,7 @@ window.translations = {
 
 // 获取当前语言
 function getCurrentLang() {
+  // 默认返回英文，如果localStorage中没有设置语言
   return localStorage.getItem('lang') || 'en';
 }
 
@@ -196,6 +197,12 @@ function updateLangButtons(lang) {
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
+  // 默认使用英文：如果localStorage中没有设置语言，使用英文
+  // 这样可以确保首次访问时标签默认显示英文
+  if (!localStorage.getItem('lang')) {
+    localStorage.setItem('lang', 'en');
+  }
+  
   const currentLang = getCurrentLang();
   setLang(currentLang);
   
