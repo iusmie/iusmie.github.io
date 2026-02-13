@@ -1,0 +1,63 @@
+/* 公共导航样式 */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* 默认样式（当使用文字图标时） */
+    background: #1a1a1a;
+    color: white;
+    font-size: 0.8rem;
+}
+
+/* 当 logo-icon 是 img 元素时 */
+.logo-icon[src] {
+    background: none;
+    padding: 0;
+    display: block;
+    object-fit: cover;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #1a1a1a;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+    }
+}
