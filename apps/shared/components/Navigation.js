@@ -93,13 +93,18 @@ class Navigation {
       ? `<img class="logo-icon" src="${this.options.logoImage}" alt="${this.options.logoText}" decoding="sync" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;" />`
       : `<div class="logo-icon">${this.options.logoIcon}</div>`;
 
+    // 添加锚点，定位到首页内容区块
+    const homePathWithAnchor = this.options.homePath.includes('#') 
+      ? this.options.homePath 
+      : `${this.options.homePath}#home-content`;
+
     this.container.innerHTML = `
       <nav>
-        <a href="${this.options.homePath}" class="logo">
+        <a href="${homePathWithAnchor}" class="logo">
           ${logoContent}
           <span>${this.options.logoText}</span>
         </a>
-        <a href="${this.options.homePath}" class="back-link">
+        <a href="${homePathWithAnchor}" class="back-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
