@@ -1,5 +1,5 @@
 // 多语言配置
-const translations = {
+window.translations = {
   zh: {
     experiences: 'Experiences',
     exp_desc: `项目描述和主要功能。这是一个XXX项目，实现了XXX功能。
@@ -29,7 +29,30 @@ const translations = {
     idea_status: '状态',
     idea_description: '想法说明',
     cancel: '取消',
-    save: '保存'
+    save: '保存',
+    tag_uncertainty: '不确定性',
+    tag_healing: '治愈时刻',
+    tag_pet_bond: '人宠关系',
+    tag_digital_nomad: '数字游民',
+    tag_minimalism: '极简主义',
+    tag_cognitive_bias: '认知偏差',
+    tag_efficiency: '效率',
+    questions_count: '个问题',
+    drafts_count: '个草稿',
+    questions_title: '人生几多问',
+    questions_subtitle: '探索存在、焦虑、数字极简主义的哲学思考。',
+    add_question: '添加新问题',
+    question_title: '问题标题',
+    question_content: '问题内容',
+    save_draft: '保存草稿',
+    submit: '提交',
+    question_placeholder_title: '输入问题标题...',
+    question_placeholder_content: '描述你的问题或思考...',
+    question_placeholder_link: '外部链接（可选）...',
+    question_placeholder_link_text: '链接文本（可选）...',
+    add_link: '添加链接',
+    edit_link: '编辑链接',
+    press_enter_to_save: '按 Enter 保存'
   },
   en: {
     experiences: 'Experiences',
@@ -60,7 +83,36 @@ const translations = {
     idea_status: 'Status',
     idea_description: 'Description',
     cancel: 'Cancel',
-    save: 'Save'
+    save: 'Save',
+    tag_uncertainty: 'Uncertainty',
+    tag_actionable: 'Actionable',
+    tag_healing: 'Healing Moments',
+    tag_decision_fatigue: 'Decision Fatigue',
+    tag_pet_bond: 'Human-Pet Bond',
+    tag_digital_nomad: 'Digital Nomad',
+    tag_to_verify: 'To Verify',
+    tag_late_anxiety: 'Late Night Anxiety',
+    tag_automation: 'Automation',
+    tag_minimalism: 'Minimalism',
+    tag_cognitive_bias: 'Cognitive Bias',
+    tag_micro_habits: 'Micro Habits',
+    tag_efficiency: 'Efficiency',
+    questions_count: 'Questions',
+    drafts_count: 'Drafts',
+    questions_title: '人生几多问',
+    questions_subtitle: 'Exploring philosophical reflections on existence, anxiety, and digital minimalism.',
+    add_question: 'Add New Question',
+    question_title: 'Question Title',
+    question_content: 'Question Content',
+    save_draft: 'Save as Draft',
+    submit: 'Submit',
+    question_placeholder_title: 'Enter question title...',
+    question_placeholder_content: 'Describe your question or reflection...',
+    question_placeholder_link: 'External link (optional)...',
+    question_placeholder_link_text: 'Link text (optional)...',
+    add_link: 'Add Link',
+    edit_link: 'Edit Link',
+    press_enter_to_save: 'Press Enter to save'
   }
 };
 
@@ -85,7 +137,10 @@ function updateContent(lang) {
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
     if (texts[key]) {
-      if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+      // 特殊处理：标签云标签（包含 # 前缀）
+      if (element.classList.contains('home-tag-item')) {
+        element.textContent = '#' + texts[key];
+      } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
         element.textContent = texts[key];
       } else {
         element.innerHTML = texts[key];
