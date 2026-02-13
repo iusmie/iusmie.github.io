@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生几多问 | Bits of Life</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css">
+    <link rel="stylesheet" href="../apps/lifequestions/styles/lifequestions.css">
+</head>
+<body>
+
+    <!-- 导航 -->
+    <div id="navigationContainer"></div>
+    
+    <!-- 瀑布流内容 -->
+    <div class="masonry-container" id="questionsContainer">
+        <!-- 由 LifeQuestionsApp 动态渲染 -->
+    </div>
+
+    <!-- 添加按钮 -->
+    <div id="fabContainer">
+        <!-- 由 FAB 组件动态渲染 -->
+    </div>
+
+    <!-- 详情模态框 -->
+    <div class="modal" id="detailModal">
+        <!-- 由 DetailModal 组件动态渲染 -->
+    </div>
+
+    <!-- 公共导航组件 -->
+    <script src="../apps/shared/components/Navigation.js"></script>
+    
+    <!-- 组件脚本 -->
+    <script src="../apps/lifequestions/components/QuestionCard.js"></script>
+    <script src="../apps/lifequestions/components/FilterBar.js"></script>
+    <script src="../apps/lifequestions/components/DetailModal.js"></script>
+    <script src="../apps/lifequestions/components/Hero.js"></script>
+    <script src="../apps/lifequestions/components/FAB.js"></script>
+    
+    <!-- 主应用脚本 -->
+    <script src="../apps/lifequestions/LifeQuestionsApp.js"></script>
+    
+    <!-- 初始化导航 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = new Navigation('navigationContainer', {
+                logoImage: '/assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+                homePath: '../index.html'
+            });
+            nav.render();
+        });
+    </script>
+</body>
+</html>
