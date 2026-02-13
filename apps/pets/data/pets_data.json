@@ -1,0 +1,135 @@
+{
+  "cats": [
+    {
+      "id": "tami",
+      "name": "塔米",
+      "englishName": "Tami",
+      "rank": "01",
+      "avatar": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop",
+      "breed": "英短蓝猫",
+      "birthDate": "2018-06-01",
+      "gender": "♀",
+      "personality": ["粘人", "孤僻"],
+      "role": "家族长子",
+      "bio": "家里的老大，性格因为家里多猫比较暴躁，和狗狗是最亲近的",
+      "health": "猫瘟已痊愈"
+    },
+    {
+      "id": "mimi",
+      "name": "咪咪",
+      "englishName": "MiMi",
+      "rank": "02",
+      "avatar": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=400&h=400&fit=crop",
+      "breed": "银渐层",
+      "birthDate": "2021-07-17",
+      "gender": "♀",
+      "personality": ["亲人"],
+      "role": "离家出走担当",
+      "bio": "生完孩子就想离家出走，走了俩次被找回来",
+      "health": "猫瘟已痊愈；有皮肤病，目前未找到合适方法"
+    },
+    {
+      "id": "jiejie",
+      "name": "姐姐",
+      "englishName": "JieJie",
+      "rank": "03",
+      "avatar": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=400&fit=crop",
+      "breed": "美短",
+      "birthDate": "2022-07-17",
+      "gender": "♀",
+      "personality": ["胖", "佛系"],
+      "role": "体重担当",
+      "bio": "不喜欢人，但是可以给你看肚皮",
+      "health": "猫瘟已痊愈"
+    },
+    {
+      "id": "didi",
+      "name": "弟弟",
+      "englishName": "Didi",
+      "rank": "04",
+      "avatar": "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400&h=400&fit=crop",
+      "breed": "狸猫",
+      "birthDate": "2022-07-17",
+      "gender": "♂",
+      "personality": ["活泼", "好奇", "破坏王"],
+      "role": "活力担当",
+      "bio": "家里唯一男子汉，会扒门，会看摄像头",
+      "health": "猫瘟已痊愈"
+    },
+    {
+      "id": "xiaochou",
+      "name": "小丑",
+      "englishName": "XiaoChou",
+      "rank": "05",
+      "avatar": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400&h=400&fit=crop",
+      "breed": "奶牛猫",
+      "birthDate": "2022-07-17",
+      "gender": "♀",
+      "weight": "3.8kg",
+      "personality": [ "胆大", "爱吃"],
+      "role": "吃货担当",
+      "bio": "生完病后性格大变，变得非常亲人，而且特别爱吃，体重最大；身价最高，自己溜到别人家，然后流浪了一周，花重金找回来的",
+      "health": "猫瘟已痊愈，但由于是第一只最严重，后腿有后遗症"
+    },
+    {
+      "id": "zhuozhuo",
+      "name": "卓卓",
+      "englishName": "ZhuoZhuo",
+      "rank": "06",
+      "avatar": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop",
+      "breed": "奶牛猫",
+      "birthDate": "2022-07-17",
+      "gender": "♀",
+      "weight": "4.0kg",
+      "personality": ["爱喝水"],
+      "role": "喝水担当",
+      "bio": "一开水龙头就跑过来喝水，尿也多",
+      "health": "猫瘟已痊愈"
+    }
+  ],
+  "dog": {
+    "id": "xiaocai",
+    "name": "小菜",
+    "englishName": "XiaoCai",
+    "rank": "汪",
+    "avatar": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop",
+    "breed": "中华田园犬",
+    "birthDate": "2014-06-01",
+    "endDate": "2025-06-10",
+    "gender": "♀",
+    "personality": ["热情", "跟屁虫"],
+    "role": "唯一狗狗",
+    "bio": "家里唯一的狗，随我搬了俩次家，很懂事儿。",
+    "health": "没怎么生过病，唯一的一次就去汪星了"
+  },
+  "xiaohongshu": {
+    "title": "关注我们的小红书",
+    "username": "@猫咪星球日常",
+    "url": "https://www.xiaohongshu.com/user/profile/xxx"
+  },
+  "tips": [
+    {
+      "icon": "🍖",
+      "title": "多猫家庭的喂食策略",
+      "content": "每只猫都有不同的饮食需求。我们采用\"自动喂食器\"组合，胖猫吃减肥粮，瘦猫吃营养粮，老年猫吃软粮。关键是要有耐心，让它们慢慢适应自己的专属食盆。"
+    },
+    {
+      "icon": "🏠",
+      "title": "适猫化空间规划",
+      "content": "猫是垂直空间动物，让每只猫都有自己的\"楼层\"，有效减少了领地冲突。"
+    },
+    {
+      "icon": "💩",
+      "title": "猫砂盆的怎么选",
+      "content": "6只猫，如何保持家里空气清新。"
+    }
+  ],
+  "monthlyCosts": {
+    "catFood": 800,
+    "catLitter": 300,
+    "snacks": 400,
+    "healthcare": 500,
+    "deviceExpenses": 600,
+    "total": 2600
+  }
+}
