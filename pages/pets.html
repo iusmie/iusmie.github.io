@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫咪星球 | Bits of Life</title>
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css">
+    <link rel="stylesheet" href="../apps/pets/styles/pets.css">
+</head>
+<body>
+
+    <!-- 导航 -->
+    <div id="navigationContainer"></div>
+
+    <!-- Hero -->
+    <section class="hero" id="heroContainer">
+        <!-- 由 Hero 组件动态渲染 -->
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        
+        <!-- 标签切换 -->
+        <div class="tabs" id="tabsContainer">
+            <!-- 由 Tabs 组件动态渲染 -->
+        </div>
+
+        <!-- 宠物档案区 -->
+        <div id="petsSection">
+            <div class="pets-grid" id="petsGrid">
+                <!-- 由 PetsApp 动态渲染 -->
+            </div>
+        </div>
+
+        <!-- 养猫经验区 -->
+        <div id="tipsSection" style="display: none;">
+            <div id="tipsContainer">
+                <!-- 由 TipsSection 组件动态渲染 -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 公共导航组件 -->
+    <script src="../apps/shared/components/Navigation.js"></script>
+    
+    <!-- Pets 组件脚本 -->
+    <script src="../apps/pets/components/PetCard.js"></script>
+    <script src="../apps/pets/components/Hero.js"></script>
+    <script src="../apps/pets/components/Tabs.js"></script>
+    <script src="../apps/pets/components/TipsSection.js"></script>
+    
+    <!-- 主应用脚本 -->
+    <script src="../apps/pets/PetsApp.js"></script>
+    
+    <!-- 初始化导航 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = new Navigation('navigationContainer', {
+                logoImage: '/assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+                homePath: '../index.html'
+            });
+            nav.render();
+        });
+    </script>
+</body>
+</html>
