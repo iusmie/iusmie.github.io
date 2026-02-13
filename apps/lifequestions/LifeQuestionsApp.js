@@ -41,8 +41,6 @@ class LifeQuestionsApp {
   }
 
   initComponents() {
-    // Hero 组件
-    this.components.hero = new Hero('heroContainer');
 
     // 模态框组件
     this.components.modal = new DetailModal('detailModal');
