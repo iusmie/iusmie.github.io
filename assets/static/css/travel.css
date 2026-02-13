@@ -1,0 +1,1170 @@
+/* 导航栏 */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-bottom: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.back-link:hover {
+  color: #1a1a1a;
+}
+
+.travel-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 1.5rem 0;
+  width: 100%;
+}
+
+.travel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.travel-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+}
+
+.travel-logo-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.travel-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.travel-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.travel-header .subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.travel-header .description {
+  font-size: 0.95rem;
+  color: #999;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 标签页样式 */
+.travel-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-bottom: none;
+}
+
+.travel-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.travel-tab:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.travel-tab.active {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+.travel-tab.active:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.tab-text {
+  white-space: nowrap;
+}
+
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.6rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  margin-left: 0.25rem;
+  flex-shrink: 0;
+}
+
+.tab-count {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.travel-tab.active .tab-count {
+  display: none;
+}
+
+.travel-tab:not(.active) .tab-badge {
+  display: none;
+}
+
+.travel-tab-content {
+  display: none;
+}
+
+.travel-tab-content.active {
+  display: block;
+}
+
+/* 签证组件样式 */
+.visa-section {
+  margin-bottom: 4rem;
+}
+
+.visa-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.visa-filter-btn {
+  padding: 0.5rem 1.25rem;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.visa-filter-btn:hover {
+  background: #e8e8e8;
+  color: #1a1a1a;
+}
+
+.visa-filter-btn.active {
+  background: #4A90E2;
+  color: white;
+  border-color: #4A90E2;
+}
+
+.visa-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.visa-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.visa-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.visa-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.visa-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.visa-country-flag {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.visa-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.visa-type {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: #f0f7ff;
+  color: #4A90E2;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.visa-card-body {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.visa-description {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  font-size: 0.85rem;
+}
+
+.visa-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 0.75rem;
+  row-gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.visa-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.visa-info-label {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.visa-info-value {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 0.85rem;
+}
+
+.visa-materials,
+.visa-notes {
+  margin-bottom: 0.75rem;
+}
+
+.visa-materials h4,
+.visa-notes h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.4rem;
+}
+
+.visa-material-group {
+  margin-bottom: 0.5rem;
+}
+
+.visa-material-group strong {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.visa-material-group ul {
+  margin: 0.35rem 0 0 1.1rem;
+  padding: 0;
+  list-style: disc;
+}
+
+.visa-material-group li {
+  margin-bottom: 0.2rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.visa-notes ul {
+  margin: 0.35rem 0 0 1.1rem;
+  padding: 0;
+  list-style: disc;
+}
+
+.visa-notes li {
+  margin-bottom: 0.2rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.visa-actions {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.visa-link-btn {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: #4A90E2;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.visa-link-btn:hover {
+  background: #357ABD;
+}
+
+.visa-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+}
+
+/* 攻略组件样式 */
+.travel-guide-section {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.guide-detail {
+  width: 100%;
+}
+
+.guide-detail-content {
+  width: 100%;
+}
+
+.guide-selector h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.guide-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.guide-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.guide-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.guide-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.guide-card-flag {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.guide-card-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.guide-card-country {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.guide-card-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.guide-card-duration,
+.guide-card-budget {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.guide-card-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.guide-view-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guide-view-btn:hover {
+  background: #357ABD;
+}
+
+/* 攻略详情样式 */
+.guide-detail-header {
+  margin-bottom: 0;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  padding: 1.25rem;
+  flex-shrink: 0;
+}
+
+.guide-back-btn {
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.guide-back-btn:hover {
+  background: #e8e8e8;
+  color: #1a1a1a;
+}
+
+.guide-detail-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.guide-detail-title {
+  margin-bottom: 1rem;
+}
+
+.guide-detail-country {
+  font-size: 1rem;
+  color: #666;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.guide-info-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.guide-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.guide-info-icon {
+  font-size: 1.2rem;
+}
+
+.guide-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.guide-tab {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.3s ease;
+}
+
+.guide-tab:hover {
+  color: #1a1a1a;
+}
+
+.guide-tab.active {
+  color: #4A90E2;
+  border-bottom-color: #4A90E2;
+}
+
+.guide-tab-content {
+  display: none;
+}
+
+.guide-tab-content.active {
+  display: block;
+}
+
+/* 时间线样式 */
+.timeline-wrapper {
+  padding: 2rem 0;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e0e0e0;
+}
+
+.timeline-day {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-day-marker {
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  width: 3rem;
+  text-align: center;
+}
+
+.timeline-day-number {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  background: #4A90E2;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.timeline-day-date {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.timeline-day-content {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-left: 1rem;
+}
+
+.timeline-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.timeline-day-city {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.timeline-day-accommodation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.accommodation-icon {
+  font-size: 1.2rem;
+}
+
+.timeline-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-activity {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 6px;
+}
+
+.timeline-activity-time {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #4A90E2;
+  font-size: 0.9rem;
+  min-width: 60px;
+}
+
+.timeline-activity-content {
+  flex: 1;
+}
+
+.timeline-activity-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.location-icon {
+  font-size: 1rem;
+}
+
+.timeline-activity-name {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.timeline-activity-description {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.timeline-connector {
+  position: absolute;
+  left: -2rem;
+  bottom: -3rem;
+  width: 2px;
+  height: 3rem;
+  background: #e0e0e0;
+}
+
+/* 地图样式 */
+#mapContainer {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.custom-day-marker {
+  background: transparent;
+  border: none;
+}
+
+.day-marker-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: #4A90E2;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.map-popup {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.map-popup strong {
+  color: #1a1a1a;
+}
+
+.map-popup small {
+  color: #666;
+}
+
+/* 小贴士样式 */
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tip-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-left: 3px solid #4A90E2;
+  border-radius: 6px;
+}
+
+.tip-number {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  background: #4A90E2;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tip-item p {
+  margin: 0;
+  flex: 1;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .travel-container {
+    padding: 0 1.5rem;
+  }
+  
+  .travel-header h1 {
+    font-size: 2rem;
+  }
+
+  .travel-tabs {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .travel-tab {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .tab-icon {
+    font-size: 1rem;
+  }
+
+  .tab-badge {
+    min-width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    padding: 0 0.4rem;
+  }
+
+  .tab-count {
+    font-size: 0.85rem;
+  }
+
+  .visa-cards-container,
+  .guide-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .visa-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-info-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-day-marker {
+    left: -1.5rem;
+  }
+
+  #mapContainer {
+    height: 400px !important;
+  }
+}
+
+/* 新的攻略详情布局样式 - 左右分栏 */
+.guide-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+  height: calc(100vh - 200px);
+  min-height: 700px;
+  max-height: 900px;
+}
+
+/* 右侧面板（包含标题、信息栏和时间线） */
+.guide-right-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1.5rem;
+  min-height: 0;
+}
+
+/* 左侧地图区域 */
+.map-container {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#mapContainer {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-width: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.route-selector {
+  margin-bottom: 1rem;
+}
+
+.route-label {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.route-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.route-chip {
+  padding: 0.4rem 0.8rem;
+  background: #f5f5f5;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  color: #666;
+}
+
+.route-chip:hover,
+.route-chip.active {
+  background: #1a1a1a;
+  color: white;
+}
+
+.day-detail {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 1rem;
+}
+
+.day-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+}
+
+.day-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.activity-time {
+  color: #999;
+  font-size: 0.8rem;
+  min-width: 50px;
+  flex-shrink: 0;
+}
+
+/* 右侧时间线侧边栏 */
+.timeline-sidebar {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  overflow-y: auto;
+  padding: 1.25rem;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-header {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  color: #1a1a1a;
+}
+
+.timeline-list {
+  position: relative;
+  padding-left: 2rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f0f0f0;
+}
+
+.timeline-node {
+  position: relative;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -1.75rem;
+  top: 1.25rem;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.timeline-node.active::before {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  transform: scale(1.2);
+}
+
+.timeline-node:hover::before {
+  border-color: #1a1a1a;
+}
+
+.node-date {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 0.25rem;
+}
+
+.node-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: #1a1a1a;
+}
+
+.node-location {
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+  }
+  
+  .guide-right-panel {
+    gap: 1rem;
+  }
+  
+  .guide-detail-header {
+    padding: 1rem;
+  }
+  
+  .timeline-sidebar {
+    max-height: 400px;
+    order: -1;
+  }
+  
+  .map-container {
+    order: 1;
+    height: 500px;
+  }
+  
+  #mapContainer {
+    height: 100% !important;
+    min-height: 500px;
+  }
+  
+  .map-overlay {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 1rem;
+    max-width: 100%;
+    box-shadow: none;
+    background: transparent;
+  }
+}
