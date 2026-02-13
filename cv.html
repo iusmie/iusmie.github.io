@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,22 +8,20 @@
   <title>Rowan Cao - Academic Homepage</title>
   <link rel="stylesheet" href="./assets/static/css/common.css" />
   <link rel="stylesheet" href="./assets/static/css/academic.css" />
+  <link rel="stylesheet" href="./assets/static/css/home.css" />
+  <link rel="stylesheet" href="./apps/shared/styles/academic-lang-switcher.css" />
+  <link rel="stylesheet" href="./apps/shared/styles/academic-enhanced.css" />
 </head>
-<body class="academic-page">
+<body>
 <!-- 第一行：顶部导航栏 -->
-<nav class="academic-nav">
-  <div class="nav-container">
-    <div class="nav-links">
-      <a href="./index.html" class="nav-link active" data-i18n="nav_homepage">Homepage</a>
-    </div>
-    
-  </div>
-</nav>
+<div id="navigationContainer"></div>
 
 <!-- 第二行：主内容区（左右两列） -->
 <div class="academic-container">
   <!-- 左侧栏：个人信息 -->
   <aside class="academic-sidebar">
+    <!-- 语言切换器容器 -->
+    <div id="langSwitcherContainer" class="academic-lang-switcher"></div>
     <!-- 个人头像 -->
     <div class="academic-avatar">
       <img src="./assets/images/avatar.jpg" alt="Rowan Cao" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -69,7 +66,7 @@
     <section class="academic-section">
       <h2 class="section-title">
         <span class="section-icon">🎓</span>
-        Educations
+        <span>Education</span>
       </h2>
       <ul class="education-list">
         <li class="education-item">
@@ -94,7 +91,7 @@
     <section class="academic-section">
       <h2 class="section-title">
         <span class="section-icon">💼</span>
-        Work Experiences
+        <span>Experience</span>
       </h2>
       <ul class="experience-list">
         <li class="experience-item">
@@ -116,9 +113,52 @@
       </ul>
     </section>
 
+
   </main>
 </div>
 
+<!-- 公共导航组件 -->
+<script src="./apps/shared/components/Navigation.js"></script>
+<!-- 语言切换组件 -->
+<script src="./apps/shared/components/LangSwitcher.js"></script>
 <script src="./assets/static/js/i18n.js"></script>
+
+<!-- 初始化导航 -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 语言切换处理函数
+    function handleLangChange(lang) {
+      if (typeof setLang === 'function') {
+        setLang(lang);
+      } else {
+        localStorage.setItem('lang', lang);
+        location.reload();
+      }
+    }
+
+    // 初始化导航（不包含语言切换器）
+    const nav = new Navigation('navigationContainer', {
+      homeNav: true,
+      logoImage: './assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+      logoText: 'Bits of Life',
+      navLinks: [
+        { text: 'Home', href: 'index.html' },
+        { text: 'CV', href: 'cv.html', active: true }
+      ]
+    });
+    nav.render();
+
+    // 初始化独立的语言切换器组件
+    const langSwitcher = new LangSwitcher('langSwitcherContainer', {
+      langButtons: [
+        { lang: 'en', text: 'EN' },
+        { lang: 'zh', text: '中文' }
+      ],
+      currentLang: localStorage.getItem('lang') || 'en',
+      onLangChange: handleLangChange
+    });
+    langSwitcher.render();
+  });
+</script>
 </body>
 </html>
