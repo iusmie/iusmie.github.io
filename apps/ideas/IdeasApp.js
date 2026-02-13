@@ -41,8 +41,29 @@ class IdeasApp {
         personalInterest: '个人兴趣',
         timeCost: '时间成本',
         maintenance: '维护成本'
-      }
+      },
+      // 添加密钥配置（可以从环境变量或配置文件读取）
+      accessKey: 'ideas2026' // 默认密钥，可以修改
     };
+  }
+
+  verifyAccessKey() {
+    // 每次点击都需要输入密钥验证
+    const inputKey = prompt('请输入访问密钥以添加新想法：');
+    if (!inputKey) {
+      // 用户取消输入，不显示表单
+      return false;
+    }
+
+    // 验证密钥
+    if (inputKey === this.config.accessKey) {
+      // 验证成功，允许显示添加表单
+      return true;
+    } else {
+      // 密钥错误，提示并阻止显示表单
+      alert('密钥错误，无法添加新想法');
+      return false;
+    }
   }
 
   async loadData() {
@@ -120,7 +141,13 @@ class IdeasApp {
 
     // FAB
     this.components.fab = new IdeasFAB('fabContainer', {
-      onClick: () => this.addNewIdea()
+      onClick: () => this.showAddIdeaModal()
+    });
+
+    // 添加想法模态框
+    this.components.addIdeaModal = new IdeasAddIdeaModal('addIdeaModalContainer', this.config, {
+      onSubmit: (ideaData) => this.addNewIdea(ideaData),
+      onClose: () => {}
     });
    
   }
@@ -286,19 +313,24 @@ class IdeasApp {
     this.updateCompareBar();
   }
 
-  addNewIdea() {
-    const title = prompt('想法标题：');
-    if (!title) return;
+  showAddIdeaModal() {
+    // 必须先验证访问密钥，验证通过后才能显示添加表单
+    if (!this.verifyAccessKey()) {
+      // 密钥验证失败，不显示添加表单
+      return;
+    }
     
-    const desc = prompt('简短描述：') || '暂无描述';
-    const category = prompt('分类（product/content/tool/business/lifestyle）：') || 'product';
-    
+    // 密钥验证成功，显示添加想法模态框
+    this.components.addIdeaModal.show();
+  }
+
+  addNewIdea(ideaData) {
     const newIdea = {
       id: `IDEA-${String(this.data.ideas.length + 1).padStart(3, '0')}`,
-      title: title,
-      description: desc,
-      status: 'seed',
-      category: category,
+      title: ideaData.title,
+      description: ideaData.description || '暂无描述',
+      status: ideaData.status || 'seed',
+      category: ideaData.category || 'product',
       progress: 0,
       createdAt: new Date().toISOString().split('T')[0],
       updatedAt: new Date().toISOString().split('T')[0],
@@ -309,7 +341,7 @@ class IdeasApp {
         timeCost: 5,
         maintenance: 5
       },
-      tags: ['新想法'],
+      tags: ideaData.tags || ['新想法'],
       timeline: [
         { date: new Date().toISOString().split('T')[0], content: '想法诞生' }
       ],
