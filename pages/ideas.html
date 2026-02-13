@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创意想法 | Bits of Life</title>
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css">
+    <link rel="stylesheet" href="../apps/ideas/styles/ideas.css">
+</head>
+<body>
+
+    <!-- 导航 -->
+    <div id="navigationContainer"></div>
+
+  
+
+    <!-- 主内容 -->
+    <main class="ideas-main-content">
+        <!-- 控制面板 -->
+      <div id="controlPanelContainer"></div>
+
+        <!-- 网格视图 -->
+        <div class="ideas-grid" id="gridView"></div>
+        
+        <!-- 列表视图 -->
+        <div class="ideas-list" id="listView">
+            <div class="ideas-list-header">
+                <div>想法 / 描述</div>
+                <div>分类</div>
+                <div>状态</div>
+                <div>更新</div>
+                <div>进度</div>
+            </div>
+            <div id="listContent"></div>
+        </div>
+
+    </main>
+
+    <!-- 对比悬浮栏 -->
+    <div id="compareBarContainer"></div>
+
+    <!-- 对比面板 -->
+    <div id="comparePanelContainer"></div>
+
+    <!-- 详情模态框 -->
+    <div id="detailModalContainer"></div>
+
+    <!-- 添加想法模态框 -->
+    <div id="addIdeaModalContainer"></div>
+
+    <!-- 添加按钮 -->
+    <div id="fabContainer"></div>
+
+    <!-- 公共导航组件 -->
+    <script src="../apps/shared/components/Navigation.js"></script>
+    
+    <!-- Ideas 组件脚本 -->
+    <script src="../apps/ideas/components/ControlPanel.js"></script>
+    <script src="../apps/ideas/components/IdeaCard.js"></script>
+    <script src="../apps/ideas/components/DetailModal.js"></script>
+    <script src="../apps/ideas/components/ComparePanel.js"></script>
+    <script src="../apps/ideas/components/CompareBar.js"></script>
+    <script src="../apps/ideas/components/FAB.js"></script>
+    <script src="../apps/ideas/components/AddIdeaModal.js"></script>
+    
+    <!-- 主应用脚本 -->
+    <script src="../apps/ideas/IdeasApp.js"></script>
+    
+    <!-- 初始化 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 初始化导航
+            const nav = new Navigation('navigationContainer', {
+                logoImage: '/assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+                homePath: '../index.html'
+            });
+            nav.render();
+
+            // 初始化应用
+            window.ideasApp = new IdeasApp();
+        });
+    </script>
+</body>
+</html>
