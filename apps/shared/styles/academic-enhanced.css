@@ -1,16 +1,24 @@
 /* 学术页面增强样式 - 更符合学术氛围 */
 
 /* 使用更学术的字体 */
-body.academic-page {
+body.academic-page,
+body {
   font-family: 'Georgia', 'Times New Roman', 'Times', serif !important;
-  background: #FFFFFF !important;
+  background: #FAFAFA !important;
   color: #2c3e50 !important;
-  line-height: 1.8 !important;
+  line-height: 1.6 !important;
   font-size: 15px !important;
   font-weight: 400 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* 主容器背景 */
+.academic-container {
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
 }
 
 /* CV页面导航阴影 - 确保与 index.html 一致 */
@@ -31,13 +39,15 @@ body.academic-page .home-nav {
 
 /* 学术风格的容器 */
 .academic-container {
-  max-width: 1000px !important;
+  max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 48px 32px !important;
+  padding: 56px 56px !important;
   display: grid !important;
-  grid-template-columns: 240px 1fr !important;
-  gap: 60px !important;
+  grid-template-columns: 260px 1fr !important;
+  gap: 72px !important;
   align-items: start !important;
+  margin-top: 24px !important;
+  margin-bottom: 48px !important;
 }
 
 /* 侧边栏优化 */
@@ -45,8 +55,8 @@ body.academic-page .home-nav {
   position: sticky !important;
   top: 100px !important;
   align-self: start !important;
-  padding-right: 24px !important;
-  width: 240px !important;
+  padding-right: 32px !important;
+  width: 260px !important;
   border-right: 1px solid #e8e8e8 !important;
 }
 
@@ -54,9 +64,9 @@ body.academic-page .home-nav {
 .academic-avatar {
   width: 160px !important;
   height: 160px !important;
-  border-radius: 4px !important;
+  border-radius: 50% !important;
   overflow: hidden !important;
-  margin: 0 auto 24px !important;
+  margin: 0 auto 20px !important;
   border: 1px solid #e8e8e8 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
 }
@@ -72,7 +82,7 @@ body.academic-page .home-nav {
   font-size: 24px !important;
   font-weight: 600 !important;
   color: #1a1a1a !important;
-  margin: 0 0 8px 0 !important;
+  margin: 0 0 6px 0 !important;
   line-height: 1.3 !important;
   text-align: center !important;
   letter-spacing: -0.01em !important;
@@ -83,8 +93,8 @@ body.academic-page .home-nav {
 .academic-affiliation {
   font-size: 14px;
   color: #666666;
-  margin: 0 0 20px 0;
-  line-height: 1.6;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
   font-weight: 400;
   text-align: center;
 }
@@ -93,8 +103,8 @@ body.academic-page .home-nav {
 .academic-contact {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 8px;
+  margin-top: 20px;
 }
 
 .contact-item {
@@ -133,15 +143,15 @@ body.academic-page .home-nav {
 /* 主内容区 */
 .academic-main {
   min-width: 0;
-  max-width: 680px;
+  max-width: 800px;
 }
 
 /* 个人简介 */
 .academic-bio {
-  font-size: 15px !important;
+  font-size: 14px !important;
   color: #2c3e50 !important;
-  line-height: 1.85 !important;
-  margin: 0 0 40px 0 !important;
+  line-height: 1.55 !important;
+  margin: 0 0 24px 0 !important;
   text-align: justify !important;
   text-justify: inter-ideograph !important;
   font-family: 'Georgia', serif !important;
@@ -152,33 +162,54 @@ body.academic-page .home-nav {
   color: #1a1a1a !important;
 }
 
+/* 个人简介中的列表 */
+.academic-bio ul {
+  margin: 0.4em 0 0 0 !important;
+  padding-left: 1.5em !important;
+  list-style-type: disc !important;
+}
+
+.academic-bio li {
+  margin-bottom: 0.3em !important;
+  line-height: 1.6 !important;
+  color: #2c3e50 !important;
+}
+
 /* 区块标题 - 学术风格 */
 .academic-section {
-  margin-bottom: 42px !important;
+  margin-bottom: 32px !important;
 }
 
 .academic-section:last-child {
   margin-bottom: 0 !important;
 }
 
+/* 改进section之间的视觉分隔 */
+.academic-section + .academic-section {
+  padding-top: 0;
+}
+
 .section-title {
   font-size: 20px !important;
   font-weight: 600 !important;
   color: #1a1a1a !important;
-  margin: 0 0 20px 0 !important;
+  margin: 0 0 14px 0 !important;
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
-  padding-bottom: 8px !important;
+  padding-bottom: 6px !important;
   border-bottom: 2px solid #1a1a1a !important;
   letter-spacing: -0.01em !important;
   font-family: 'Georgia', serif !important;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  letter-spacing: 0.05em;
 }
 
 .section-icon {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* 教育经历列表 */
@@ -192,36 +223,47 @@ body.academic-page .home-nav {
 .education-item,
 .experience-item {
   display: flex;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 16px;
   align-items: flex-start;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 6px 0;
+  border-bottom: 1px solid #e8e8e8;
+  transition: all 0.2s ease;
 }
 
 .education-item:last-child,
 .experience-item:last-child {
   border-bottom: none;
+  margin-bottom: 0;
 }
 
 .education-item:hover,
 .experience-item:hover {
   background-color: #fafafa;
-  margin-left: -8px;
-  margin-right: -8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 4px;
+  border-bottom-color: #e0e0e0;
 }
 
 .education-date,
 .experience-date {
-  font-size: 14px;
+  font-size: 13px;
   color: #666666;
   font-weight: 500;
   min-width: 100px;
   flex-shrink: 0;
   font-family: 'Georgia', serif;
+  letter-spacing: 0.02em;
+  padding-top: 2px;
+}
+
+.education-date strong,
+.experience-date strong {
+  font-weight: 600;
+  color: #333333;
 }
 
 .education-content,
@@ -234,8 +276,8 @@ body.academic-page .home-nav {
   font-size: 15px !important;
   font-weight: 600 !important;
   color: #1a1a1a !important;
-  margin: 0 0 4px 0 !important;
-  line-height: 1.5 !important;
+  margin: 0 0 2px 0 !important;
+  line-height: 1.4 !important;
   font-family: 'Georgia', serif !important;
 }
 
@@ -243,8 +285,8 @@ body.academic-page .home-nav {
 .experience-company {
   font-size: 14px !important;
   color: #666666 !important;
-  margin: 0 0 6px 0 !important;
-  line-height: 1.6 !important;
+  margin: 0 0 3px 0 !important;
+  line-height: 1.5 !important;
   font-weight: 400 !important;
   font-style: italic !important;
   font-family: 'Georgia', serif !important;
@@ -267,8 +309,8 @@ body.academic-page .home-nav {
 .education-advisor {
   font-size: 13px;
   color: #777777;
-  margin: 4px 0 0 0;
-  line-height: 1.6;
+  margin: 2px 0 0 0;
+  line-height: 1.5;
   font-weight: 400;
 }
 
@@ -284,17 +326,50 @@ body.academic-page .home-nav {
 }
 
 .experience-description {
-  font-size: 14px !important;
-  color: #555555 !important;
-  margin: 6px 0 0 0 !important;
-  line-height: 1.75 !important;
-  font-weight: 400 !important;
+  margin: 4px 0 0 0 !important;
+  line-height: 1.6 !important;
   font-family: 'Georgia', serif !important;
+}
+
+/* Project Overview：正文段落，略大、常规 */
+.experience-content p.experience-description:first-of-type {
+  font-size: 14px !important;
+  color: #444444 !important;
+  font-weight: 400 !important;
+}
+
+/* Main Contributions 标签：小号、加粗 */
+.experience-content p.experience-description:nth-of-type(2) {
+  font-size: 13px !important;
+  color: #333333 !important;
+  font-weight: 600 !important;
+  margin-top: 0.5em !important;
+}
+
+/* Techniques 段落：小号、斜体感，技术栈展示 */
+.experience-content p.experience-description:last-of-type {
+  font-size: 12px !important;
+  color: #666666 !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
 }
 
 .experience-description strong {
   font-weight: 600;
   color: #1a1a1a;
+}
+
+/* Project Overview 内的 strong 保持醒目 */
+.experience-content p.experience-description:first-of-type strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Techniques 内的 strong 略柔和 */
+.experience-content p.experience-description:last-of-type strong {
+  font-weight: 600;
+  color: #444444;
+  font-style: normal;
 }
 
 .experience-description a {
@@ -308,12 +383,104 @@ body.academic-page .home-nav {
   text-decoration: underline;
 }
 
+/* 项目经验中的 Main Contributions 列表（ul.experience-description） */
+ul.experience-description {
+  margin: 0.4em 0 0.3em 0 !important;
+  padding-left: 1.75em !important;
+  list-style-type: disc !important;
+}
+
+ul.experience-description li {
+  font-size: 13px !important;
+  margin-bottom: 0.35em !important;
+  line-height: 1.55 !important;
+  color: #505050 !important;
+  padding-left: 0.25em;
+  font-weight: 400 !important;
+}
+
+ul.experience-description li:last-child {
+  margin-bottom: 0 !important;
+}
+
+.experience-description p {
+  margin: 0.4em 0 !important;
+}
+
+.experience-description p:first-child {
+  margin-top: 0 !important;
+}
+
+/* Skills 部分优化 */
+.academic-section .experience-content {
+  padding: 0;
+}
+
+.academic-section .experience-content .experience-description {
+  margin-bottom: 0.75em;
+}
+
+.academic-section .experience-content .experience-description:last-child {
+  margin-bottom: 0;
+}
+
+/* 改进标题样式 */
+.experience-title {
+  margin-bottom: 4px !important;
+  font-size: 16px !important;
+}
+
+/* 改进项目描述的段落间距 */
+.experience-content p.experience-description + p.experience-description {
+  margin-top: 0.6em !important;
+}
+
+/* 改进列表在experience-description中的样式 */
+.experience-content ul.experience-description {
+  margin-top: 0.4em !important;
+  margin-bottom: 0.6em !important;
+}
+
+/* 通用 strong 标签（Main Contributions 等） */
+.experience-description strong {
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+}
+
 /* 响应式设计 */
+@media (max-width: 1200px) {
+  .academic-container {
+    max-width: 1000px !important;
+    padding: 48px 40px !important;
+    gap: 60px !important;
+  }
+  
+  .academic-main {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 968px) {
+  .academic-container {
+    padding: 40px 32px !important;
+    gap: 48px !important;
+  }
+}
+
 @media (max-width: 768px) {
+  body,
+  body.academic-page {
+    background: #FFFFFF !important;
+  }
+
   .academic-container {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 32px 20px;
+    padding: 32px 24px !important;
+    margin-top: 16px !important;
+    margin-bottom: 32px !important;
+    box-shadow: none;
   }
 
   .academic-sidebar {
@@ -341,30 +508,37 @@ body.academic-page .home-nav {
   }
 
   .section-title {
-    font-size: 18px;
-    margin-bottom: 16px;
+    font-size: 15px !important;
+    margin-bottom: 18px;
   }
 
   .academic-section {
-    margin-bottom: 32px;
+    margin-bottom: 36px !important;
   }
 
   .academic-bio {
     margin-bottom: 32px;
     text-align: left;
+    font-size: 14px !important;
   }
 
   .education-item,
   .experience-item {
     flex-direction: column;
-    gap: 8px;
-    padding: 16px 0;
+    gap: 6px;
+    padding: 10px 0;
+    margin-bottom: 20px;
   }
 
   .education-date,
   .experience-date {
     min-width: auto;
     font-weight: 600;
+    padding-top: 0;
+  }
+
+  .experience-description {
+    font-size: 13px !important;
   }
 }
 
