@@ -1,0 +1,24 @@
+{
+  "templates": [
+    {
+      "id": "center",
+      "name": "居中大标题",
+      "desc": "标题居中，作者在下方"
+    },
+    {
+      "id": "top-desc",
+      "name": "上标题下简介",
+      "desc": "标题在上，简介在下方"
+    },
+    {
+      "id": "simple",
+      "name": "简约风格",
+      "desc": "仅标题与作者，极简"
+    },
+    {
+      "id": "bottom-author",
+      "name": "底部作者",
+      "desc": "标题居中，作者固定在底部"
+    }
+  ]
+}

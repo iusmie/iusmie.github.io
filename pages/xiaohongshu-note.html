@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="小红书笔记生成器 - 根据 Markdown 和图片渲染小红书样式笔记" />
+    <title>小红书笔记生成器 | Xiaohongshu Note Generator</title>
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css" />
+    <link rel="stylesheet" href="../apps/tools/xiaohongshu-note/xiaohongshu-note.css" />
+  </head>
+  <body>
+    <!-- 导航 -->
+    <div id="navigationContainer"></div>
+
+    <div class="xhs-page">
+      <div class="xhs-container">
+        <!-- 板块 Tab，由 JS 根据配置动态渲染 -->
+        <div class="xhs-tabs" id="blockTabs"></div>
+
+        <div class="xhs-layout">
+        <!-- 左侧：封面信息 + 正文编辑 -->
+        <aside class="xhs-left-panel">
+          <section class="xhs-cover-section" id="coverSection">
+            <div class="xhs-cover-section-header">
+              <h3 class="xhs-section-title">封面信息</h3>
+              <label class="xhs-cover-toggle" title="关闭后预览区不展示封面">
+              <input type="checkbox" id="coverToggleBtn" checked />
+              <span class="xhs-cover-toggle-track"></span>
+            </label>
+            </div>
+            <div class="xhs-form-row">
+              <div class="xhs-form-group">
+                <label>封面模版</label>
+                <select id="coverTemplate" class="xhs-select">
+                  <!-- 由 JS 根据配置动态渲染 -->
+                </select>
+              </div>
+              <div class="xhs-form-group">
+                <label>封面图</label>
+                <div class="xhs-cover-actions">
+                  <button type="button" class="xhs-btn xhs-btn-small" id="coverImageBtn">
+                    <span class="xhs-btn-icon">🖼️</span> 换图
+                  </button>
+                  <button type="button" class="xhs-btn xhs-btn-small xhs-btn-danger" id="coverImageDeleteBtn">
+                    <span class="xhs-btn-icon">🗑️</span> 删除
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="xhs-form-group">
+              <label>封面大标题</label>
+              <input type="text" id="coverTitle" class="xhs-input" placeholder="输入封面标题" />
+            </div>
+            <div class="xhs-form-group">
+              <label>封面简介</label>
+              <input type="text" id="coverDesc" class="xhs-input" placeholder="可选" />
+            </div>
+            <div class="xhs-form-row">
+              <div class="xhs-form-group">
+                <label>日期</label>
+                <input type="text" id="coverDate" class="xhs-input" placeholder="VOL.08、2025.01" />
+              </div>
+              <div class="xhs-form-group">
+                <label>作者</label>
+                <select id="coverAuthor" class="xhs-select">
+                  <!-- 由 JS 根据当前板块动态渲染 -->
+                </select>
+              </div>
+            </div>
+            <div class="xhs-form-group xhs-form-group-custom-author">
+              <input type="text" id="coverAuthorCustom" class="xhs-input xhs-input-custom" placeholder="输入 @用户名" style="display: none;" />
+            </div>
+          </section>
+
+          <div class="xhs-editor-panel">
+          <div class="xhs-panel-header">
+            <h2 class="xhs-panel-title">正文编辑</h2>
+            <div class="xhs-panel-actions">
+              <button type="button" class="xhs-btn xhs-btn-secondary" id="pasteBtn">粘贴</button>
+              <button type="button" class="xhs-btn xhs-btn-secondary" id="insertImageBtn">
+                <span class="xhs-btn-icon">🖼️</span>
+                插入图片
+              </button>
+            </div>
+          </div>
+          <div class="xhs-editor-wrap">
+            <textarea
+              id="markdownInput"
+              class="xhs-textarea"
+              placeholder="Markdown / 图片粘贴(Ctrl-V)"
+              spellcheck="false"
+           ></textarea>
+          </div>
+          <div class="xhs-editor-hint">
+            <span><code>@---</code> 分页</span>
+            <span>Ctrl+V 粘贴图片</span>
+            <span>插入图片 按钮</span>
+            <span><code>&gt;</code> 引用</span>
+            <span><code>::: pitfall-human</code> 自定义块</span>
+          </div>
+          </div>
+        </aside>
+
+        <!-- 中间：内容预览区 -->
+        <main class="xhs-preview-panel">
+          <div class="xhs-preview-nav xhs-preview-nav-left" id="prevPageBtn" title="上一页">
+            <span>‹</span>
+          </div>
+          <div class="xhs-preview-content" id="previewContainer">
+            <!-- 预览卡片由 JS 动态渲染 -->
+          </div>
+          <div class="xhs-preview-nav xhs-preview-nav-right" id="nextPageBtn" title="下一页">
+            <span>›</span>
+          </div>
+        </main>
+
+        <!-- 右侧：参数设置区 -->
+        <aside class="xhs-settings-panel">
+          <div class="xhs-panel-header">
+            <h2 class="xhs-panel-title">参数设置</h2>
+            <button type="button" class="xhs-btn xhs-btn-primary" id="exportBtn">↓导出JPG</button>
+          </div>
+
+          <section class="xhs-settings-section">
+            <h3 class="xhs-section-title">风格主题</h3>
+            <p class="xhs-section-desc">根据小红书爆款笔记风格选择</p>
+            <div class="xhs-theme-options" id="themeOptions">
+              <!-- 由 JS 根据当前板块动态渲染 -->
+            </div>
+          </section>
+
+          <section class="xhs-settings-section">
+            <h3 class="xhs-section-title">外观参数</h3>
+            <div class="xhs-form-group">
+              <label>画布尺寸</label>
+              <select id="canvasSize" class="xhs-select">
+                <option value="9:16" selected>■手机海报(9:16)</option>
+                <option value="1:1">■方形(1:1)</option>
+                <option value="3:4">■竖版(3:4)</option>
+              </select>
+            </div>
+            <div class="xhs-form-group">
+              <label>封面字号 <span id="coverFontSizeVal">48</span>px</label>
+              <input type="range" id="coverFontSize" class="xhs-range" min="24" max="72" value="48" />
+            </div>
+            <div class="xhs-form-group">
+              <label>正文字号 <span id="bodyFontSizeVal">15</span>px</label>
+              <input type="range" id="bodyFontSize" class="xhs-range" min="12" max="24" value="15" />
+            </div>
+            <div class="xhs-form-group">
+              <label>标题整体(H1-H4) <span id="titleFontSizeVal">26</span>px</label>
+              <input type="range" id="titleFontSize" class="xhs-range" min="16" max="40" value="26" />
+            </div>
+          </section>
+
+          <footer class="xhs-footer">
+            <p>小红书笔记生成器</p>
+            <p class="xhs-footer-powered">Powered by Marked.js</p>
+          </footer>
+        </aside>
+        </div>
+      </div>
+    </div>
+
+    <input type="file" id="imageFileInput" accept="image/*" style="display: none" />
+    <input type="file" id="coverImageInput" accept="image/*" style="display: none" />
+
+    <!-- Markdown 解析 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <!-- 导出图片 -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+    <!-- 公共导航组件 -->
+    <script src="../apps/shared/components/Navigation.js"></script>
+
+    <!-- 工具应用脚本 -->
+    <script src="../apps/tools/xiaohongshu-note/XiaohongshuApp.js"></script>
+
+    <!-- 初始化导航 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const nav = new Navigation('navigationContainer', {
+          logoImage: '/assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+          homePath: '../index.html'
+        });
+        nav.render();
+
+        const app = new XiaohongshuApp();
+        app.init().catch(console.error);
+      });
+    </script>
+  </body>
+</html>

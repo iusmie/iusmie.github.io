@@ -1,0 +1,60 @@
+{
+  "blocks": [
+    {
+      "id": "pet",
+      "name": "宠物板块",
+      "icon": "🐾",
+      "themes": [
+        {"value": "notion", "label": "Notion 极简"},
+        {"value": "cream", "label": "奶油治愈"},
+        {"value": "minimal", "label": "极简风"},
+        {"value": "light", "label": "纯白干货"},
+        {"value": "nanobanana", "label": "Nano Banana"}
+      ],
+      "authors": [ "@陆喵_喵喵喵"],
+      "defaults": {
+        "coverTitle": "宠物心得",
+        "coverFontSize": 48,
+        "bodyFontSize": 15,
+        "titleFontSize": 26
+      }
+    },
+    {
+      "id": "decoration",
+      "name": "家装板块",
+      "icon": "🏠",
+      "themes": [
+        {"value": "notion", "label": "Notion 极简"},
+        {"value": "minimal", "label": "极简风"},
+        {"value": "light", "label": "纯白干货"},
+        {"value": "contrast", "label": "高对比"},
+        {"value": "nanobanana", "label": "Nano Banana"}
+      ],
+      "authors": ["@kk4sin90"],
+      "defaults": {
+        "coverTitle": "家装灵感",
+        "coverFontSize": 44,
+        "bodyFontSize": 15,
+        "titleFontSize": 24
+      }
+    },
+    {
+      "id": "life",
+      "name": "生活版块",
+      "icon": "🌸",
+      "themes": [
+        {"value": "cream", "label": "奶油治愈"},
+        {"value": "light", "label": "纯白干货"},
+        {"value": "contrast", "label": "高对比"},
+        {"value": "nanobanana", "label": "Nano Banana"}
+      ],
+      "authors": ["@塔塔菜猫猫头"],
+      "defaults": {
+        "coverTitle": "生活记录",
+        "coverFontSize": 48,
+        "bodyFontSize": 15,
+        "titleFontSize": 26
+      }
+    }
+  ]
+}
