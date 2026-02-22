@@ -51,6 +51,8 @@ class ToolsApp {
 
     // 渲染分类工具
     this.renderCategories();
+    // 渲染弹层并绑定事件
+    this.renderModal();
   }
 
   renderCategories() {
@@ -99,6 +101,23 @@ class ToolsApp {
       ? `<span class="tools-card-badge">${tool.badge}</span>`
       : '';
 
+    if (tool.type === 'modal' && tool.modalContent) {
+      return `
+        <div class="tools-card tools-card-modal" data-tool-id="${tool.id}" role="button" tabindex="0">
+          <span class="tools-card-icon">${tool.icon || '🔧'}</span>
+          <div class="tools-card-content">
+            <div class="tools-card-header">
+              <h3 class="tools-card-name">${tool.name}</h3>
+              ${badgeHTML}
+            </div>
+            <p class="tools-card-description">
+              ${tool.description || ''}
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
     return `
       <a href="${tool.href}" class="tools-card">
         <span class="tools-card-icon">${tool.icon || '🔧'}</span>
@@ -113,6 +132,155 @@ class ToolsApp {
         </div>
       </a>
     `;
+  }
+
+  renderModal() {
+    const modal = document.getElementById('toolsDetailModal');
+    if (modal) return;
+    const modalHTML = `
+      <div class="tools-modal" id="toolsDetailModal" aria-hidden="true">
+        <div class="tools-modal-backdrop"></div>
+        <div class="tools-modal-box" role="dialog" aria-modal="true">
+          <button type="button" class="tools-modal-close" aria-label="关闭">×</button>
+          <div class="tools-modal-content" id="toolsModalContent"></div>
+        </div>
+      </div>
+    `;
+    this.container.insertAdjacentHTML('beforeend', modalHTML);
+    this.bindModalEvents();
+  }
+
+  bindModalEvents() {
+    const modal = document.getElementById('toolsDetailModal');
+    const closeBtn = modal?.querySelector('.tools-modal-close');
+    const backdrop = modal?.querySelector('.tools-modal-backdrop');
+    const modalBox = modal?.querySelector('.tools-modal-box');
+
+    const closeModal = () => this.closeModal();
+
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+    modalBox?.addEventListener('click', (e) => e.stopPropagation());
+    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
+    });
+
+    this.container.addEventListener('click', (e) => {
+      const card = e.target.closest('.tools-card-modal');
+      if (card) {
+        const toolId = card.getAttribute('data-tool-id');
+        const tool = this.findToolById(toolId);
+        if (tool?.modalContent) this.openModal(tool);
+      }
+    });
+    this.container.addEventListener('keydown', (e) => {
+      const card = e.target.closest('.tools-card-modal');
+      if (card && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  }
+
+  findToolById(id) {
+    for (const cat of this.toolsData.categories || []) {
+      const tool = (cat.tools || []).find(t => String(t.id) === String(id));
+      if (tool) return tool;
+    }
+    return null;
+  }
+
+  markdownToHtml(text) {
+    if (!text) return '';
+    if (typeof marked !== 'undefined') {
+      return marked.parse(text, { gfm: true, breaks: true });
+    }
+    return text.replace(/\n/g, '<br>');
+  }
+
+  openModal(tool) {
+    const modal = document.getElementById('toolsDetailModal');
+    const contentEl = document.getElementById('toolsModalContent');
+    if (!modal || !contentEl || !tool.modalContent) return;
+
+    const mc = tool.modalContent;
+
+    const renderMethod = (method) => {
+      if (method.content) {
+        return `<div class="tools-modal-text tools-modal-markdown">${this.markdownToHtml(method.content)}</div>`;
+      }
+      if (method.steps && method.steps.length > 0) {
+        const stepsHTML = method.steps.map((s, i) => `
+          <div class="tools-modal-step">
+            <h4 class="tools-modal-step-title">${i + 1}. ${s.title}</h4>
+            <div class="tools-modal-step-content tools-modal-markdown">${this.markdownToHtml(s.content)}</div>
+          </div>
+        `).join('');
+        return stepsHTML;
+      }
+      return '';
+    };
+
+    const methodsHTML = (mc.methods && mc.methods.length >= 2) ? `
+      <div class="tools-modal-methods">
+        <div class="tools-modal-method tools-modal-method-left">
+          <h4 class="tools-modal-method-title">${mc.methods[0].title}</h4>
+          ${renderMethod(mc.methods[0])}
+        </div>
+        <div class="tools-modal-method tools-modal-method-right">
+          <h4 class="tools-modal-method-title">${mc.methods[1].title}</h4>
+          ${renderMethod(mc.methods[1])}
+        </div>
+      </div>
+    ` : (() => {
+      const stepsHTML = (mc.steps || []).map((s, i) => `
+        <div class="tools-modal-step">
+          <h4 class="tools-modal-step-title">${i + 1}. ${s.title}</h4>
+          <div class="tools-modal-step-content tools-modal-markdown">${this.markdownToHtml(s.content)}</div>
+        </div>
+      `).join('');
+      return stepsHTML;
+    })();
+
+    const photosToolHTML = mc.photosToolIntro ? `
+        <section class="tools-modal-section">
+          <h2 class="tools-modal-section-title">${mc.photosToolIntro.title || '苹果系统的图片工具'}</h2>
+          <div class="tools-modal-text tools-modal-markdown">${this.markdownToHtml(mc.photosToolIntro.content || '')}</div>
+        </section>
+    ` : '';
+
+    contentEl.innerHTML = `
+      <div class="tools-modal-header">
+        <h2 class="tools-modal-title">${tool.name}</h2>
+      </div>
+      <div class="tools-modal-body">
+        ${photosToolHTML}
+        <section class="tools-modal-section">
+          <h2 class="tools-modal-section-title">备份方案</h2>
+          ${methodsHTML}
+        </section>
+        ${mc.otherIssues ? `
+        <section class="tools-modal-section">
+          <h2 class="tools-modal-section-title">附录</h2>
+          <div class="tools-modal-text tools-modal-markdown">${this.markdownToHtml(mc.otherIssues)}</div>
+        </section>
+        ` : ''}
+      </div>
+    `;
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    const modal = document.getElementById('toolsDetailModal');
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 }
 

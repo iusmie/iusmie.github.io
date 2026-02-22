@@ -1,1 +1,88 @@
-{"page":{"title":"🛠️ 效率小工具","subtitle":"Efficiency Tools","description":""},"categories":[{"id":"development","title":"研发小工具","subtitle":"Development Tools","tools":[{"id":1,"name":"Markdown工具","icon":"📝","badge":"推荐","description":"Markdown对比工具、表格预览等实用功能","href":"../../apps/markdown-tools/index.html"},{"id":2,"name":"Markdown 文档查看器","icon":"📄","badge":"文档","description":"在线查看和阅读 Markdown 文档","href":"./markdown-viewer.html?file=../docs/README.md"}]},{"id":"life","title":"生活小工具","subtitle":"Life Tools","tools":[{"id":3,"name":"汇率小工具","icon":"💱","badge":"工具","description":"实时汇率查询和转换工具，支持多种货币，方便留学规划","href":"./exchange-rate/"},{"id":4,"name":"签证办理","icon":"📋","badge":"指南","description":"签证办理流程指南、材料清单和注意事项","href":"./travel.html"},{"id":5,"name":"小红书笔记生成器","icon":"📕","badge":"创作","description":"根据 Markdown 文本和图片渲染小红书样式笔记，支持主题切换和导出图片","href":"./xiaohongshu-note.html"}]}]}
+{
+  "page": {
+    "title": "🛠️ 效率小工具",
+    "subtitle": "Efficiency Tools",
+    "description": ""
+  },
+  "categories": [
+    {
+      "id": "development",
+      "title": "研发小工具",
+      "subtitle": "Development Tools",
+      "tools": [
+        {
+          "id": 1,
+          "name": "Markdown工具",
+          "icon": "📝",
+          "badge": "推荐",
+          "description": "Markdown对比工具、表格预览等实用功能",
+          "href": "../../apps/markdown-tools/index.html"
+        },
+        {
+          "id": 2,
+          "name": "Markdown 文档查看器",
+          "icon": "📄",
+          "badge": "文档",
+          "description": "在线查看和阅读 Markdown 文档",
+          "href": "./markdown-viewer.html?file=../docs/README.md"
+        }
+      ]
+    },
+    {
+      "id": "life",
+      "title": "生活小工具",
+      "subtitle": "Life Tools",
+      "tools": [
+        {
+          "id": 3,
+          "name": "汇率小工具",
+          "icon": "💱",
+          "badge": "工具",
+          "description": "实时汇率查询和转换工具，支持多种货币，方便留学规划",
+          "href": "./exchange-rate/"
+        },
+        {
+          "id": 4,
+          "name": "签证办理",
+          "icon": "📋",
+          "badge": "指南",
+          "description": "签证办理流程指南、材料清单和注意事项",
+          "href": "./travel.html"
+        },
+        {
+          "id": 5,
+          "name": "小红书笔记生成器",
+          "icon": "📕",
+          "badge": "创作",
+          "description": "根据 Markdown 文本和图片渲染小红书样式笔记，支持主题切换和导出图片",
+          "href": "./xiaohongshu-note.html"
+        },
+        {
+          "id": 6,
+          "name": "苹果设备图片备份到移动硬盘的方法",
+          "icon": "📱",
+          "badge": "指南",
+          "description": "MAC \"照片\"应用 (Photos App)备份到移动硬盘的完整流程指南",
+          "type": "modal",
+          "modalContent": {
+            "photosToolIntro": {
+              "title": "苹果系统的图片工具",
+              "content": "Mac上的 照片app是名为 Photos Library.photoslibrary文件，.photoslibrary 不是普通文件夹，这是 macOS 照片应用的核心设计。\n\n## 🔍 `.photoslibrary` 是什么？\n\n1. **它是一个 Bundle（包）**：在 Finder 里看起来是\"单个文件\"，但右键「显示包内容」会发现里面是复杂的目录结构，包含：\n   - `database.db`：SQLite 数据库，记录照片元数据、相册结构等\n   - `resources/`：缩略图、预览图\n   - `originals/`：原始照片/视频文件（可能按日期哈希分目录存储）\n   - `metadata.plist` 等配置文件\n\n2. **数据库文件会动态变化**：即使你没修改照片，只要用「照片」App 打开过图库，`database.db` 的最后修改时间、部分缓存数据就可能变化，导致文件对比工具一直报\"不一致\"。\n\n3. **权限和沙盒限制**：macOS 的隐私保护机制可能阻止第三方工具访问图库内部的某些文件。"
+            },
+            "methods": [
+              {
+                "title": "方法A：使用「照片」应用导出",
+                "content": "通过「照片」应用直接将图库导出到移动硬盘的简单方式。\n\n1. **连接移动硬盘**，确保有足够空间\n2. 打开「**照片**」应用\n3. 菜单栏选择 **文件 → 导出 → 导出照片...**\n4. 选择导出格式和位置，目标选择移动硬盘\n5. 点击「导出」等待完成\n\n适合：图库较小、只需定期导出部分照片的场景。"
+              },
+              {
+                "title": "方案 B：你想保留「照片」App 的完整体验（推荐用于备份）",
+                "content": "如果你希望备份后能在另一台 Mac 上用「照片」App 无缝打开：使用 macOS 自带终端命令（最可靠，无需安装）**直接复制整个 `.photoslibrary` 文件**到移动硬盘\n\n## 📍 第一步：找到你的照片库文件\n\n默认位置：\n```\n~/Pictures/Photos Library.photoslibrary\n```\n- `~` 代表你的用户主目录（如 `/Users/你的名字`）\n- 在 Finder 中：打开「访达」→ 左侧边栏点「图片」→ 就能看到 `Photos Library.photoslibrary`\n\n> 💡 如果没看到？可能在其他位置：\n> - 打开「照片」App → 顶部菜单 `照片` → `设置` → `通用` → 看「图库位置」\n\n---\n\n## 🛑 第二步：复制前的关键准备（❗必做）\n\n| 步骤 | 操作 | 为什么重要 |\n|------|------|-----------|\n| 1️⃣ | **完全退出「照片」App** | 右键 Dock 栏图标 →「退出」，或 `Cmd+Q`。如果后台运行，数据库可能被锁定，导致复制不完整 |\n| 2️⃣ | **关闭 iCloud 照片同步（临时）** | `系统设置` → `Apple ID` → `iCloud` → `照片` → 临时关闭。避免复制过程中云端有新数据写入 |\n| 3️⃣ | **确保移动硬盘有足够空间** | 照片库可能几十 GB，建议预留 1.2 倍空间 |\n| 4️⃣ | **硬盘格式检查** | 推荐 APFS/HFS+（仅 Mac）或 exFAT（Win/Mac 通用）。NTFS 需额外驱动 |\n\n---\n\n## 📋 第三步：终端命令复制方法（更可靠，适合大文件）\n\n打开「终端」App，输入：\n```bash\n# 用 rsync 带进度显示 + 断点续传\nrsync -avh --progress ~/Pictures/Photos\\ Library.photoslibrary/ /Volumes/你的硬盘名/Photos\\ Library.photoslibrary/\n```\n> 💡 路径中的空格要用 `\\` 转义，或直接用引号包裹路径\n\n---\n\n## ✅ 第四步：验证复制是否成功（❗关键！）\n\n复制完成后**不要急着删原文件**，先验证：\n\n### 验证 1：基础检查\n\n```bash\n# 模拟运行校验（-n 表示不实际传输，只检查差异）\nrsync -avnc ~/Pictures/Photos\\ Library.photoslibrary/ /Volumes/RowanLife/Photos\\ Library.photoslibrary/\n```\n\n### 验证 2：实际打开测试（终极验证）\n1. 按住 `Option` 键 → 打开「照片」App\n2. 选择移动硬盘上的 `Photos Library.photoslibrary`\n3. ✅ 如果能正常浏览、搜索、播放视频 → 备份成功"
+              }
+            ],
+            "otherIssues": "## `rsync` 和 `diff` 命令 介绍\n\nmacOS 基于 Unix，自带 `rsync` 和 `diff` 命令，这是运维人员验证数据的标准做法。\n\n#### 1. 使用 `rsync` 进行校验（推荐）\n`rsync` 不仅能复制，还能校验。假设你的源目录是 `/Users/you/Pics`，目标目录是 `/Volumes/MyDrive/Pics`。\n\n打开终端（Terminal），输入以下命令进行**模拟运行（Dry Run）**：\n\n```bash\nrsync -avnc /Users/you/Pics/ /Volumes/MyDrive/Pics/\n```\n\n*   `-a`: 归档模式（保留权限、时间等）。\n*   `-v`: 显示详细过程。\n*   `-n`: **关键参数**，模拟运行，**不会**真正传输或修改任何文件，只报告差异。\n*   `-c`: **关键参数**，根据**文件内容校验和（Checksum）** 进行比较，而不仅仅是文件大小和修改时间。\n\n**结果解读：**\n*   如果终端输出一堆文件列表，说明这些文件不一致或缺失。\n*   如果终端**没有任何输出**（或者只输出了目录结构信息），说明两个目录下的文件内容**完全一致**。\n\n#### 2. 使用 `diff` 命令\n```bash\ndiff -r /Users/you/Pics /Volumes/MyDrive/Pics\n```\n*   `-r`: 递归比较子目录。\n*   如果有输出，说明有文件不同；如果没有输出，说明完全一致。\n*   *注意：`diff` 在处理大量大视频文件时可能比 `rsync` 慢。*\n\n"
+          }
+        }
+      ]
+    }
+  ]
+}
