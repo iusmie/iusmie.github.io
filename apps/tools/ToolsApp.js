@@ -172,7 +172,7 @@ class ToolsApp {
       if (card) {
         const toolId = card.getAttribute('data-tool-id');
         const tool = this.findToolById(toolId);
-        if (tool?.modalContent) this.openModal(tool);
+        if (tool?.modalContent) this.openModal(tool).catch(err => console.error('ToolsApp: 打开弹层失败', err));
       }
     });
     this.container.addEventListener('keydown', (e) => {
@@ -200,12 +200,18 @@ class ToolsApp {
     return text.replace(/\n/g, '<br>');
   }
 
-  openModal(tool) {
+  async openModal(tool) {
     const modal = document.getElementById('toolsDetailModal');
     const contentEl = document.getElementById('toolsModalContent');
     if (!modal || !contentEl || !tool.modalContent) return;
 
     const mc = tool.modalContent;
+
+    // 支持多 tab 弹层
+    if (mc.tabs && Array.isArray(mc.tabs) && mc.tabs.length > 0) {
+      await this.openTabbedModal(modal, contentEl, tool, mc);
+      return;
+    }
 
     const renderMethod = (method) => {
       if (method.content) {
@@ -273,6 +279,78 @@ class ToolsApp {
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+  }
+
+  async openTabbedModal(modal, contentEl, tool, mc) {
+    const dataBase = '../apps/tools/data/';
+    const tabs = mc.tabs;
+
+    const tabContents = await Promise.all(tabs.map(async (tab) => {
+      let content = tab.content || '';
+      if (tab.contentFile) {
+        try {
+          const res = await fetch(dataBase + tab.contentFile);
+          if (res.ok) content = await res.text();
+        } catch (e) {
+          content = `加载失败: ${tab.contentFile}`;
+        }
+      }
+      return { title: tab.title, content };
+    }));
+
+    const tabsHTML = tabs.map((t, i) =>
+      `<button type="button" class="tools-modal-tab-btn ${i === 0 ? 'active' : ''}" data-tab-index="${i}" aria-selected="${i === 0}">${t.title}</button>`
+    ).join('');
+
+    const panesHTML = tabContents.map((tc, i) =>
+      `<div class="tools-modal-tab-pane ${i === 0 ? 'active' : ''}" data-tab-index="${i}"><div class="tools-modal-text tools-modal-markdown">${this.markdownToHtml(tc.content)}</div></div>`
+    ).join('');
+
+    contentEl.innerHTML = `
+      <div class="tools-modal-header">
+        <h2 class="tools-modal-title">${tool.name}</h2>
+      </div>
+      <div class="tools-modal-tabs">
+        ${tabsHTML}
+      </div>
+      <div class="tools-modal-body tools-modal-body-tabs">
+        ${panesHTML}
+      </div>
+    `;
+
+    contentEl.querySelectorAll('.tools-modal-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.getAttribute('data-tab-index');
+        contentEl.querySelectorAll('.tools-modal-tab-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-tab-index') === idx);
+          b.setAttribute('aria-selected', b.getAttribute('data-tab-index') === idx);
+        });
+        contentEl.querySelectorAll('.tools-modal-tab-pane').forEach(p => {
+          p.classList.toggle('active', p.getAttribute('data-tab-index') === idx);
+        });
+      });
+    });
+
+    this.renderMermaid(contentEl);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  renderMermaid(container) {
+    if (typeof mermaid === 'undefined') return;
+    const blocks = container.querySelectorAll('pre > code.language-mermaid');
+    blocks.forEach((code) => {
+      const pre = code.closest('pre');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'tools-mermaid-wrapper';
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = code.textContent;
+      wrapper.appendChild(mermaidDiv);
+      pre.replaceWith(wrapper);
+    });
+    mermaid.run({ nodes: container.querySelectorAll('.mermaid') }).catch(() => {});
   }
 
   closeModal() {

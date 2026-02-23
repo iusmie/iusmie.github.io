@@ -25,13 +25,15 @@
 
     <!-- Markdown 解析 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Mermaid 图表 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <!-- 公共导航组件 -->
     <script src="../apps/shared/components/Navigation.js"></script>
     
     <!-- 工具应用脚本 -->
     <script src="../apps/tools/ToolsApp.js"></script>
     
-    <!-- 初始化导航 -->
+    <!-- 初始化导航与 Mermaid -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const nav = new Navigation('navigationContainer', {
@@ -39,6 +41,9 @@
           homePath: '../index.html'
         });
         nav.render();
+        if (typeof mermaid !== 'undefined') {
+          mermaid.initialize({ startOnLoad: false });
+        }
       });
     </script>
   </body>

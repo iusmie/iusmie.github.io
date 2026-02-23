@@ -25,6 +25,22 @@
           "badge": "文档",
           "description": "在线查看和阅读 Markdown 文档",
           "href": "./markdown-viewer.html?file=../docs/README.md"
+        },
+        {
+          "id": 8,
+          "name": "常用mac命令汇总",
+          "icon": "💻",
+          "badge": "指南",
+          "description": "macOS 常用命令汇总，包括系统数据清理、磁盘空间诊断等",
+          "type": "modal",
+          "modalContent": {
+            "tabs": [
+              {
+                "title": "macOS 系统数据清理",
+                "contentFile": "mac-cleanup.md"
+              }
+            ]
+          }
         }
       ]
     },

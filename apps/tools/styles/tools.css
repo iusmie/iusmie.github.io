@@ -466,6 +466,60 @@
   margin-bottom: 0;
 }
 
+/* Tab 弹层样式 */
+.tools-modal-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 2rem;
+  flex-shrink: 0;
+}
+
+.tools-modal-tab-btn {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  color: #666;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-weight: 500;
+  margin-bottom: -1px;
+}
+
+.tools-modal-tab-btn:hover {
+  color: #1a1a1a;
+}
+
+.tools-modal-tab-btn.active {
+  color: #1a1a1a;
+  border-bottom-color: #4a90d9;
+}
+
+.tools-modal-body-tabs {
+  padding-top: 1rem;
+}
+
+.tools-modal-tab-pane {
+  display: none;
+}
+
+.tools-modal-tab-pane.active {
+  display: block;
+}
+
+.tools-mermaid-wrapper {
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.tools-mermaid-wrapper .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .tools-container {
     padding: 0 1.5rem;
@@ -527,5 +581,17 @@
 
   .tools-modal-method {
     padding: 1rem;
+  }
+
+  .tools-modal-tabs {
+    padding: 0 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tools-modal-tab-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 }
