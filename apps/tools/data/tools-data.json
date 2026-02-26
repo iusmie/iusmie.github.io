@@ -81,6 +81,14 @@
             ],
             "otherIssues": "## `rsync` 和 `diff` 命令 介绍\n\nmacOS 基于 Unix，自带 `rsync` 和 `diff` 命令，这是运维人员验证数据的标准做法。\n\n#### 1. 使用 `rsync` 进行校验（推荐）\n`rsync` 不仅能复制，还能校验。假设你的源目录是 `/Users/you/Pics`，目标目录是 `/Volumes/MyDrive/Pics`。\n\n打开终端（Terminal），输入以下命令进行**模拟运行（Dry Run）**：\n\n```bash\nrsync -avnc /Users/you/Pics/ /Volumes/MyDrive/Pics/\n```\n\n*   `-a`: 归档模式（保留权限、时间等）。\n*   `-v`: 显示详细过程。\n*   `-n`: **关键参数**，模拟运行，**不会**真正传输或修改任何文件，只报告差异。\n*   `-c`: **关键参数**，根据**文件内容校验和（Checksum）** 进行比较，而不仅仅是文件大小和修改时间。\n\n**结果解读：**\n*   如果终端输出一堆文件列表，说明这些文件不一致或缺失。\n*   如果终端**没有任何输出**（或者只输出了目录结构信息），说明两个目录下的文件内容**完全一致**。\n\n#### 2. 使用 `diff` 命令\n```bash\ndiff -r /Users/you/Pics /Volumes/MyDrive/Pics\n```\n*   `-r`: 递归比较子目录。\n*   如果有输出，说明有文件不同；如果没有输出，说明完全一致。\n*   *注意：`diff` 在处理大量大视频文件时可能比 `rsync` 慢。*\n\n"
           }
+        },
+        {
+          "id": 7,
+          "name": "空间布局设计师",
+          "icon": "📐",
+          "badge": "3D",
+          "description": "3D 空间尺寸与层板布局设计，支持材质、颜色与拖拽定位",
+          "href": "./space-layout-designer.html"
         }
       ]
     }
