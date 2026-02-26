@@ -65,9 +65,10 @@ class DetailModal {
       bodyEl.innerHTML = question.answers.map(answer => `
         <div class="answer-section">
           <div class="answer-label">${answer.label}</div>
-          <div class="answer-content">${answer.content}</div>
+          <div class="answer-content">${this.renderAnswerContent(answer)}</div>
         </div>
       `).join('');
+      this.loadMarkdownAnswers(bodyEl);
     } else if (bodyEl) {
       bodyEl.innerHTML = '<div class="answer-section"><div class="answer-content" style="color: #999; text-align: center; padding: 2rem;">暂无答案内容</div></div>';
     }
@@ -88,5 +89,38 @@ class DetailModal {
 
   isModalOpen() {
     return this.isOpen;
+  }
+
+  renderAnswerContent(answer) {
+    if (answer.type === 'markdown-file' && answer.path) {
+      return `<div class="markdown-file-block" data-markdown-path="${answer.path}" style="font-size: 0.95rem; color: #666;">正在加载文档内容...</div>`;
+    }
+    return answer.content || '';
+  }
+
+  async loadMarkdownAnswers(container) {
+    const blocks = container.querySelectorAll('.markdown-file-block[data-markdown-path]');
+    if (!blocks.length) return;
+
+    for (const block of blocks) {
+      const path = block.dataset.markdownPath;
+      if (!path) continue;
+      try {
+        const response = await fetch(path);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const markdown = await response.text();
+        block.innerHTML = `<pre style="margin: 0; white-space: pre-wrap; word-break: break-word; background: #f8f8f8; border-radius: 10px; padding: 1rem; font-size: 0.92rem; line-height: 1.75; color: #333; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;">${this.escapeHtml(markdown)}</pre>`;
+      } catch (error) {
+        block.innerHTML = `<div style="color: #c62828;">文档加载失败：${this.escapeHtml(path)}</div>`;
+      }
+    }
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 }
