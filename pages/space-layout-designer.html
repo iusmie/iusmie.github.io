@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: http: ws: wss:; worker-src 'self' blob:; media-src 'self' data: blob: https:; manifest-src 'self'; upgrade-insecure-requests" />
+    <meta name="description" content="空间布局设计师 - 3D 房间与层板布局工具" />
+    <title>空间布局设计师 | Space Layout Designer</title>
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #0f172a;
+      }
+
+      .designer-app {
+        height: calc(100vh - 72px);
+      }
+
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .control-group {
+        transition: all 0.3s ease;
+      }
+
+      .control-group:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      input[type='range'] {
+        -webkit-appearance: none;
+        background: transparent;
+      }
+
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #3b82f6;
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+
+      input[type='range']::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #334155;
+        border-radius: 2px;
+      }
+
+      .color-btn {
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .color-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      }
+
+      #canvas-container {
+        background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+      }
+
+      .item-card {
+        animation: slideIn 0.3s ease-out;
+        transition: all 0.2s;
+      }
+
+      .item-card:hover {
+        transform: translateX(4px);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .delete-btn {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .item-card:hover .delete-btn {
+        opacity: 1;
+      }
+
+      .dimension-input {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        transition: all 0.2s;
+      }
+
+      .dimension-input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(30, 41, 59, 1);
+      }
+
+      .precision-badge {
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+
+      .tab-active {
+        background: #3b82f6;
+        color: white;
+      }
+
+      .tab-inactive {
+        background: rgba(51, 65, 85, 0.5);
+        color: #94a3b8;
+      }
+
+      .tab-inactive:hover {
+        background: rgba(51, 65, 85, 0.8);
+        color: #e2e8f0;
+      }
+
+      input[type='color'] {
+        -webkit-appearance: none;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      input[type='color']::-webkit-color-swatch-wrapper {
+        padding: 0;
+      }
+
+      input[type='color']::-webkit-color-swatch {
+        border: none;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body class="text-slate-200">
+    <div id="navigationContainer"></div>
+
+    <div class="flex designer-app">
+      <div class="w-[420px] glass-panel flex flex-col border-r border-slate-700 z-10 overflow-y-auto">
+        <div class="p-5 border-b border-slate-700">
+          <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">空间布局设计师</h1>
+          <p class="text-xs text-slate-400 mt-1">自定义层板与材料系统</p>
+        </div>
+
+        <div class="p-5 border-b border-slate-700 control-group">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold text-blue-400 uppercase tracking-wider">空间尺寸</h2>
+            <span class="text-xs font-bold text-blue-400 precision-badge" id="area-display">0.00㎡</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <div class="flex justify-between text-[10px] text-slate-400 mb-1"><span>长</span><span class="text-blue-400 precision-badge" id="length-val">5.00m</span></div>
+                <input type="range" id="length" min="0.5" max="20" step="0.01" value="5.00" class="w-full" />
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] text-slate-400 mb-1"><span>宽</span><span class="text-blue-400 precision-badge" id="width-val">4.00m</span></div>
+                <input type="range" id="width" min="0.5" max="20" step="0.01" value="4.00" class="w-full" />
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] text-slate-400 mb-1"><span>层高</span><span class="text-blue-400 precision-badge" id="height-val">2.80m</span></div>
+              <input type="range" id="height" min="1.8" max="6" step="0.01" value="2.80" class="w-full" />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 border-b border-slate-700 control-group">
+          <h2 class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3">空间材质</h2>
+
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <button data-action="set-floor-type" data-floor-type="tile" id="btn-tile" class="tab-active px-3 py-2 rounded text-xs font-medium transition-all">瓷砖</button>
+            <button data-action="set-floor-type" data-floor-type="wood" id="btn-wood" class="tab-inactive px-3 py-2 rounded text-xs font-medium transition-all">木地板</button>
+          </div>
+
+          <div class="grid grid-cols-6 gap-2" id="floor-colors"></div>
+        </div>
+
+        <div class="p-5 flex-1">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold text-blue-400 uppercase tracking-wider">层板与材料</h2>
+            <button data-action="add-shelf" class="text-xs bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded transition-colors">+ 添加层板</button>
+          </div>
+
+          <div id="shelf-form" class="mb-4 p-3 bg-slate-800/50 rounded-lg border border-slate-700 space-y-3 hidden">
+            <div class="text-xs font-medium text-slate-300 mb-2">新层板设置</div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">长度 (m)</label>
+                <input type="number" id="new-length" value="1.00" min="0.1" max="10" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">深度 (m)</label>
+                <input type="number" id="new-depth" value="0.40" min="0.1" max="5" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">厚度 (cm)</label>
+                <input type="number" id="new-thickness" value="1.8" min="0.5" max="10" step="0.1" class="dimension-input w-full px-2 py-1 rounded text-xs" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">离地高度 (m)</label>
+                <input type="number" id="new-height" value="0.80" min="0" max="6" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">材质颜色</label>
+                <div class="flex gap-1">
+                  <input type="color" id="new-color" value="#8B4513" class="w-8 h-8 rounded-full" />
+                  <select id="new-material" class="dimension-input flex-1 px-2 py-1 rounded text-xs bg-slate-700">
+                    <option value="wood">实木</option>
+                    <option value="plywood">多层板</option>
+                    <option value="mdf">密度板</option>
+                    <option value="particle">颗粒板</option>
+                    <option value="metal">金属</option>
+                    <option value="glass">玻璃</option>
+                    <option value="stone">石材</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button data-action="confirm-add-shelf" class="flex-1 bg-blue-600 hover:bg-blue-500 py-2 rounded text-xs font-medium transition-colors">确认添加</button>
+              <button data-action="cancel-add-shelf" class="flex-1 bg-slate-700 hover:bg-slate-600 py-2 rounded text-xs transition-colors">取消</button>
+            </div>
+          </div>
+
+          <div id="edit-form" class="mb-4 p-3 bg-blue-900/20 rounded-lg border border-blue-700/30 space-y-3 hidden">
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-medium text-blue-300">编辑层板 #<span id="edit-id"></span></div>
+              <button data-action="delete-selected-shelf" class="text-xs text-red-400 hover:text-red-300 px-2 py-1 rounded hover:bg-red-900/30 transition-colors">删除</button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">长度</label>
+                <input type="number" id="edit-length" min="0.1" max="10" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs js-update-selected-shelf" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">深度</label>
+                <input type="number" id="edit-depth" min="0.1" max="5" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs js-update-selected-shelf" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">厚度(cm)</label>
+                <input type="number" id="edit-thickness" min="0.5" max="10" step="0.1" class="dimension-input w-full px-2 py-1 rounded text-xs js-update-selected-shelf" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">离地高度</label>
+                <input type="number" id="edit-height" min="0" max="6" step="0.01" class="dimension-input w-full px-2 py-1 rounded text-xs js-update-selected-shelf" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">材质</label>
+                <select id="edit-material" class="dimension-input w-full px-2 py-1 rounded text-xs bg-slate-700 js-update-selected-shelf">
+                  <option value="wood">实木</option>
+                  <option value="plywood">多层板</option>
+                  <option value="mdf">密度板</option>
+                  <option value="particle">颗粒板</option>
+                  <option value="metal">金属</option>
+                  <option value="glass">玻璃</option>
+                  <option value="stone">石材</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-[10px] text-slate-400 block mb-1">颜色</label>
+              <div class="flex gap-2 flex-wrap" id="edit-color-options"></div>
+              <input type="color" id="edit-color" class="w-full h-8 rounded mt-2 hidden js-update-selected-shelf" />
+            </div>
+          </div>
+
+          <div id="shelf-list" class="space-y-2 max-h-64 overflow-y-auto">
+            <div class="text-xs text-slate-500 text-center py-8 italic">暂无层板，点击上方添加</div>
+          </div>
+        </div>
+
+        <div class="p-4 bg-slate-800/50 text-[10px] text-slate-400 border-t border-slate-700">
+          <p>左键旋转 | 右键平移 | 滚轮缩放</p>
+          <p>点击层板选中编辑 | 拖拽移动位置</p>
+        </div>
+      </div>
+
+      <div id="canvas-container" class="flex-1 relative">
+        <div class="absolute top-4 right-4 glass-panel px-4 py-2 rounded-lg text-xs font-mono space-y-1">
+          <div><span class="text-slate-400">View:</span> <span id="view-info" class="text-blue-400">Perspective</span></div>
+          <div class="text-[10px] text-slate-500 precision-badge" id="dimension-info">L:5.00 × W:4.00 × H:2.80</div>
+        </div>
+
+        <div class="absolute bottom-4 right-4 flex gap-2">
+          <button data-action="reset-camera" class="glass-panel px-4 py-2 rounded-lg text-xs hover:bg-slate-700 transition-colors">重置视角</button>
+          <button data-action="toggle-wireframe" class="glass-panel px-4 py-2 rounded-lg text-xs hover:bg-slate-700 transition-colors">线框模式</button>
+          <button data-action="clear-all-shelves" class="glass-panel px-4 py-2 rounded-lg text-xs hover:bg-red-900/30 text-red-400 transition-colors">清空层板</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../apps/shared/components/Navigation.js"></script>
+    <script src="../assets/static/js/init/space-layout-designer-init.js"></script>
+  </body>
+</html>
