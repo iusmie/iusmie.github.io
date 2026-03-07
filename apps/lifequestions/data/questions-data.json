@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": 1,
-      "number": "001",
+      "number": "009",
       "title": "如何与不确定性共处？",
       "status": "published",
       "type": "video",
@@ -33,7 +33,7 @@
     },
     {
       "id": 2,
-      "number": "002",
+      "number": "010",
       "title": "数字极简是否可能？",
       "status": "exploring",
       "type": "doc",
@@ -152,7 +152,7 @@
     },
     {
       "id": 9,
-      "number": "009",
+      "number": "001",
       "title": "在企业管理中，管理者如何客观的给员工打绩效？",
       "status": "published",
       "type": "doc",
@@ -177,6 +177,36 @@
           "type": "markdown-file",
           "label": "正文（二）后端工程师绩效打分标准（完整总结版）",
           "path": "../docs/lifequestions/后端工程师绩效打分标准（完整总结版）.md"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "number": "002",
+      "title": "独生子女对家族财务/财富的影响",
+      "status": "published",
+      "type": "doc",
+      "tags": ["独生子女", "家族财富", "财富传承", "家族企业"],
+      "date": "2026.03.07",
+      "media": {
+        "type": "doc",
+        "preview": "本研究聚焦于独生子女这一特殊群体对家族财务及财富的多维度影响，通过定量研究与定性研究相结合的混合研究方法，深入探讨独生子女身份对家族财富积累路径、传承模式、治理结构以及财务决策行为的独特作用机制..."
+      },
+      "answers": [
+        {
+          "type": "text",
+          "label": "研究摘要",
+          "content": "<p>本研究聚焦于独生子女这一特殊群体对家族财务及财富的多维度影响，通过定量研究与定性研究相结合的混合研究方法，深入探讨独生子女身份对家族财富积累路径、传承模式、治理结构以及财务决策行为的独特作用机制。</p><p>研究发现，独生子女身份对家族财富的影响呈现出显著的结构性特征。从财富积累维度来看，独生子女家庭由于资源高度集中，在人力资本投资和金融资本积累方面具有明显优势，但这种资源聚焦效应也导致了风险集中化的潜在隐患。</p>"
+        },
+        {
+          "type": "link",
+          "label": "完整研究报告",
+          "content": "<a href=\"https://my.feishu.cn/wiki/ACRAwqQVQikSCKk2KNVcqt3dnqg\" target=\"_blank\" style=\"display: flex; align-items: center; gap: 1rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; text-decoration: none; color: white;\"><div style=\"width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;\">📄</div><div><div style=\"font-weight: 600; margin-bottom: 0.25rem;\">飞书文档</div><div style=\"opacity: 0.85; font-size: 0.85rem;\">独生子女对家族财务/财富的影响 - 完整研究报告</div></div></a>"
+        },
+        {
+          "type": "text",
+          "label": "核心观点",
+          "content": "<div style=\"background: #f8f9fa; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #667eea;\"><h4 style=\"margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;\">核心发现</h4><ul style=\"margin: 0; padding-left: 1.25rem; color: #555; line-height: 1.8;\"><li><strong>资源聚焦效应</strong>：独生子女家庭资源高度集中，在人力资本投资和金融资本积累方面具有明显优势</li><li><strong>风险集中隐患</strong>：资源聚焦效应也导致了风险集中化的潜在问题</li><li><strong>传承规划差异</strong>：独生子女家庭的传承意愿更强烈，传承规划更加清晰</li><li><strong>案例分析</strong>：王健林家族vs赌王何鸿燊家族的对比研究</li></ul></div>"
         }
       ]
     }

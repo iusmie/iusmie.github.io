@@ -377,10 +377,11 @@ body {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
     z-index: 1000;
     overflow-y: auto;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .modal.active {
@@ -388,71 +389,337 @@ body {
 }
 
 .modal-content {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 20px;
+    max-width: 820px;
+    width: 100%;
+    margin: 2rem auto 4rem;
+    background: #fff;
+    border-radius: 16px;
     overflow: hidden;
-    animation: slideUp 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(24px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .modal-header {
-    padding: 2rem;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 2rem 2rem 1.75rem;
+    border-bottom: 1px solid #eee;
+    background: linear-gradient(to bottom, #fafbfc 0%, #fff 100%);
     position: relative;
+}
+
+.modal-question-number {
+    font-size: 0.8rem;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.modal-question-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+    padding-right: 3rem;
+}
+
+@media (min-width: 640px) {
+    .modal-question-title {
+        font-size: 1.75rem;
+    }
 }
 
 .modal-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #e0e0e0;
-    border-radius: 50%;
-    background: white;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    transition: all 0.2s ease;
+    color: #6b7280;
 }
 
 .modal-close:hover {
-    background: #f5f5f5;
-    transform: rotate(90deg);
+    background: #f3f4f6;
+    color: #1a1a1a;
+    border-color: #d1d5db;
 }
 
 .modal-body {
     padding: 2rem;
 }
 
+/* 答案区块 */
 .answer-section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.answer-section:last-child {
+    margin-bottom: 0;
+}
+
+.answer-section:not(:first-child) {
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f0f0;
 }
 
 .answer-label {
-    font-size: 0.75rem;
-    color: #999;
+    display: inline-block;
+    font-size: 0.7rem;
+    color: #667eea;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
     font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    background: rgba(102, 126, 234, 0.08);
+    border-radius: 6px;
 }
 
 .answer-content {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #333;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #374151;
 }
 
-/* 响应式 */
+.answer-content p:first-child {
+    margin-top: 0;
+}
+
+/* 文档链接卡片（001 关联文档展示） */
+.doc-link-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #334155;
+    transition: all 0.2s ease;
+}
+
+.doc-link-card:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.doc-link-icon {
+    font-size: 1.5rem;
+}
+
+.doc-link-title {
+    flex: 1;
+    font-weight: 500;
+}
+
+.doc-link-arrow {
+    opacity: 0.6;
+    font-size: 1.25rem;
+}
+
+/* Markdown 内容样式 - 长文阅读优化 */
+.markdown-file-block {
+    padding: 0.25rem 0;
+}
+
+.markdown-file-block h1 {
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.35;
+}
+
+.markdown-file-block h1:first-child {
+    margin-top: 0;
+}
+
+.markdown-file-block h2 {
+    margin: 2rem 0 0.875rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.markdown-file-block h3,
+.markdown-file-block h4 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.markdown-file-block p {
+    margin: 0.875rem 0;
+    color: #4b5563;
+}
+
+.markdown-file-block ul,
+.markdown-file-block ol {
+    margin: 0.875rem 0;
+    padding-left: 1.5rem;
+}
+
+.markdown-file-block li {
+    margin: 0.35rem 0;
+    line-height: 1.75;
+    color: #4b5563;
+}
+
+/* 引用块 */
+.markdown-file-block blockquote {
+    border-left: 4px solid #667eea;
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.06), transparent);
+    border-radius: 0 10px 10px 0;
+    color: #4b5563;
+    font-style: italic;
+}
+
+/* 代码块 - 支持 ASCII 图表和公式 */
+.markdown-file-block pre {
+    margin: 1.25rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.markdown-file-block pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+}
+
+.markdown-file-block code {
+    font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
+    font-size: 0.875em;
+}
+
+.markdown-file-block p code,
+.markdown-file-block li code {
+    background: #f1f5f9;
+    color: #c7254e;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.markdown-file-block a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.markdown-file-block a:hover {
+    text-decoration: underline;
+}
+
+/* 表格 - 易读性优化 */
+.markdown-file-block table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.875rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.markdown-file-block table th,
+.markdown-file-block table td {
+    padding: 0.65rem 1rem;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.markdown-file-block table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #334155;
+}
+
+.markdown-file-block table tbody tr:nth-child(even) {
+    background: #fafbfc;
+}
+
+.markdown-file-block table tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* 表格在窄屏可横向滚动 */
+.modal-body {
+    overflow-x: hidden;
+}
+
+.markdown-file-block .table-wrapper {
+    overflow-x: auto;
+    margin: 1.25rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.markdown-file-block .table-wrapper table {
+    margin: 0;
+}
+
+.markdown-file-block hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2rem 0;
+}
+
+/* 详情页响应式 */
+@media (max-width: 768px) {
+    .modal {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        margin: 1rem auto 2rem;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-question-title {
+        font-size: 1.25rem;
+        padding-right: 2.5rem;
+    }
+
+    .markdown-file-block table {
+        font-size: 0.8125rem;
+    }
+
+    .markdown-file-block pre {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* 全局响应式 */
 @media (max-width: 768px) {
     .hero {
         padding: 2rem 1.5rem;

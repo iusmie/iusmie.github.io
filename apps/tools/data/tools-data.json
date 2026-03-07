@@ -105,6 +105,14 @@
           "badge": "3D",
           "description": "3D 空间尺寸与层板布局设计，支持材质、颜色与拖拽定位",
           "href": "./space-layout-designer.html"
+        },
+        {
+          "id": 9,
+          "name": "Mac 照片与 NAS 备份对比",
+          "icon": "🖼️",
+          "badge": "极空间",
+          "description": "对比 Mac 照片图库与极空间 NAS 相册，检查是否已完整备份",
+          "href": "./photos-nas-compare.html"
         }
       ]
     }

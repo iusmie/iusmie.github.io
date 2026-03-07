@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mac 照片与极空间 NAS 相册备份对比工具 - 确保照片已完整备份" />
+    <title>Mac 照片与 NAS 备份对比 | 常用工具箱</title>
+    <link rel="stylesheet" href="../assets/static/css/home.css" />
+    <link rel="stylesheet" href="../apps/shared/styles/navigation.css" />
+    <link rel="stylesheet" href="../apps/tools/styles/tools.css" />
+    <style>
+      .compare-tool { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+      .compare-tool h1 { font-size: 1.75rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; }
+      .compare-tool .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
+      .compare-tool section { margin-bottom: 2.5rem; }
+      .compare-tool h2 { font-size: 1.15rem; font-weight: 600; color: #333; margin-bottom: 0.75rem; padding-bottom: 0.25rem; border-bottom: 2px solid #e5e7eb; }
+      .compare-tool p, .compare-tool li { color: #4b5563; line-height: 1.7; margin-bottom: 0.5rem; }
+      .compare-tool ul { padding-left: 1.5rem; }
+      .compare-tool code { background: #f3f4f6; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+      .compare-tool .code-block { background: #1e293b; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem; line-height: 1.5; }
+      .compare-tool .code-block .comment { color: #94a3b8; }
+      .compare-tool .script-actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+      .compare-tool .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: none; text-decoration: none; }
+      .compare-tool .btn-primary { background: #3b82f6; color: white; }
+      .compare-tool .btn-primary:hover { background: #2563eb; }
+      .compare-tool .btn-secondary { background: #f3f4f6; color: #374151; }
+      .compare-tool .btn-secondary:hover { background: #e5e7eb; }
+      .compare-tool .tip { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .compare-tool .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .compare-tool .output-placeholder { color: #94a3b8; }
+    </style>
+  </head>
+  <body>
+    <div id="navigationContainer"></div>
+
+    <div class="compare-tool">
+      <a href="./tools.html" class="compare-tool-back" style="display:inline-flex;align-items:center;gap:0.4rem;color:#666;text-decoration:none;font-size:0.9rem;margin-bottom:1rem;">← 返回工具箱</a>
+      <h1>🖼️ Mac 照片与 NAS 备份对比</h1>
+      <p class="subtitle">对比 Mac「照片」图库与极空间 Z2 Pro 相册，检查是否已完整备份</p>
+
+      <section>
+        <h2>一、前置条件</h2>
+        <h3>1. 将极空间 NAS 挂载到 Mac</h3>
+        <ol>
+          <li>在极空间系统中：<strong>系统设置 → 文件共享服务 → Samba</strong>，开启 SMB 服务</li>
+          <li>在 Mac 上：<strong>访达 → 前往 → 连接服务器</strong>（或 <kbd>Cmd+K</kbd>）</li>
+          <li>输入 <code>smb://极空间IP地址</code>（例如 <code>smb://192.168.1.100</code>）</li>
+          <li>输入用户名和密码，勾选「记住此密码」</li>
+          <li>连接后，在 Finder 侧边栏「位置」下会出现极空间卷宗（如 <code>/Volumes/ZSpace</code>）</li>
+        </ol>
+        <h3>2. 确认路径</h3>
+        <ul>
+          <li><strong>Mac 照片原图</strong>：<code>~/Pictures/Photos Library.photoslibrary/originals/</code>（或你的图库实际路径）</li>
+          <li><strong>极空间相册</strong>：挂载后类似 <code>/Volumes/你的卷宗名/用户名/相册/</code>（以你实际备份到的文件夹为准）</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>二、对比原理</h2>
+        <p>本工具提供的脚本会：</p>
+        <ul>
+          <li>扫描 Mac 照片图库 <code>originals/</code> 下的所有图片和视频</li>
+          <li>扫描 NAS 相册目录下的所有文件</li>
+          <li>按文件内容校验和（MD5）对比，找出 Mac 中有但 NAS 中<strong>没有</strong>的文件</li>
+        </ul>
+        <p>这样能准确识别尚未备份的照片，不受文件名或目录结构差异影响。</p>
+      </section>
+
+      <section>
+        <h2>三、使用脚本</h2>
+        <p>将下方脚本保存为 <code>compare_photos_nas.sh</code>，在终端中执行前修改开头的两个路径变量。</p>
+        <div class="code-block" id="scriptBlock"><!-- 由 JS 填充 --></div>
+        <div class="script-actions">
+          <button type="button" class="btn btn-primary" id="copyScript">📋 复制脚本</button>
+          <a class="btn btn-secondary" id="downloadScript" download="compare_photos_nas.sh" href="#">⬇️ 下载脚本</a>
+        </div>
+        <div class="tip">
+          <strong>💡 提示</strong>：首次运行可能较慢（需计算大量文件的 MD5）。建议在电量充足、NAS 网络稳定的环境下执行。
+        </div>
+        <div class="warning">
+          <strong>⚠️ 注意</strong>：请先完全退出「照片」App（Cmd+Q），避免数据库被占用。
+        </div>
+      </section>
+
+      <section>
+        <h2>四、运行示例</h2>
+        <div class="code-block">
+<span class="output-placeholder"># 1. 赋予执行权限</span>
+chmod +x compare_photos_nas.sh
+
+<span class="output-placeholder"># 2. 运行（按需修改脚本内路径）</span>
+./compare_photos_nas.sh
+        </div>
+        <p>脚本会输出：Mac 图库中总文件数、NAS 中总文件数，以及<strong>尚未在 NAS 中找到备份</strong>的文件列表。若列表为空，则表示已完整备份。</p>
+      </section>
+    </div>
+
+    <script src="../apps/shared/components/Navigation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const nav = new Navigation('navigationContainer', {
+          logoImage: '/assets/images/BVme2Rxom8sQayOOVDbdWY.webp',
+          homePath: '../index.html'
+        });
+        nav.render();
+
+        const scriptContent = `#!/bin/bash
+# Mac 照片 vs 极空间 NAS 相册对比脚本
+# 使用前请修改下方两个路径
+
+MAC_ORIGINALS="$HOME/Pictures/Photos Library.photoslibrary/originals"
+NAS_ALBUM="/Volumes/你的极空间卷宗名/相册文件夹"
+
+echo "===== Mac 照片 vs NAS 相册对比 ====="
+echo "Mac 原图路径: $MAC_ORIGINALS"
+echo "NAS 相册路径: $NAS_ALBUM"
+echo ""
+
+if [ ! -d "$MAC_ORIGINALS" ]; then
+  echo "错误: Mac 照片路径不存在，请检查 MAC_ORIGINALS"
+  exit 1
+fi
+if [ ! -d "$NAS_ALBUM" ]; then
+  echo "错误: NAS 相册路径不存在，请先挂载极空间并检查 NAS_ALBUM"
+  exit 1
+fi
+
+echo "正在扫描 Mac 照片..."
+MAC_LIST=$(mktemp)
+find "$MAC_ORIGINALS" -type f \\( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.heic" -o -iname "*.gif" -o -iname "*.mov" -o -iname "*.mp4" -o -iname "*.avi" \\) 2>/dev/null | while IFS= read -r f; do
+  H=$(md5 -q "$f" 2>/dev/null) && printf "%s\\t%s\\n" "$H" "$f"
+done > "$MAC_LIST"
+MAC_COUNT=$(wc -l < "$MAC_LIST" | tr -d ' ')
+echo "Mac 中共 $MAC_COUNT 个文件"
+
+echo "正在扫描 NAS 相册..."
+NAS_HASHES=$(mktemp)
+find "$NAS_ALBUM" -type f 2>/dev/null | while read -r f; do
+  md5 -q "$f" 2>/dev/null
+done | sort -u > "$NAS_HASHES"
+NAS_COUNT=$(wc -l < "$NAS_HASHES" | tr -d ' ')
+echo "NAS 中共 $NAS_COUNT 个文件（去重后）"
+
+echo ""
+echo "===== 以下文件在 Mac 中存在，但在 NAS 中未找到对应备份 ====="
+MISSING=0
+while IFS=$'\\t' read -r HASH PATH_PART; do
+  if ! grep -q "^${HASH}\$" "$NAS_HASHES"; then
+    echo "$PATH_PART"
+    MISSING=$((MISSING + 1))
+  fi
+done < "$MAC_LIST"
+
+rm -f "$MAC_LIST" "$NAS_HASHES"
+echo ""
+echo "共 $MISSING 个文件未备份"
+if [ "$MISSING" -eq 0 ]; then
+  echo "✅ 已完整备份到 NAS"
+else
+  echo "⚠️ 请将上述文件备份到 NAS"
+fi
+`;
+
+        const block = document.getElementById('scriptBlock');
+        block.textContent = scriptContent;
+
+        const blob = new Blob([scriptContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        document.getElementById('downloadScript').href = url;
+
+        document.getElementById('copyScript').addEventListener('click', () => {
+          navigator.clipboard.writeText(scriptContent).then(() => {
+            const btn = document.getElementById('copyScript');
+            const orig = btn.textContent;
+            btn.textContent = '✓ 已复制';
+            setTimeout(() => { btn.textContent = orig; }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
