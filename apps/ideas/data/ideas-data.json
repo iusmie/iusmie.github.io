@@ -1,129 +1,412 @@
 {
-  "version": "1.0.0",
-  "lastUpdate": "2026-03-07",
-  "ideas": [
-    {
-      "id": "IDEA-001",
-      "title": "个人知识库助手",
-      "description": "一个能自动整理碎片化笔记、生成知识图谱、发现隐藏联系的 AI 工具。类似 Roam Research 但更轻量，支持本地优先。",
-      "status": "growing",
-      "category": "tool",
-      "progress": 65,
-      "createdAt": "2026-01-15",
-      "updatedAt": "2026-02-14",
-      "metrics": {
-        "feasibility": 8,
-        "marketPotential": 7,
-        "personalInterest": 9,
-        "timeCost": 6,
-        "maintenance": 5
-      },
-      "tags": ["AI", "知识管理", "本地优先", "SaaS"],
-      "timeline": [
-        { "date": "2026-01-15", "content": "产生想法，记录初步概念" },
-        { "date": "2026-01-20", "content": "完成竞品分析，确定差异化方向" },
-        { "date": "2026-02-01", "content": "开始 MVP 开发，使用 Tauri + Rust" },
-        { "date": "2026-02-14", "content": "完成核心图谱渲染功能" }
-      ],
-      "nextStep": "完成文本解析模块，预计2周内发布内测版",
-      "resources": ["https://github.com/xxx", "设计稿链接"],
-      "compareSelected": false
-    },
-    {
-      "id": "IDEA-002",
-      "title": "语音备忘录",
-      "description": "开发一个语音备忘录 App，可以随意添加创业的想法和「人生几多问」的想法，并通过 AI 自动整理或写出相关思维导图。灵感随时记录，让 AI 帮你梳理脉络。",
-      "status": "seed",
-      "category": "tool",
-      "progress": 0,
-      "createdAt": "2026-03-07",
-      "updatedAt": "2026-03-07",
-      "metrics": {
-        "feasibility": 7,
-        "marketPotential": 8,
-        "personalInterest": 9,
-        "timeCost": 6,
-        "maintenance": 5
-      },
-      "tags": ["AI", "语音", "思维导图", "灵感记录", "创业想法"],
-      "timeline": [
-        { "date": "2026-03-07", "content": "想法诞生，记录概念" }
-      ],
-      "nextStep": "调研语音识别与思维导图生成方案",
-      "resources": [],
-      "compareSelected": false
-    },
-    {
-      "id": "IDEA-003",
-      "title": "随身文档",
-      "description": "随身文档 App，随时记录、随时查阅。项目已开发中，待同步更新到创业苗圃进度。",
-      "status": "growing",
-      "category": "tool",
-      "progress": 40,
-      "createdAt": "2026-03-07",
-      "updatedAt": "2026-03-07",
-      "metrics": {
-        "feasibility": 8,
-        "marketPotential": 7,
-        "personalInterest": 8,
-        "timeCost": 5,
-        "maintenance": 6
-      },
-      "tags": ["文档", "效率工具", "开发中"],
-      "timeline": [
-        { "date": "2026-03-07", "content": "录入创业苗圃，已开发中" }
-      ],
-      "nextStep": "继续开发，定期同步进度",
-      "resources": [],
-      "compareSelected": false
-    },
-    {
-      "id": "IDEA-004",
-      "title": "今天吃什么",
-      "description": "解决选择困难症的小程序：随机推荐今日餐食，或根据偏好帮你做决定。项目开发中。",
-      "status": "growing",
-      "category": "lifestyle",
-      "progress": 30,
-      "createdAt": "2026-03-07",
-      "updatedAt": "2026-03-07",
-      "metrics": {
-        "feasibility": 9,
-        "marketPotential": 6,
-        "personalInterest": 8,
-        "timeCost": 4,
-        "maintenance": 4
-      },
-      "tags": ["小程序", "生活", "选择困难", "开发中"],
-      "timeline": [
-        { "date": "2026-03-07", "content": "录入创业苗圃，开发中" }
-      ],
-      "nextStep": "完成核心功能，上线内测",
-      "resources": [],
-      "compareSelected": false
-    },
-    {
-      "id": "IDEA-005",
-      "title": "极简主义 App",
-      "description": "按照家里的空间布局和物件进行梳理和统计，帮助了解家中物品分布、断舍离进度，让极简生活更有条理。",
-      "status": "seed",
-      "category": "lifestyle",
-      "progress": 0,
-      "createdAt": "2026-03-07",
-      "updatedAt": "2026-03-07",
-      "metrics": {
-        "feasibility": 7,
-        "marketPotential": 6,
-        "personalInterest": 8,
-        "timeCost": 6,
-        "maintenance": 5
-      },
-      "tags": ["极简", "空间布局", "断舍离", "家居", "物件统计"],
-      "timeline": [
-        { "date": "2026-03-07", "content": "想法诞生" }
-      ],
-      "nextStep": "细化空间-物件模型和交互方式",
-      "resources": [],
-      "compareSelected": false
-    }
-  ]
+    "version": "1.0.0",
+    "lastUpdate": "2026-03-07",
+    "ideas": [
+        {
+            "id": "IDEA-001",
+            "title": "个人知识库助手",
+            "description": "一个能自动整理碎片化笔记、生成知识图谱、发现隐藏联系的 AI 工具。类似 Roam Research 但更轻量，支持本地优先。",
+            "status": "growing",
+            "category": "tool",
+            "progress": 65,
+            "createdAt": "2026-01-15",
+            "updatedAt": "2026-02-14",
+            "metrics": {
+                "feasibility": 8,
+                "marketPotential": 7,
+                "personalInterest": 9,
+                "timeCost": 6,
+                "maintenance": 5
+            },
+            "tags": [
+                "AI",
+                "知识管理",
+                "本地优先",
+                "SaaS"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-15",
+                    "content": "产生想法，记录初步概念"
+                },
+                {
+                    "date": "2026-01-20",
+                    "content": "完成竞品分析，确定差异化方向"
+                },
+                {
+                    "date": "2026-02-01",
+                    "content": "开始 MVP 开发，使用 Tauri + Rust"
+                },
+                {
+                    "date": "2026-02-14",
+                    "content": "完成核心图谱渲染功能"
+                }
+            ],
+            "nextStep": "完成文本解析模块，预计2周内发布内测版",
+            "resources": [
+                "https://github.com/xxx",
+                "设计稿链接"
+            ],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-002",
+            "title": "语音备忘录",
+            "description": "开发一个语音备忘录 App，可以随意添加创业的想法和「人生几多问」的想法，并通过 AI 自动整理或写出相关思维导图。灵感随时记录，让 AI 帮你梳理脉络。",
+            "status": "seed",
+            "category": "tool",
+            "progress": 0,
+            "createdAt": "2026-03-07",
+            "updatedAt": "2026-03-07",
+            "metrics": {
+                "feasibility": 7,
+                "marketPotential": 8,
+                "personalInterest": 9,
+                "timeCost": 6,
+                "maintenance": 5
+            },
+            "tags": [
+                "AI",
+                "语音",
+                "思维导图",
+                "灵感记录",
+                "创业想法"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-03-07",
+                    "content": "想法诞生，记录概念"
+                }
+            ],
+            "nextStep": "调研语音识别与思维导图生成方案",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-003",
+            "title": "随身文档",
+            "description": "随身文档 App，随时记录、随时查阅。项目已开发中，待同步更新到创业苗圃进度。",
+            "status": "growing",
+            "category": "tool",
+            "progress": 40,
+            "createdAt": "2026-03-07",
+            "updatedAt": "2026-03-07",
+            "metrics": {
+                "feasibility": 8,
+                "marketPotential": 7,
+                "personalInterest": 8,
+                "timeCost": 5,
+                "maintenance": 6
+            },
+            "tags": [
+                "文档",
+                "效率工具",
+                "开发中"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-03-07",
+                    "content": "录入创业苗圃，已开发中"
+                }
+            ],
+            "nextStep": "继续开发，定期同步进度",
+            "resources": [ "https://github.com/iusmie/PocketDocs"],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-004",
+            "title": "今天吃什么",
+            "description": "解决选择困难症的小程序：随机推荐今日餐食，或根据偏好帮你做决定。项目开发中。",
+            "status": "growing",
+            "category": "lifestyle",
+            "progress": 30,
+            "createdAt": "2026-03-07",
+            "updatedAt": "2026-03-07",
+            "metrics": {
+                "feasibility": 9,
+                "marketPotential": 6,
+                "personalInterest": 8,
+                "timeCost": 4,
+                "maintenance": 4
+            },
+            "tags": [
+                "小程序",
+                "生活",
+                "选择困难",
+                "开发中"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-03-07",
+                    "content": "录入创业苗圃，开发中"
+                }
+            ],
+            "nextStep": "完成核心功能，上线内测",
+            "resources": ["https://github.com/iusmie/today-what-to-eat-wechat"],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-005",
+            "title": "极简主义 App",
+            "description": "按照家里的空间布局和物件进行梳理和统计，帮助了解家中物品分布、断舍离进度，让极简生活更有条理。",
+            "status": "seed",
+            "category": "lifestyle",
+            "progress": 0,
+            "createdAt": "2026-03-07",
+            "updatedAt": "2026-03-07",
+            "metrics": {
+                "feasibility": 7,
+                "marketPotential": 6,
+                "personalInterest": 8,
+                "timeCost": 6,
+                "maintenance": 5
+            },
+            "tags": [
+                "极简",
+                "空间布局",
+                "断舍离",
+                "家居",
+                "物件统计"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-03-07",
+                    "content": "想法诞生"
+                }
+            ],
+            "nextStep": "细化空间-物件模型和交互方式",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-006",
+            "title": "穿越亚欧大陆",
+            "description": "穿越亚欧大陆计划",
+            "status": "thinking",
+            "category": "lifestyle",
+            "progress": 0,
+            "createdAt": "2026-01-26",
+            "updatedAt": "2026-01-26",
+            "metrics": {
+                "feasibility": 7,
+                "marketPotential": 6,
+                "personalInterest": 9,
+                "timeCost": 7,
+                "maintenance": 4
+            },
+            "tags": [
+                "旅行",
+                "亚欧大陆",
+                "长途旅行",
+                "规划"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-26",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "完善路线规划和预算方案，调研签证政策",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-007",
+            "title": "出国留学慢性病怎么办",
+            "description": "甲状腺术后需要长期服用优甲乐、钙片等；以及如果遇到低血钙的情况，如何解决",
+            "status": "thinking",
+            "category": "health",
+            "progress": 0,
+            "createdAt": "2026-01-26",
+            "updatedAt": "2026-01-26",
+            "metrics": {
+                "feasibility": 8,
+                "marketPotential": 7,
+                "personalInterest": 9,
+                "timeCost": 5,
+                "maintenance": 6
+            },
+            "tags": [
+                "健康",
+                "留学",
+                "甲状腺",
+                "慢性病管理",
+                "药品携带"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-26",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "调研国外医疗保险和药品携带政策，整理应急方案",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-008",
+            "title": "英国利兹大学住宿怎么选",
+            "description": "1、英国住宿的类型，是否和国内一样公寓、住宅类的？\n2、网上说的1b2b啥意思\n3、leeds大学附近的可选区块有哪些",
+            "status": "thinking",
+            "category": "lifestyle",
+            "progress": 0,
+            "createdAt": "2026-01-26",
+            "updatedAt": "2026-01-26",
+            "metrics": {
+                "feasibility": 9,
+                "marketPotential": 6,
+                "personalInterest": 8,
+                "timeCost": 4,
+                "maintenance": 3
+            },
+            "tags": [
+                "留学",
+                "住宿",
+                "利兹大学",
+                "英国",
+                "租房指南"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-26",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "收集利兹大学周边住宿信息和学生评价，整理区域对比表",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-009",
+            "title": "血气分析仪是否能家用化",
+            "description": "血气分析仪是否能家用化",
+            "status": "thinking",
+            "category": "health",
+            "progress": 0,
+            "createdAt": "2026-01-26",
+            "updatedAt": "2026-01-26",
+            "metrics": {
+                "feasibility": 6,
+                "marketPotential": 7,
+                "personalInterest": 7,
+                "timeCost": 8,
+                "maintenance": 7
+            },
+            "tags": [
+                "医疗设备",
+                "家用化",
+                "血气分析",
+                "健康科技",
+                "硬件创业"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-26",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "调研家用血气分析仪的技术可行性和市场需求",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-010",
+            "title": "带猫出国手续准备",
+            "description": "带猫出国手续准备",
+            "status": "thinking",
+            "category": "lifestyle",
+            "progress": 0,
+            "createdAt": "2026-01-26",
+            "updatedAt": "2026-01-26",
+            "metrics": {
+                "feasibility": 8,
+                "marketPotential": 5,
+                "personalInterest": 9,
+                "timeCost": 6,
+                "maintenance": 4
+            },
+            "tags": [
+                "宠物",
+                "出国",
+                "手续",
+                "猫咪",
+                "检疫"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-26",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "整理目标国家宠物入境要求和检疫流程",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-011",
+            "title": "让clawdbot帮我刷抖音、看电视剧、听音乐、看论文",
+            "description": "让clawdbot帮我刷抖音、看电视剧、听音乐、看论文",
+            "status": "thinking",
+            "category": "tool",
+            "progress": 0,
+            "createdAt": "2026-01-28",
+            "updatedAt": "2026-01-28",
+            "metrics": {
+                "feasibility": 6,
+                "marketPotential": 7,
+                "personalInterest": 8,
+                "timeCost": 7,
+                "maintenance": 6
+            },
+            "tags": [
+                "AI助手",
+                "自动化",
+                "娱乐",
+                "学习",
+                "内容聚合"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-01-28",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "明确clawdbot能力边界和集成方案",
+            "resources": [],
+            "compareSelected": false
+        },
+        {
+            "id": "IDEA-012",
+            "title": "三缺一麻油",
+            "description": "AI麻油，擅长各种麻将，可以和豆包一样，视频直接互动",
+            "status": "thinking",
+            "category": "entertainment",
+            "progress": 0,
+            "createdAt": "2026-02-03",
+            "updatedAt": "2026-02-03",
+            "metrics": {
+                "feasibility": 7,
+                "marketPotential": 8,
+                "personalInterest": 9,
+                "timeCost": 7,
+                "maintenance": 6
+            },
+            "tags": [
+                "AI",
+                "麻将",
+                "视频互动",
+                "游戏",
+                "社交娱乐"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-02-03",
+                    "content": "想法诞生，记录初步概念"
+                }
+            ],
+            "nextStep": "设计AI麻将规则引擎和视频交互方案",
+            "resources": [],
+            "compareSelected": false
+        }
+    ]
 }
