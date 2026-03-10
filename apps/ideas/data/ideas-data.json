@@ -110,7 +110,7 @@
                 }
             ],
             "nextStep": "继续开发，定期同步进度",
-            "resources": [ "https://github.com/iusmie/PocketDocs"],
+            "resources": [ "https://github.com/iusmie/PocketDocs",""],
             "compareSelected": false
         },
         {
@@ -142,7 +142,7 @@
                 }
             ],
             "nextStep": "完成核心功能，上线内测",
-            "resources": ["https://github.com/iusmie/today-what-to-eat-wechat"],
+            "resources": ["https://github.com/iusmie/today-what-to-eat-wechat",""],
             "compareSelected": false
         },
         {
