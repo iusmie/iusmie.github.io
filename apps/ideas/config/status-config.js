@@ -14,6 +14,7 @@ const CategoryConfig = {
   content: { label: '内容', icon: '📝' },
   tool: { label: '工具', icon: '🛠️' },
   business: { label: '商业', icon: '💼' },
+  health: { label: '健康', icon: '🏥' },
   lifestyle: { label: '生活方式', icon: '✨' }
 };
 
