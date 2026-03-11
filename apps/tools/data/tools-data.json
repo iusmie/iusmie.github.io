@@ -41,6 +41,22 @@
               }
             ]
           }
+        },
+        {
+          "id": 10,
+          "name": "Excel 使用小技巧",
+          "icon": "📊",
+          "badge": "技巧",
+          "description": "Excel 间隔插入空白行的实用技巧，提高表格编辑效率",
+          "type": "modal",
+          "modalContent": {
+            "tabs": [
+              {
+                "title": "Excel 小技巧",
+                "contentFile": "excel-tips.md"
+              }
+            ]
+          }
         }
       ]
     },
