@@ -51,11 +51,11 @@
       "tools": [
         {
           "id": 3,
-          "name": "汇率小工具",
+          "name": "PDF页面排序",
           "icon": "💱",
           "badge": "工具",
-          "description": "实时汇率查询和转换工具，支持多种货币，方便留学规划",
-          "href": "./exchange-rate/"
+          "description": "调整pdf页面的排序",
+          "href": "./pdf-page-sort.html/"
         },
         {
           "id": 4,
