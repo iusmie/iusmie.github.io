@@ -177,6 +177,11 @@
           "type": "markdown-file",
           "label": "正文（二）后端工程师绩效打分标准（完整总结版）",
           "path": "../docs/lifequestions/后端工程师绩效打分标准（完整总结版）.md"
+        },
+        {
+          "type": "link",
+          "label": "工具：团队绩效打分",
+          "content": "<a href=\"../pages/performance-scorer.html\" target=\"_blank\" style=\"display: flex; align-items: center; gap: 1rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; text-decoration: none; color: white;\"><div style=\"width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;\">📊</div><div><div style=\"font-weight: 600; margin-bottom: 0.25rem;\">团队绩效打分工具</div><div style=\"opacity: 0.85; font-size: 0.85rem;\">快速为团队成员打分、排序，并识别各维度优异项</div></div></a>"
         }
       ]
     },
