@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF 页面排序工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .page-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+        }
+
+        .page-card:active {
+            cursor: grabbing;
+        }
+
+        .page-card.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-card.drag-over {
+            border-color: #667eea;
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .thumbnail-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+            pointer-events: none;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c7c7c7;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8 text-white">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight">PDF 页面排序工具</h1>
+            <p class="text-lg opacity-90">本地处理，安全快捷 · 拖拽调整页面顺序</p>
+        </div>
+
+        <!-- Main Container -->
+        <div class="glass-panel rounded-2xl shadow-2xl p-6 md:p-8">
+            
+            <!-- Upload Section -->
+            <div id="uploadSection" class="text-center py-12 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept=".pdf" class="hidden" onchange="handleFileSelect(event)">
+                <div class="mb-4">
+                    <svg class="mx-auto h-16 w-16 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <p class="text-lg font-medium text-gray-700">点击上传或拖拽PDF文件到此处</p>
+                <p class="text-sm text-gray-500 mt-1">支持多页PDF文件，文件不会上传到服务器</p>
+            </div>
+
+            <!-- Editor Section -->
+            <div id="editorSection" class="hidden">
+                <!-- Toolbar -->
+                <div class="flex flex-wrap items-center justify-between mb-6 gap-4">
+                    <div class="flex items-center gap-4">
+                        <h2 class="text-xl font-semibold text-gray-800" id="fileName">document.pdf</h2>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium" id="pageCount">0 页</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="resetOrder()" class="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors font-medium">
+                            重置顺序
+                        </button>
+                        <button onclick="downloadPDF()" class="btn-primary px-6 py-2 text-white rounded-lg font-medium flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            下载新PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-sm text-blue-800">
+                        <p class="font-medium mb-1">操作提示</p>
+                        <p>拖拽卡片可调整页面顺序 · 点击卡片可在右侧预览详细内容 · 使用上方按钮下载重新排序后的PDF</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Thumbnails Grid -->
+                    <div class="lg:col-span-2">
+                        <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider mb-3">页面缩略图（拖拽排序）</h3>
+                        <div id="thumbnailsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[600px] overflow-y-auto p-2">
+                            <!-- Thumbnails will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Preview Panel -->
+                    <div class="lg:col-span-1">
+                        <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider mb-3">页面预览</h3>
+                        <div class="sticky top-4">
+                            <div id="previewContainer" class="bg-gray-100 rounded-lg p-4 min-h-[400px] flex items-center justify-center border-2 border-dashed border-gray-300">
+                                <p class="text-gray-500 text-center">点击左侧缩略图查看详情</p>
+                            </div>
+                            <div id="previewInfo" class="mt-3 text-center text-sm text-gray-600 hidden">
+                                第 <span id="previewPageNum" class="font-bold text-gray-900"></span> 页
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div id="loadingOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white rounded-xl p-6 flex items-center gap-4 shadow-2xl">
+                    <div class="loader"></div>
+                    <span class="text-gray-700 font-medium">处理中...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-white opacity-80 text-sm">
+            <p>所有处理均在本地浏览器完成 · 您的文件不会被上传</p>
+        </div>
+    </div>
+
+    <script>
+        // 检查必要的库是否加载
+        function checkLibraries() {
+            if (typeof pdfjsLib === 'undefined') {
+                console.error('PDF.js 未加载');
+                return false;
+            }
+            if (typeof PDFLib === 'undefined') {
+                console.error('PDF-lib 未加载');
+                return false;
+            }
+            return true;
+        }
+
+        // Set up PDF.js worker
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
+        let originalPdfBytes = null;
+        let pages = []; // Array of {id, originalIndex, canvas}
+        let draggedItem = null;
+
+        // Drag and Drop handlers
+        function handleDragStart(e) {
+            draggedItem = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            
+            const card = e.target.closest('.page-card');
+            if (card && card !== draggedItem) {
+                card.classList.add('drag-over');
+            }
+            
+            return false;
+        }
+
+        function handleDragLeave(e) {
+            const card = e.target.closest('.page-card');
+            if (card) {
+                card.classList.remove('drag-over');
+            }
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            
+            const dropTarget = e.target.closest('.page-card');
+            
+            if (draggedItem !== dropTarget && dropTarget) {
+                const draggedIndex = parseInt(draggedItem.dataset.index);
+                const targetIndex = parseInt(dropTarget.dataset.index);
+                
+                // Reorder array
+                const [removed] = pages.splice(draggedIndex, 1);
+                pages.splice(targetIndex, 0, removed);
+                
+                // Re-render
+                renderThumbnails();
+            }
+            
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            document.querySelectorAll('.page-card').forEach(card => {
+                card.classList.remove('drag-over');
+            });
+        }
+
+        async function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file || file.type !== 'application/pdf') {
+                alert('请选择有效的PDF文件');
+                return;
+            }
+
+            showLoading(true);
+            
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                // 克隆 ArrayBuffer 以避免被 pdfjsLib 转移后分离
+                originalPdfBytes = arrayBuffer.slice(0);
+                await loadPDF(arrayBuffer, file.name);
+                document.getElementById('uploadSection').classList.add('hidden');
+                document.getElementById('editorSection').classList.remove('hidden');
+                document.getElementById('editorSection').classList.add('fade-in');
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                alert('加载PDF失败，请检查文件是否损坏');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function loadPDF(arrayBuffer, fileName) {
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const numPages = pdf.numPages;
+            
+            document.getElementById('fileName').textContent = fileName;
+            document.getElementById('pageCount').textContent = `${numPages} 页`;
+            
+            pages = [];
+            
+            // Render all pages
+            for (let i = 1; i <= numPages; i++) {
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({ scale: 0.3 }); // Thumbnail scale
+                
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+                
+                pages.push({
+                    id: `page-${i}`,
+                    originalIndex: i - 1,
+                    canvas: canvas,
+                    viewport: viewport
+                });
+            }
+            
+            renderThumbnails();
+        }
+
+        function renderThumbnails() {
+            const grid = document.getElementById('thumbnailsGrid');
+            grid.innerHTML = '';
+            
+            pages.forEach((page, index) => {
+                const card = document.createElement('div');
+                card.className = 'page-card bg-white rounded-lg shadow-md overflow-hidden border-2 border-transparent hover:shadow-lg';
+                card.draggable = true;
+                card.dataset.index = index;
+                
+                // Clone canvas for display
+                const displayCanvas = document.createElement('canvas');
+                displayCanvas.width = page.canvas.width;
+                displayCanvas.height = page.canvas.height;
+                displayCanvas.getContext('2d').drawImage(page.canvas, 0, 0);
+                displayCanvas.className = 'w-full h-auto';
+                
+                const thumbnailContainer = document.createElement('div');
+                thumbnailContainer.className = 'thumbnail-container aspect-[3/4] flex items-center justify-center';
+                thumbnailContainer.appendChild(displayCanvas);
+                
+                const info = document.createElement('div');
+                info.className = 'p-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between';
+                info.innerHTML = `
+                    <span class="text-sm font-medium text-gray-700">第 ${index + 1} 页</span>
+                    <span class="text-xs text-gray-400">原第 ${page.originalIndex + 1} 页</span>
+                `;
+                
+                card.appendChild(thumbnailContainer);
+                card.appendChild(info);
+                
+                // Add click to preview
+                card.addEventListener('click', (e) => {
+                    if (!card.classList.contains('dragging')) {
+                        showPreview(page, index);
+                    }
+                });
+                
+                // Add drag events
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragover', handleDragOver);
+                card.addEventListener('dragleave', handleDragLeave);
+                card.addEventListener('drop', handleDrop);
+                card.addEventListener('dragend', handleDragEnd);
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function showPreview(page, index) {
+            const container = document.getElementById('previewContainer');
+            const info = document.getElementById('previewInfo');
+            
+            // Create higher resolution preview
+            const previewCanvas = document.createElement('canvas');
+            const scale = 1.5;
+            previewCanvas.width = page.viewport.width * scale;
+            previewCanvas.height = page.viewport.height * scale;
+            previewCanvas.className = 'max-w-full h-auto shadow-lg rounded';
+            
+            const ctx = previewCanvas.getContext('2d');
+            ctx.scale(scale, scale);
+            ctx.drawImage(page.canvas, 0, 0);
+            
+            container.innerHTML = '';
+            container.className = 'bg-gray-100 rounded-lg p-4 min-h-[400px] flex items-center justify-center';
+            container.appendChild(previewCanvas);
+            
+            document.getElementById('previewPageNum').textContent = index + 1;
+            info.classList.remove('hidden');
+        }
+
+        function resetOrder() {
+            pages.sort((a, b) => a.originalIndex - b.originalIndex);
+            renderThumbnails();
+            document.getElementById('previewContainer').innerHTML = '<p class="text-gray-500 text-center">点击左侧缩略图查看详情</p>';
+            document.getElementById('previewInfo').classList.add('hidden');
+        }
+
+        async function downloadPDF() {
+            if (!originalPdfBytes || pages.length === 0) {
+                alert('请先上传PDF文件');
+                return;
+            }
+            
+            // 检查必要的库是否加载
+            if (!checkLibraries()) {
+                alert('PDF处理库未正确加载，请刷新页面重试');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                // 克隆 ArrayBuffer 以确保它没有被分离
+                const pdfBuffer = originalPdfBytes.slice(0);
+                
+                // 加载原始PDF文档
+                const pdfDoc = await PDFLib.PDFDocument.load(pdfBuffer);
+                const totalPages = pdfDoc.getPageCount();
+                
+                // 验证页面索引有效性
+                for (const page of pages) {
+                    if (page.originalIndex < 0 || page.originalIndex >= totalPages) {
+                        throw new Error(`页面索引无效: ${page.originalIndex + 1} (总共 ${totalPages} 页)`);
+                    }
+                }
+                
+                // 创建新的PDF文档
+                const newPdf = await PDFLib.PDFDocument.create();
+                
+                // 按新顺序复制页面
+                for (let i = 0; i < pages.length; i++) {
+                    const page = pages[i];
+                    try {
+                        const [copiedPage] = await newPdf.copyPages(pdfDoc, [page.originalIndex]);
+                        newPdf.addPage(copiedPage);
+                    } catch (pageError) {
+                        console.error(`复制第 ${page.originalIndex + 1} 页时出错:`, pageError);
+                        throw new Error(`处理第 ${page.originalIndex + 1} 页时出错: ${pageError.message || '未知错误'}`);
+                    }
+                }
+                
+                // 保存PDF
+                const pdfBytes = await newPdf.save();
+                
+                // 创建下载链接
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                const fileName = document.getElementById('fileName').textContent;
+                link.download = `reordered_${fileName}`;
+                document.body.appendChild(link);
+                link.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+            } catch (error) {
+                console.error('保存PDF时出错:', error);
+                const errorMessage = error.message || '未知错误';
+                alert(`保存PDF失败: ${errorMessage}\n\n请检查：\n1. PDF文件是否完整\n2. 浏览器是否支持下载功能\n3. 是否有足够的存储空间`);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            if (show) {
+                overlay.classList.remove('hidden');
+            } else {
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // Drag and drop file upload
+        const uploadSection = document.getElementById('uploadSection');
+        
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.classList.add('bg-gray-100', 'border-blue-400');
+        });
+        
+        uploadSection.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadSection.classList.remove('bg-gray-100', 'border-blue-400');
+        });
+        
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.classList.remove('bg-gray-100', 'border-blue-400');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                const input = document.getElementById('fileInput');
+                const dt = new DataTransfer();
+                dt.items.add(files[0]);
+                input.files = dt.files;
+                handleFileSelect({ target: input });
+            }
+        });
+    </script>
+</body>
+</html>
