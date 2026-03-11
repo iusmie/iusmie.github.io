@@ -55,7 +55,7 @@
           "icon": "💱",
           "badge": "工具",
           "description": "调整pdf页面的排序",
-          "href": "./pdf-page-sort.html/"
+          "href": "./pdf-page-sort.html"
         },
         {
           "id": 4,
