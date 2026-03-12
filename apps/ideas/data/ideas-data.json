@@ -407,6 +407,41 @@
             "nextStep": "设计AI麻将规则引擎和视频交互方案",
             "resources": [],
             "compareSelected": false
+        },
+        {
+            "id": "IDEA-013",
+            "title": "本地音乐风格画像与推荐",
+            "description": "分析本地存储的 MP3 文件，提取节奏、旋律和歌词主题，生成音乐风格画像（更好地了解自己的音乐偏好），然后根据这些特征推荐类似音乐或新音乐。用于个人兴趣探索、音乐推荐系统，用户需处理本地 MP3 文件。",
+            "status": "seed",
+            "category": "tool",
+            "progress": 0,
+            "createdAt": "2026-03-12",
+            "updatedAt": "2026-03-12",
+            "metrics": {
+                "feasibility": 7,
+                "marketPotential": 7,
+                "personalInterest": 9,
+                "timeCost": 7,
+                "maintenance": 6
+            },
+            "tags": [
+                "音乐",
+                "MP3分析",
+                "节奏旋律",
+                "歌词主题",
+                "风格画像",
+                "音乐推荐",
+                "本地优先"
+            ],
+            "timeline": [
+                {
+                    "date": "2026-03-12",
+                    "content": "想法诞生，记录概念"
+                }
+            ],
+            "nextStep": "调研 MP3 音频特征提取与歌词解析技术方案",
+            "resources": [],
+            "compareSelected": false
         }
     ]
 }
